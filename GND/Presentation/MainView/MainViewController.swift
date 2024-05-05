@@ -9,22 +9,13 @@ import UIKit
 import Then
 import SnapKit
 class MainViewController: UIViewController {
-//    let navigationBar : UINavigationBar = {
-//        let navigationBar = UINavigationBar()
-//        navigationBar.translatesAutoresizingMaskIntoConstraints = false
-//        return navigationBar
-//    }()
-//    let levelInfoView = UIStackView().then {
-//        $0.axis = .horizontal
-//        $0.distribution = .fillEqually
-////        $0.spacing = 10
-//    }
     var enterRooms :[EnterModel] = [ EnterModel(title: "경희대 사람문의", subtitle: "교수 경희대 국제관 하반기", participantCount: 3, imageString: "logo"),
     EnterModel(title: "어쩌구 저쩌구", subtitle: "코스 설명", participantCount: 10, imageString:  "logo")]
     let goalView = UIView().then {
         $0.layer.cornerRadius = 16
         $0.backgroundColor = .yellow
     }
+    private var overlayView: UIView?
     private lazy var collectionView: UICollectionView = {
          let layout = UICollectionViewFlowLayout()
          layout.scrollDirection = .horizontal
@@ -35,15 +26,13 @@ class MainViewController: UIViewController {
          collectionView.backgroundColor = .white
          return collectionView
      }()
-    private let exerciseButton = UIButton().then {
-        $0.setTitle("운동하기", for: .normal)
-        $0.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
-        $0.layer.cornerRadius = 48
-        $0.backgroundColor = .brown
-    }
+    private let exerciseButton = ExerciseButton(title: "운동하기", backgroundColor: .brown)
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        setupUI()
+    }
+    private func setupUI() {
         setupNavigationBar()
         setupGoalView()
         setEnterRooms()
@@ -173,11 +162,49 @@ class MainViewController: UIViewController {
         exerciseButton.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(32)
             $0.centerX.equalToSuperview()
-            $0.width.height.equalTo(96)
-
         }
+        exerciseButton.addTarget(self, action: #selector(exerciseButtonTapped), for: .touchUpInside)
+        }
+    @objc private func exerciseButtonTapped() {
+        showExerciseOptions()
+    }
+    private func showExerciseOptions() {
+        let overlay = UIView(frame: self.view.bounds)
+        overlay.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        self.view.addSubview(overlay)
+        self.overlayView = overlay
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissOverlay))
+         overlay.addGestureRecognizer(tapGesture)
+        let buttons = [
+                ExerciseButton(title: "산책하기", backgroundColor: .systemGray),
+                ExerciseButton(title: "속도훈련", backgroundColor: .systemGray),
+                ExerciseButton(title: "보폭훈련", backgroundColor: .lightGray),
+                ExerciseButton(title: "X", backgroundColor: .red)
+            ]
+         // Buttons 생성
+        buttons.forEach { button in
+                  overlayView?.addSubview(button)
+                  button.addTarget(self, action: #selector(buttonAction(sender:)), for: .touchUpInside)
+              }
+        buttons[0].snp.makeConstraints { $0.bottom.equalTo(exerciseButton.snp.top).offset(-96); $0.centerX.equalToSuperview() }
+             buttons[1].snp.makeConstraints { $0.bottom.equalTo(exerciseButton.snp.top); $0.trailing.equalTo(exerciseButton.snp.leading) }
+             buttons[2].snp.makeConstraints { $0.bottom.equalTo(exerciseButton.snp.top); $0.leading.equalTo(exerciseButton.snp.trailing) }
+             buttons[3].snp.makeConstraints { $0.edges.equalTo(exerciseButton) }
+
+
+    }
+    @objc private func dismissOverlay() {
+        overlayView?.removeFromSuperview()
+    }
+
+    @objc private func buttonAction(sender: UIButton) {
+        print("Button Pressed: \(sender.currentTitle ?? "")")
+        dismissOverlay()
     }
 }
+
+
+
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         enterRooms.count
