@@ -18,7 +18,7 @@ class NicknameViewController: UIViewController {
     }
     lazy var nicknameField = UITextField().then {
         $0.borderStyle = .roundedRect
-        $0.backgroundColor = .yellow
+        $0.backgroundColor = CustomColors.cell
         $0.placeholder = "닉네임을 입력해주세요"
         $0.delegate = self
         $0.addLeftPadding()
@@ -34,7 +34,7 @@ class NicknameViewController: UIViewController {
         $0.setTitle("완료", for: .normal)
     }
     override func viewDidLoad() {
-        view.backgroundColor = .white
+        view.backgroundColor = CustomColors.bk
         super.viewDidLoad()
         setUI()
 

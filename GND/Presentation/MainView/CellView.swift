@@ -31,7 +31,7 @@ class CellView: UIView {
     private func setupViews() {
             layer.cornerRadius = 10
         layer.masksToBounds = true
-        backgroundColor = .yellow
+        backgroundColor = CustomColors.cell
         [mapImageView, titleLabel, subtitleLabel, lastLabel].forEach {
             addSubview($0)
         }

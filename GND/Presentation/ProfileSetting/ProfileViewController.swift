@@ -33,7 +33,7 @@ class ProfileViewController: UIViewController {
     let nextButton = UIButton().then {
         $0.setTitle("다음", for: .normal)
         $0.setTitleColor(.white, for: .normal)
-        $0.backgroundColor = .brown
+        $0.backgroundColor = CustomColors.brown
         $0.layer.cornerRadius = 15
 
     }
@@ -50,7 +50,7 @@ class ProfileViewController: UIViewController {
     let ageRanges = ["50세 이하", "50-55세", "55-60세", "60-70세", "70-80세", "80세 이상"]
 
     override func viewDidLoad() {
-        view.backgroundColor = .white
+        view.backgroundColor = CustomColors.bk
         super.viewDidLoad()
         setupUI()
     }
@@ -119,7 +119,7 @@ extension ProfileViewController {
         let genderTextLabel = UILabel().then {
             $0.text = text
             $0.font = UIFont.systemFont(ofSize: 32, weight: .medium)
-            $0.textColor = .brown
+            $0.textColor = CustomColors.brown
         }
         let vStackView = UIStackView().then {
             $0.axis = .vertical
@@ -139,7 +139,7 @@ extension ProfileViewController {
             $0.size.equalTo(132)
         }
         genderView.layer.cornerRadius = 66
-        genderView.layer.borderColor = UIColor.brown.cgColor
+        genderView.layer.borderColor = CustomColors.brown.cgColor
         genderView.layer.borderWidth = 2 // Add border width
         genderView.clipsToBounds = true
         return genderView
@@ -155,9 +155,9 @@ extension ProfileViewController {
         for genderView in genderViews {
             if let stackView = genderView?.subviews.first as? UIStackView {
                 stackView.arrangedSubviews.compactMap { $0 as? UILabel }.forEach { label in
-                    label.textColor = (genderView == (selectedGender == .male ? manGenderView : womanGenderView)) ? .white : .brown
+                    label.textColor = (genderView == (selectedGender == .male ? manGenderView : womanGenderView)) ? .white : CustomColors.brown
                 }
-                genderView?.backgroundColor = (genderView == (selectedGender == .male ? manGenderView : womanGenderView)) ? .brown : .clear
+                genderView?.backgroundColor = (genderView == (selectedGender == .male ? manGenderView : womanGenderView)) ? CustomColors.brown : .clear
             }
         }
     }
@@ -184,12 +184,12 @@ extension ProfileViewController {
         ageRanges.enumerated().forEach { index, age in
             let button = UIButton().then {
                    $0.setTitle(age, for: .normal)
-                   $0.setTitleColor(.brown, for: .normal)
+                   $0.setTitleColor(CustomColors.brown, for: .normal)
                     $0.titleLabel?.font = .systemFont(ofSize: 24, weight: .bold)
                    $0.backgroundColor = .clear
                    $0.layer.cornerRadius = 16
                    $0.layer.borderWidth = 1
-                   $0.layer.borderColor = UIColor.brown.cgColor
+                $0.layer.borderColor = CustomColors.brown.cgColor
                    $0.addTarget(self, action: #selector(ageButtonTapped(_:)), for: .touchUpInside)
                 $0.snp.makeConstraints { make in
                     make.height.equalTo(104)
@@ -216,9 +216,9 @@ extension ProfileViewController {
 
     @objc private func ageButtonTapped(_ sender: UIButton) {
         selectedAgeButton?.backgroundColor = .clear
-        selectedAgeButton?.setTitleColor(.brown, for: .normal)
+        selectedAgeButton?.setTitleColor(CustomColors.brown, for: .normal)
 
-        sender.backgroundColor = .brown
+        sender.backgroundColor = CustomColors.brown
         sender.setTitleColor(.white, for: .normal)
 
         selectedAgeButton = sender

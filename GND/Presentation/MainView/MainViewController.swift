@@ -13,7 +13,7 @@ class MainViewController: UIViewController {
     EnterModel(title: "어쩌구 저쩌구", subtitle: "코스 설명", participantCount: 10, imageString:  "logo")]
     let goalView = UIView().then {
         $0.layer.cornerRadius = 16
-        $0.backgroundColor = .yellow
+        $0.backgroundColor = CustomColors.cell
     }
     private var overlayView: UIView?
     private lazy var collectionView: UICollectionView = {
@@ -26,12 +26,13 @@ class MainViewController: UIViewController {
          collectionView.backgroundColor = .white
          return collectionView
      }()
-    private let exerciseButton = ExerciseButton(title: "운동하기", backgroundColor: .brown)
+    private let exerciseButton = ExerciseButton(title: "운동하기", backgroundColor: CustomColors.brown)
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = CustomColors.bk
         setupUI()
     }
+    let recentView = CellView()
     private func setupUI() {
         setupNavigationBar()
         setupGoalView()
@@ -40,8 +41,7 @@ class MainViewController: UIViewController {
         setExerciseButton()
     }
     private func setupNavigationBar() {
-           navigationItem.title = "오늘의 목표"
-           navigationController?.navigationBar.prefersLargeTitles = true
+//        navigationController?.navigationBar.ishi = true
            let profileButton = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle"), style: .plain, target: self, action: #selector(profileButtonTapped))
            navigationItem.rightBarButtonItem = profileButton
        }
@@ -57,6 +57,10 @@ class MainViewController: UIViewController {
         return label
     }
     private func setupGoalView() {
+        let titleLabel = UILabel().then {
+            $0.text = "오늘의 목표"
+            $0.font = .systemFont(ofSize: 32, weight: .bold)
+        }
         let levelLabel = UILabel().then {
             $0.text = "LV 2"
             $0.font = .systemFont(ofSize: 32, weight: .bold)
@@ -79,9 +83,14 @@ class MainViewController: UIViewController {
             $0.leading.trailing.equalToSuperview().inset(24)
             $0.bottom.equalToSuperview().inset(8)
         }
+        view.addSubview(titleLabel)
         view.addSubview(goalView)
+        titleLabel.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.leading.equalToSuperview().offset(16)
+        }
         goalView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(156)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(4)
             $0.leading.trailing.equalToSuperview().inset(8)
         }
     }
@@ -117,7 +126,7 @@ class MainViewController: UIViewController {
             $0.leading.equalToSuperview().inset(16)
         }
         collectionView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(8)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(4)
             $0.leading.equalToSuperview().inset(16)
             $0.trailing.equalToSuperview()
             $0.height.equalTo(110)
@@ -130,11 +139,11 @@ class MainViewController: UIViewController {
         }
         let moreButton = UIButton().then {
             $0.setTitle("더보기 +", for: .normal)
-            $0.setTitleColor(.brown, for: .normal)
+            $0.setTitleColor(CustomColors.brown, for: .normal)
             $0.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
             $0.addTarget(self, action: #selector(moreBtnTouch), for: .touchUpInside)
         }
-        let recentView = CellView()
+
         let recentData = CellType.recentCource(CourseModel(courseTitle: "경희대 뒷길", courseDistance: "5000", courseTime: 10, mapImageString: "logo"))
         recentView.configure(with: recentData)
         view.addSubview(recentView)
@@ -146,11 +155,11 @@ class MainViewController: UIViewController {
         }
         moreButton.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(16)
-            $0.bottom.equalTo(titleLabel.snp.bottom)
+            $0.centerY.equalTo(titleLabel.snp.centerY)
         }
         recentView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(16)
-            $0.top.equalTo(moreButton.snp.bottom).offset(8)
+            $0.top.equalTo(moreButton.snp.bottom).offset(4)
             $0.height.equalTo(114)
         }
     }
@@ -160,7 +169,7 @@ class MainViewController: UIViewController {
     private func setExerciseButton() {
         view.addSubview(exerciseButton)
         exerciseButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(32)
+            $0.top.equalTo(recentView.snp.bottom).offset(24)
             $0.centerX.equalToSuperview()
         }
         exerciseButton.addTarget(self, action: #selector(exerciseButtonTapped), for: .touchUpInside)

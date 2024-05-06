@@ -20,8 +20,6 @@ protocol LoginViewModelOutput {
 }
 //protocl
 protocol LoginViewModelType: LoginViewModelInput, LoginViewModelOutput {
-//    var input: LoginViewModelInput { get }
-//    var output: LoginViewModelOutput { get }
 }
 class LoginViewModel: NSObject, LoginViewModelType {
 

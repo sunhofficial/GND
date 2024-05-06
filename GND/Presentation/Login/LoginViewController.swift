@@ -15,6 +15,7 @@ class LoginViewController: UIViewController {
     let titleLabel = UILabel().then{
         $0.text = "거닐다"
         $0.font = UIFont.systemFont(ofSize: 60)
+        $0.textColor = CustomColors.brown
     }
     let logoImageView = UIImageView().then {
         $0.image = UIImage(named: "logo.svg")
@@ -30,7 +31,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = CustomColors.bk
 
         setupLayout()
         setLoginButton()
