@@ -21,7 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
           window = UIWindow(windowScene: windowScene)
 
-          window?.rootViewController = TabbarViewController( )
+//          window?.rootViewController = TabbarViewController( )
+        window?.rootViewController = LoginViewController()
           window?.makeKeyAndVisible()
     }
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {

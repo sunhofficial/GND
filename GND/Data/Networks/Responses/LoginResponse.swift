@@ -15,4 +15,11 @@ struct LoginResponse: Decodable {
         case refreshToken = "refresh_token"
         case needInitialization = "need_initialization"
     }
+
+}
+
+extension LoginResponse {
+    func toDomain() -> User {
+        return .init(firstTime: needInitialization, jwtToken: Tokens(accessToken: accessToken, refreshToken: refreshToken))
+    }
 }

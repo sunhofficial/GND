@@ -26,7 +26,7 @@ class LoginViewController: UIViewController {
     let appleLoginButton = UIButton().then {
         $0.setImage(UIImage(named: "appleLogin.svg"), for: .normal)
     }
-    private var viewModel: LoginViewModel = LoginViewModel()
+    private var viewModel: LoginViewModel = LoginViewModel(userUseCase: UserUsecase(userReposiotry: UserRepository()))
     private var cancellable = Set<AnyCancellable>()
     
     override func viewDidLoad() {

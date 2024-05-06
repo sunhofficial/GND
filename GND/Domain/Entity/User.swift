@@ -6,3 +6,12 @@
 //
 
 import Foundation
+struct User {
+    var firstTime: Bool
+    var jwtToken : Tokens
+}
+
+struct Tokens {
+    var accessToken: String
+    var refreshToken: String
+}

@@ -22,13 +22,19 @@ protocol LoginViewModelOutput {
 protocol LoginViewModelType: LoginViewModelInput, LoginViewModelOutput {
 }
 class LoginViewModel: NSObject, LoginViewModelType {
-
+    private let userUseCase: UserUsecase
     var appleLoginPublisher = PassthroughSubject<String, any Error>()
-    override init() {
-        super.init()
+    var kakaoLoginPublisher = PassthroughSubject<User, Error>()
+    private var cancellables = Set<AnyCancellable>()
+    @Published var user: User? {
+        didSet {
+            print(user)
+        }
     }
-//    var input: LoginViewModelInput { return self }
-//    var output: LoginViewModelOutput { return self }
+    init(userUseCase: UserUsecase) {
+          self.userUseCase = userUseCase
+          super.init()
+      }
     func performAppleLogin() {
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         let request = appleIDProvider.createRequest()
@@ -47,9 +53,20 @@ class LoginViewModel: NSObject, LoginViewModelType {
                     print(error)
                 }
                 else {
-                    print("카카오 로그인 성공")
                     print(oauthToken)
-                    _ = oauthToken
+                    self.userUseCase.userReposiotry.postLogin(Login(type: "kakao", id: (oauthToken?.idToken)!))
+                        .receive(on: DispatchQueue.main)
+                        .sink { completion in
+                            switch completion {
+                            case .failure(let err):
+                                print(err)
+                            case .finished:
+                                print("fin")
+                            }
+                        } receiveValue: { user in
+                            self.user = user
+                            self.appleLoginPublisher.send("카톡성공")
+                        }.store(in: &self.cancellables)
                 }
             }
         }
@@ -66,8 +83,22 @@ extension LoginViewModel: ASAuthorizationControllerDelegate, ASAuthorizationCont
 
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential else {return}
+        userUseCase.userReposiotry.postLogin(Login(type: "apple", id: credential.user))
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion {
+                case .failure(let err):
+                    print(err)
+                case .finished:
+                    print("fin")
+                }
+            } receiveValue: { user in
+                self.user = user
+                self.appleLoginPublisher.send("애플로그인성공")
+            }.store(in: &self.cancellables)
+
         print(credential.user)
-        appleLoginPublisher.send("애플로그인성공")
+
     }
 
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {

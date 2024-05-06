@@ -6,3 +6,7 @@
 //
 
 import Foundation
+struct LoginRequest: Codable {
+    var type: String
+    var id: String
+}

@@ -6,4 +6,17 @@
 //
 
 import Foundation
-struct 
+struct API {
+    static let baseURL = "http://gunilda-dev.kro.kr"
+    enum NetworkHeaderKey: String {
+        case contentType = "Content-Type"
+        case authorization = "Authorization"
+    }
+    static let applicationJSON = "application/json"
+    static var headerwithoutToken = [
+        NetworkHeaderKey.contentType.rawValue : API.applicationJSON ]
+    static var headerwithAuthorization: [String:  String] =  [
+        NetworkHeaderKey.contentType.rawValue: API.applicationJSON,
+//        NetworkHeaderKey.authorization.rawValue: "Bearer \(KeychainManager.shared.readToken(key: "accessToken") ?? "")"
+    ]
+}
