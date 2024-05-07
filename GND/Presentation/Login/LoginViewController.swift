@@ -90,11 +90,10 @@ class LoginViewController: UIViewController {
                     print("삐용삐용")
                 }
             } receiveValue: { [weak self] firstTime in
-//                print("eh ? ")
                 if firstTime {
                     self?.navigationController?.pushViewController(ProfileViewController(), animated: true    )
                 } else {
-                    self?.navigationController?.pushViewController(TabbarViewController(), animated: true)
+                    self?.view.window!.rootViewController = TabbarViewController()
                 }
             }.store(in: &cancellable)
 

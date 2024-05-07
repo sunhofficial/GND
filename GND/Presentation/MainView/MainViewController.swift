@@ -42,6 +42,7 @@ class MainViewController: UIViewController {
     }
     private func setupNavigationBar() {
 //        navigationController?.navigationBar.ishi = true
+//        self.navigationItem.setHidesBackButton(true, animated: true)
            let profileButton = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle"), style: .plain, target: self, action: #selector(profileButtonTapped))
            navigationItem.rightBarButtonItem = profileButton
        }
