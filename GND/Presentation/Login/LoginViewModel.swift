@@ -30,6 +30,7 @@ class LoginViewModel: NSObject, LoginViewModelType {
     var appleLoginPublisher = PassthroughSubject<Bool,  Error>()
     var kakaoLoginPublisher = PassthroughSubject<User, Error>()
     private var cancellables = Set<AnyCancellable>()
+    private let kakaologinService = KakaoLoginServices()
     @Published var user: User? {
         didSet {
             print(user)
@@ -50,32 +51,34 @@ class LoginViewModel: NSObject, LoginViewModelType {
         authorizationController.performRequests()
     }
     func performKakaoLogin() {
+        guard UserApi.isKakaoTalkLoginAvailable() else {
+            print("카카오 앱이 안깔려있습니다.")
+            return
+        }
         // 카카오톡 설치 여부 확인
-        if (UserApi.isKakaoTalkLoginAvailable()) {
-            UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
-                if let error = error {
-                    print(error)
+        kakaologinService.publishloginWithKakao()
+            .flatMap { oauthToken in
+                print(oauthToken)
+                return self.kakaologinService.publishMe()
+            }
+            .flatMap { ownId in
+                return self.userUseCase.userReposiotry.postLogin(Login(type: "kakao", id: ownId))
+            }
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion {
+                case .failure(let err):
+                    print(err)
+                case .finished:
+                    print("fin")
                 }
-                else {
-                    print(oauthToken)
-                    self.userUseCase.userReposiotry.postLogin(Login(type: "kakao", id: (oauthToken?.idToken)!))
-                        .receive(on: DispatchQueue.main)
-                        .sink { completion in
-                            switch completion {
-                            case .failure(let err):
-                                print(err)
-                            case .finished:
-                                print("fin")
-                            }
-                        } receiveValue: { user in
-                            self.user = user
-                            self.appleLoginPublisher.send(user.firstTime ? true : false)
-                        }.store(in: &self.cancellables)
+            } receiveValue: { user in
+                self.user = user
+                self.appleLoginPublisher.send(user.firstTime ? true : false)
+            }.store(in: &self.cancellables)
                 }
             }
-        }
-    }
-}
+
 
 extension LoginViewModel: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {

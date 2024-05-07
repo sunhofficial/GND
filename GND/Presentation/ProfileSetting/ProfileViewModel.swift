@@ -22,7 +22,7 @@ protocol ProfileViewModelType: ProfileViewModelInput, ProfileViewModelOutput {
 class ProfileViewModel: ProfileViewModelType{
     var selectGender =  CurrentValueSubject<Gender, Never>(.none)
     var selectAgeRange = CurrentValueSubject<AgeRange?, Never>(nil)
-
+    
     @Published private(set) var selectedGender: Gender = .none
     @Published private(set) var selectedAge: AgeRange?
 

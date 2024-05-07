@@ -12,8 +12,6 @@
 		C72E72262BE375DF0003176E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C72E72252BE375DF0003176E /* Assets.xcassets */; };
 		C72E72292BE375DF0003176E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = C72E72282BE375DF0003176E /* Base */; };
 		C7BD5AE32BE604CD0060CC38 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = C7BD5AE22BE604CD0060CC38 /* Then */; };
-		C7BD5AE62BE604E60060CC38 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C7BD5AE52BE604E60060CC38 /* SnapKit */; };
-		C7BD5AE82BE604E60060CC38 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = C7BD5AE72BE604E60060CC38 /* SnapKit-Dynamic */; };
 		C7BD5AEB2BE605650060CC38 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5AEA2BE605650060CC38 /* LoginViewController.swift */; };
 		C7BD5AEE2BE608E80060CC38 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5AED2BE608E80060CC38 /* LoginViewModel.swift */; };
 		C7BD5AF12BE6166F0060CC38 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = C7BD5AF02BE6166F0060CC38 /* KakaoSDK */; };
@@ -50,7 +48,23 @@
 		C7BD5B802BE93D830060CC38 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5B7F2BE93D830060CC38 /* User.swift */; };
 		C7BD5B822BE9CC740060CC38 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5B812BE9CC740060CC38 /* ProfileViewModel.swift */; };
 		C7BD5B842BE9FCBD0060CC38 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5B832BE9FCBD0060CC38 /* KeychainManager.swift */; };
+		C7BD5B862BEA07DB0060CC38 /* NickNameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5B852BEA07DB0060CC38 /* NickNameViewModel.swift */; };
+		C7BD5B8A2BEA0E380060CC38 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C7BD5B892BEA0E380060CC38 /* SnapKit */; };
+		C7DE2B882BEA425E00A049A9 /* KakaoLoginServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DE2B872BEA425E00A049A9 /* KakaoLoginServices.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C7BD5B882BEA0A890060CC38 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C72E72192BE375DD0003176E /* GND.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GND.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,6 +106,8 @@
 		C7BD5B7F2BE93D830060CC38 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C7BD5B812BE9CC740060CC38 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		C7BD5B832BE9FCBD0060CC38 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		C7BD5B852BEA07DB0060CC38 /* NickNameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickNameViewModel.swift; sourceTree = "<group>"; };
+		C7DE2B872BEA425E00A049A9 /* KakaoLoginServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLoginServices.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,9 +117,8 @@
 			files = (
 				C7BD5AE32BE604CD0060CC38 /* Then in Frameworks */,
 				C7BD5AF12BE6166F0060CC38 /* KakaoSDK in Frameworks */,
-				C7BD5AE62BE604E60060CC38 /* SnapKit in Frameworks */,
 				C7BD5AF72BE616A10060CC38 /* KakaoSDKUser in Frameworks */,
-				C7BD5AE82BE604E60060CC38 /* SnapKit-Dynamic in Frameworks */,
+				C7BD5B8A2BEA0E380060CC38 /* SnapKit in Frameworks */,
 				C7BD5AF52BE6166F0060CC38 /* KakaoSDKCommon in Frameworks */,
 				C7BD5AF32BE6166F0060CC38 /* KakaoSDKAuth in Frameworks */,
 			);
@@ -160,6 +175,7 @@
 		C7BD5AE02BE604370060CC38 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				C7DE2B862BEA425100A049A9 /* Services */,
 				C7BD5B6F2BE8DD970060CC38 /* Entity */,
 				C7BD5B632BE8CAF60060CC38 /* Usecase */,
 			);
@@ -181,6 +197,7 @@
 				C7BD5AF92BE62BFA0060CC38 /* ProfileViewController.swift */,
 				C7BD5B812BE9CC740060CC38 /* ProfileViewModel.swift */,
 				C7BD5AFD2BE6C34B0060CC38 /* NicknameViewController.swift */,
+				C7BD5B852BEA07DB0060CC38 /* NickNameViewModel.swift */,
 			);
 			path = ProfileSetting;
 			sourceTree = "<group>";
@@ -309,6 +326,14 @@
 			path = APIEndPoint;
 			sourceTree = "<group>";
 		};
+		C7DE2B862BEA425100A049A9 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C7DE2B872BEA425E00A049A9 /* KakaoLoginServices.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -319,6 +344,7 @@
 				C72E72152BE375DD0003176E /* Sources */,
 				C72E72162BE375DD0003176E /* Frameworks */,
 				C72E72172BE375DD0003176E /* Resources */,
+				C7BD5B882BEA0A890060CC38 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -327,12 +353,11 @@
 			name = GND;
 			packageProductDependencies = (
 				C7BD5AE22BE604CD0060CC38 /* Then */,
-				C7BD5AE52BE604E60060CC38 /* SnapKit */,
-				C7BD5AE72BE604E60060CC38 /* SnapKit-Dynamic */,
 				C7BD5AF02BE6166F0060CC38 /* KakaoSDK */,
 				C7BD5AF22BE6166F0060CC38 /* KakaoSDKAuth */,
 				C7BD5AF42BE6166F0060CC38 /* KakaoSDKCommon */,
 				C7BD5AF62BE616A10060CC38 /* KakaoSDKUser */,
+				C7BD5B892BEA0E380060CC38 /* SnapKit */,
 			);
 			productName = GND;
 			productReference = C72E72192BE375DD0003176E /* GND.app */;
@@ -400,6 +425,7 @@
 				C7BD5B782BE901FE0060CC38 /* UserAPI.swift in Sources */,
 				C7BD5B4E2BE812170060CC38 /* ExerciseButton.swift in Sources */,
 				C7BD5B682BE8CB3C0060CC38 /* LoginResponse.swift in Sources */,
+				C7DE2B882BEA425E00A049A9 /* KakaoLoginServices.swift in Sources */,
 				C7BD5B402BE7B8350060CC38 /* UIViewController+.swift in Sources */,
 				C7BD5B6B2BE8CE790060CC38 /* TabbarViewController.swift in Sources */,
 				C7BD5B842BE9FCBD0060CC38 /* KeychainManager.swift in Sources */,
@@ -409,6 +435,7 @@
 				C7BD5AEB2BE605650060CC38 /* LoginViewController.swift in Sources */,
 				C7BD5B7C2BE904620060CC38 /* API.swift in Sources */,
 				C7BD5AEE2BE608E80060CC38 /* LoginViewModel.swift in Sources */,
+				C7BD5B862BEA07DB0060CC38 /* NickNameViewModel.swift in Sources */,
 				C7BD5B532BE81CE40060CC38 /* PartyCell.swift in Sources */,
 				C7BD5B4A2BE805CC0060CC38 /* CourseModel.swift in Sources */,
 				C7BD5B472BE802F90060CC38 /* CellView.swift in Sources */,
@@ -447,6 +474,7 @@
 		C72E722B2BE375DF0003176E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -497,6 +525,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -510,6 +539,7 @@
 		C72E722C2BE375DF0003176E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -554,6 +584,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -675,16 +706,6 @@
 			package = C7BD5AE12BE604CD0060CC38 /* XCRemoteSwiftPackageReference "Then" */;
 			productName = Then;
 		};
-		C7BD5AE52BE604E60060CC38 /* SnapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C7BD5AE42BE604E60060CC38 /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
-		};
-		C7BD5AE72BE604E60060CC38 /* SnapKit-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C7BD5AE42BE604E60060CC38 /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = "SnapKit-Dynamic";
-		};
 		C7BD5AF02BE6166F0060CC38 /* KakaoSDK */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C7BD5AEF2BE6166F0060CC38 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
@@ -704,6 +725,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C7BD5AEF2BE6166F0060CC38 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
 			productName = KakaoSDKUser;
+		};
+		C7BD5B892BEA0E380060CC38 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C7BD5AE42BE604E60060CC38 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

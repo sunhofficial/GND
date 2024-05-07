@@ -16,6 +16,14 @@
 				<string>kakao71744ce2b01c3c2a577b3f0e3813312a</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>kakao71744ce2b01c3c2a577b3f0e3813312a:oauth</string>
+			</array>
+		</dict>
 	</array>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>

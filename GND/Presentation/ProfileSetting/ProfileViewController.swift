@@ -44,18 +44,22 @@ class ProfileViewController: UIViewController {
     let profileTitleLabel = UILabel().then {
         $0.text = "성별 / 연령대를 알려주세요"
         $0.font = UIFont.systemFont(ofSize: 32,weight: .bold)
+        $0.textColor = CustomColors.brown
     }
     let profilesubscriptionLabel = UILabel().then {
         $0.text = "나이와 성별을 통해 정확한 피드백을 제공할 수 있습니다.\n 귀하의 개인 정보는 안전하게 보호됩니다."
         $0.font = UIFont.systemFont(ofSize: 15, weight: .thin)
+        $0.textColor = CustomColors.brown
     }
     let genderLabel = UILabel().then {
         $0.text = "성별을 선택해주세요"
         $0.font =   UIFont.systemFont(ofSize: 24, weight: .medium)
+        $0.textColor = .black
     }
     let ageLabel = UILabel().then {
         $0.text = "연령대를 골라주세요"
         $0.font =   UIFont.systemFont(ofSize: 24, weight: .medium)
+        $0.textColor = .black
     }
     let nextButton = UIButton().then {
         $0.setTitle("다음", for: .normal)
@@ -251,6 +255,10 @@ extension ProfileViewController {
            }
     }
     @objc private func nextButtonTapped() {
+        let nicknameViewController = NicknameViewController()
+        nicknameViewController.gender = viewmodel.selectedGender
+        nicknameViewController.ageRange = viewmodel.selectedAge
+        navigationController?.pushViewController(nicknameViewController, animated: true)
         viewmodel.sendProfile()
     }
     func bindVM() {
