@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Then
+import Combine
 enum Gender: String {
     case male = "남자"
     case female = "여자"
@@ -39,6 +40,7 @@ enum AgeRange: Int, CaseIterable {
 }
 
 class ProfileViewController: UIViewController {
+    private var cancellables = Set<AnyCancellable>()
     let profileTitleLabel = UILabel().then {
         $0.text = "성별 / 연령대를 알려주세요"
         $0.font = UIFont.systemFont(ofSize: 32,weight: .bold)
@@ -59,6 +61,7 @@ class ProfileViewController: UIViewController {
         $0.setTitle("다음", for: .normal)
         $0.setTitleColor(.white, for: .normal)
         $0.backgroundColor = CustomColors.brown
+
         $0.layer.cornerRadius = 15
     }
     var manGenderView: UIView?
@@ -70,13 +73,14 @@ class ProfileViewController: UIViewController {
     }
     var ageButtons: [UIButton] = []
     var selectedAgeButton: UIButton?
-    let ageRanges = ["50세 이하", "50-55세", "55-60세", "60-70세", "70-80세", "80세 이상"]
+    var viewmodel = ProfileViewModel()
 
     override func viewDidLoad() {
         view.backgroundColor = CustomColors.bk
         navigationController?.isNavigationBarHidden = true
         super.viewDidLoad()
         setupUI()
+        bindVM()
     }
 
     private func setupUI() {
@@ -169,6 +173,7 @@ extension ProfileViewController {
         guard sender.view != nil else {return }
         guard let view = sender.view else { return }
         selectedGender = (view.tag == 1) ? .female : .male
+        viewmodel.selectGender.send(selectedGender)
     }
     private func updateUI() {
         // 모든 성별 뷰의 UI 업데이트
@@ -211,6 +216,7 @@ extension ProfileViewController {
                 $0.layer.cornerRadius = 16
                 $0.layer.borderWidth = 1
                 $0.layer.borderColor = CustomColors.brown.cgColor
+                $0.tag = ageRange.rawValue
                 $0.addTarget(self, action: #selector(ageButtonTapped(_:)), for: .touchUpInside)
                 $0.snp.makeConstraints { make in
                     make.height.equalTo(104)
@@ -238,8 +244,25 @@ extension ProfileViewController {
 
         sender.backgroundColor = CustomColors.brown
         sender.setTitleColor(.white, for: .normal)
-
+        
         selectedAgeButton = sender
+        if let ageRange = AgeRange(rawValue: sender.tag) {
+            self.viewmodel.selectAgeRange.send(ageRange)
+           }
+    }
+    @objc private func nextButtonTapped() {
+        viewmodel.sendProfile()
+    }
+    func bindVM() {
+        nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+        viewmodel.isFormValid
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self]isValid in
+                self?.nextButton.isEnabled = isValid
+                self?.nextButton.backgroundColor = isValid ? CustomColors.brown : UIColor.lightGray
+                            
+            })
+            .store(in: &cancellables)
     }
 
 }

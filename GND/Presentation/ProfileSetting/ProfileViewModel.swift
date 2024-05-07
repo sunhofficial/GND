@@ -8,34 +8,45 @@
 import Foundation
 import Combine
 protocol ProfileViewModelInput {
-    func selectGender(_ gender: Gender)
-    func selectAgeRange(_ range: String)
+    var selectGender: CurrentValueSubject<Gender, Never> {get}
+    var selectAgeRange: CurrentValueSubject<AgeRange?, Never> {get}
     func sendProfile()
 }
 protocol ProfileViewModelOutput {
     var isFormValid: AnyPublisher<Bool, Never> {get}
+    var profilePosted: PassthroughSubject<Void, Error> {get}
 }
 protocol ProfileViewModelType: ProfileViewModelInput, ProfileViewModelOutput {
 
 }
 class ProfileViewModel: ProfileViewModelType{
-    private let genderSubject = CurrentValueSubject<Gender, Never>(.none)
-     private let ageRangeSubject = CurrentValueSubject<String?, Never>(nil)
+    var selectGender =  CurrentValueSubject<Gender, Never>(.none)
+    var selectAgeRange = CurrentValueSubject<AgeRange?, Never>(nil)
+
+    @Published private(set) var selectedGender: Gender = .none
+    @Published private(set) var selectedAge: AgeRange?
+
+    private var cancellables = Set<AnyCancellable>()
+    init() {
+        selectGender
+                .assign(to: &$selectedGender)
+
+        selectAgeRange
+                .assign(to: &$selectedAge)
+    }
+    var profilePosted: PassthroughSubject<Void, Error> = .init()
+
     var isFormValid: AnyPublisher<Bool, Never> {
-//        Publishers.CombineLatest(gender)
+        Publishers.CombineLatest(selectGender, selectAgeRange)
+            .map { gender, ageRange in
+                return gender != .none && ageRange != nil
+            }
+            .eraseToAnyPublisher()
     }
 
-    func selectGender(_ gender: Gender) {
-        <#code#>
-    }
-    
-    func selectAgeRange(_ range: String) {
-        <#code#>
-    }
-    
+  
     func sendProfile() {
-        <#code#>
+        print(selectedGender, selectedAge)
     }
     
-    private var cancellables = Set<AnyCancellable>()
 }

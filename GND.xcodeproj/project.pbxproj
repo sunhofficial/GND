@@ -41,7 +41,6 @@
 		C7BD5B652BE8CB120060CC38 /* LoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5B642BE8CB120060CC38 /* LoginUseCase.swift */; };
 		C7BD5B682BE8CB3C0060CC38 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5B672BE8CB3C0060CC38 /* LoginResponse.swift */; };
 		C7BD5B6B2BE8CE790060CC38 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5B6A2BE8CE790060CC38 /* TabbarViewController.swift */; };
-		C7BD5B712BE8E2FB0060CC38 /* APIServiceServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5B702BE8E2FB0060CC38 /* APIServiceServer.swift */; };
 		C7BD5B732BE8E40F0060CC38 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5B722BE8E40F0060CC38 /* UserRepository.swift */; };
 		C7BD5B752BE9013B0060CC38 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5B742BE9013B0060CC38 /* Router.swift */; };
 		C7BD5B782BE901FE0060CC38 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5B772BE901FE0060CC38 /* UserAPI.swift */; };
@@ -50,6 +49,7 @@
 		C7BD5B7E2BE9384C0060CC38 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5B7D2BE9384C0060CC38 /* Login.swift */; };
 		C7BD5B802BE93D830060CC38 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5B7F2BE93D830060CC38 /* User.swift */; };
 		C7BD5B822BE9CC740060CC38 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5B812BE9CC740060CC38 /* ProfileViewModel.swift */; };
+		C7BD5B842BE9FCBD0060CC38 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5B832BE9FCBD0060CC38 /* KeychainManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,7 +83,6 @@
 		C7BD5B642BE8CB120060CC38 /* LoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
 		C7BD5B672BE8CB3C0060CC38 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		C7BD5B6A2BE8CE790060CC38 /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
-		C7BD5B702BE8E2FB0060CC38 /* APIServiceServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceServer.swift; sourceTree = "<group>"; };
 		C7BD5B722BE8E40F0060CC38 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		C7BD5B742BE9013B0060CC38 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		C7BD5B772BE901FE0060CC38 /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
@@ -92,6 +91,7 @@
 		C7BD5B7D2BE9384C0060CC38 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		C7BD5B7F2BE93D830060CC38 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C7BD5B812BE9CC740060CC38 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		C7BD5B832BE9FCBD0060CC38 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,7 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				C7BD5B762BE901980060CC38 /* APIEndPoint */,
-				C7BD5B662BE8CB2D0060CC38 /* Responses */,
+				C7BD5B662BE8CB2D0060CC38 /* DTO */,
 				C7BD5B742BE9013B0060CC38 /* Router.swift */,
 			);
 			path = Networks;
@@ -256,13 +256,13 @@
 			path = Usecase;
 			sourceTree = "<group>";
 		};
-		C7BD5B662BE8CB2D0060CC38 /* Responses */ = {
+		C7BD5B662BE8CB2D0060CC38 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
 				C7BD5B672BE8CB3C0060CC38 /* LoginResponse.swift */,
 				C7BD5B792BE903F50060CC38 /* LoginRequest.swift */,
 			);
-			path = Responses;
+			path = DTO;
 			sourceTree = "<group>";
 		};
 		C7BD5B692BE8CE650060CC38 /* Common */ = {
@@ -278,23 +278,15 @@
 			children = (
 				C7BD5B5F2BE8C1820060CC38 /* Networks */,
 				C7BD5B6E2BE8DD8A0060CC38 /* Repository */,
-				C7BD5B6D2BE8DD860060CC38 /* Services */,
 			);
 			path = Data;
-			sourceTree = "<group>";
-		};
-		C7BD5B6D2BE8DD860060CC38 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				C7BD5B702BE8E2FB0060CC38 /* APIServiceServer.swift */,
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 		C7BD5B6E2BE8DD8A0060CC38 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
 				C7BD5B722BE8E40F0060CC38 /* UserRepository.swift */,
+				C7BD5B832BE9FCBD0060CC38 /* KeychainManager.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -410,6 +402,7 @@
 				C7BD5B682BE8CB3C0060CC38 /* LoginResponse.swift in Sources */,
 				C7BD5B402BE7B8350060CC38 /* UIViewController+.swift in Sources */,
 				C7BD5B6B2BE8CE790060CC38 /* TabbarViewController.swift in Sources */,
+				C7BD5B842BE9FCBD0060CC38 /* KeychainManager.swift in Sources */,
 				C7BD5B552BE890F60060CC38 /* PartyModel.swift in Sources */,
 				C7BD5B592BE8A12B0060CC38 /* PartyDetailView.swift in Sources */,
 				C7BD5B422BE7D55C0060CC38 /* EnterRoomCell.swift in Sources */,
@@ -418,7 +411,6 @@
 				C7BD5AEE2BE608E80060CC38 /* LoginViewModel.swift in Sources */,
 				C7BD5B532BE81CE40060CC38 /* PartyCell.swift in Sources */,
 				C7BD5B4A2BE805CC0060CC38 /* CourseModel.swift in Sources */,
-				C7BD5B712BE8E2FB0060CC38 /* APIServiceServer.swift in Sources */,
 				C7BD5B472BE802F90060CC38 /* CellView.swift in Sources */,
 				C7BD5B732BE8E40F0060CC38 /* UserRepository.swift in Sources */,
 				C7BD5B5E2BE8A6010060CC38 /* CustomColors.swift in Sources */,
