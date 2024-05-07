@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
           window = UIWindow(windowScene: windowScene)
 
 //          window?.rootViewController = TabbarViewController( )
-        window?.rootViewController = LoginViewController()
+        window?.rootViewController = UINavigationController(rootViewController: LoginViewController())  
           window?.makeKeyAndVisible()
     }
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {

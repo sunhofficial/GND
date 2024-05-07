@@ -89,9 +89,13 @@ class LoginViewController: UIViewController {
                 case .failure:
                     print("삐용삐용")
                 }
-            } receiveValue: { [weak self] data in
-                print(data)
-                print("로그인성공")
+            } receiveValue: { [weak self] firstTime in
+//                print("eh ? ")
+                if firstTime {
+                    self?.navigationController?.pushViewController(ProfileViewController(), animated: true    )
+                } else {
+                    self?.navigationController?.pushViewController(TabbarViewController(), animated: true)
+                }
             }.store(in: &cancellable)
 
     }

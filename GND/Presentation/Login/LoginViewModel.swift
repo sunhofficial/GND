@@ -14,16 +14,20 @@ protocol LoginViewModelInput {
     func performAppleLogin()
     func performKakaoLogin()
 }
-
+//enum LoginType {
+//    case initial
+//    case success
+//    case fail
+//}
 protocol LoginViewModelOutput {
-    var appleLoginPublisher: PassthroughSubject< String, Error> { get }
+    var appleLoginPublisher: PassthroughSubject< Bool, Error> { get }
 }
 //protocl
 protocol LoginViewModelType: LoginViewModelInput, LoginViewModelOutput {
 }
 class LoginViewModel: NSObject, LoginViewModelType {
     private let userUseCase: UserUsecase
-    var appleLoginPublisher = PassthroughSubject<String, any Error>()
+    var appleLoginPublisher = PassthroughSubject<Bool,  Error>()
     var kakaoLoginPublisher = PassthroughSubject<User, Error>()
     private var cancellables = Set<AnyCancellable>()
     @Published var user: User? {
@@ -65,7 +69,7 @@ class LoginViewModel: NSObject, LoginViewModelType {
                             }
                         } receiveValue: { user in
                             self.user = user
-                            self.appleLoginPublisher.send("카톡성공")
+                            self.appleLoginPublisher.send(user.firstTime ? true : false)
                         }.store(in: &self.cancellables)
                 }
             }
@@ -94,7 +98,8 @@ extension LoginViewModel: ASAuthorizationControllerDelegate, ASAuthorizationCont
                 }
             } receiveValue: { user in
                 self.user = user
-                self.appleLoginPublisher.send("애플로그인성공")
+
+                self.appleLoginPublisher.send(user.firstTime ? true : false)
             }.store(in: &self.cancellables)
 
         print(credential.user)

@@ -13,6 +13,31 @@ enum Gender: String {
     case female = "여자"
     case none
 }
+enum AgeRange: Int, CaseIterable {
+    case under50
+    case from50to55
+    case from55to60
+    case from60to70
+    case from70to80
+    case above80
+    var label: String {
+        switch self {
+        case .under50:
+            "50세 이하"
+        case .from50to55:
+            "50-55세"
+        case .from55to60:
+            "55-60세"
+        case .from60to70:
+            "60-70세"
+        case .from70to80:
+            "70-80세"
+        case .above80:
+            "80세 이상"
+        }
+    }
+}
+
 class ProfileViewController: UIViewController {
     let profileTitleLabel = UILabel().then {
         $0.text = "성별 / 연령대를 알려주세요"
@@ -35,9 +60,7 @@ class ProfileViewController: UIViewController {
         $0.setTitleColor(.white, for: .normal)
         $0.backgroundColor = CustomColors.brown
         $0.layer.cornerRadius = 15
-
     }
-
     var manGenderView: UIView?
     var womanGenderView: UIView?
     var selectedGender: Gender = .none {
@@ -51,6 +74,7 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         view.backgroundColor = CustomColors.bk
+        navigationController?.isNavigationBarHidden = true
         super.viewDidLoad()
         setupUI()
     }
@@ -58,7 +82,6 @@ class ProfileViewController: UIViewController {
     private func setupUI() {
         [profileTitleLabel, profilesubscriptionLabel, genderLabel, ageLabel,  nextButton].forEach{
             view.addSubview($0)
-
         }
         profileTitleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(64)
@@ -82,7 +105,6 @@ class ProfileViewController: UIViewController {
             $0.leading.trailing.equalToSuperview().inset(24 )
             $0.height.equalTo(56)
         }
-
     }
     func setGenderStack() {
         let genderChoiceView = UIStackView().then {
@@ -131,21 +153,20 @@ extension ProfileViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(genderViewTapped))
         genderView.addGestureRecognizer(tapGesture)
         genderView.addSubview(vStackView)
-        vStackView.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0))
-        }
-        // Set fixed size for genderView
-        genderView.snp.makeConstraints {
-            $0.size.equalTo(132)
-        }
         genderView.layer.cornerRadius = 66
         genderView.layer.borderColor = CustomColors.brown.cgColor
         genderView.layer.borderWidth = 2 // Add border width
         genderView.clipsToBounds = true
+        vStackView.snp.makeConstraints {
+            $0.edges.equalToSuperview().inset(UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0))
+        }
+        genderView.snp.makeConstraints {
+            $0.size.equalTo(132)
+        }
         return genderView
     }
     @objc private func genderViewTapped(sender: UITapGestureRecognizer) {
-        guard let selectedView = sender.view else {return }
+        guard sender.view != nil else {return }
         guard let view = sender.view else { return }
         selectedGender = (view.tag == 1) ? .female : .male
     }
@@ -164,49 +185,46 @@ extension ProfileViewController {
     func setupAgeButtons() {
         let grid = UIStackView().then {
             $0.axis = .vertical
-//            $0.distribution = .fillEqually
+            //            $0.distribution = .fillEqually
             $0.alignment = .fill
             $0.distribution = .fillEqually
             $0.spacing = 32
         }
 
         let column1 = UIStackView().then {
-                   $0.axis = .horizontal
-                   $0.distribution = .fillEqually
-                   $0.spacing = 16
-               }
+            $0.axis = .horizontal
+            $0.distribution = .fillEqually
+            $0.spacing = 16
+        }
 
-               let column2 = UIStackView().then {
-                   $0.axis = .horizontal
-                   $0.distribution = .fillEqually
-                   $0.spacing = 16
-               }
-        ageRanges.enumerated().forEach { index, age in
+        let column2 = UIStackView().then {
+            $0.axis = .horizontal
+            $0.distribution = .fillEqually
+            $0.spacing = 16
+        }
+        AgeRange.allCases.forEach { ageRange in
             let button = UIButton().then {
-                   $0.setTitle(age, for: .normal)
-                   $0.setTitleColor(CustomColors.brown, for: .normal)
-                    $0.titleLabel?.font = .systemFont(ofSize: 24, weight: .bold)
-                   $0.backgroundColor = .clear
-                   $0.layer.cornerRadius = 16
-                   $0.layer.borderWidth = 1
+                $0.setTitle(ageRange.label, for: .normal)
+                $0.setTitleColor(CustomColors.brown, for: .normal)
+                $0.titleLabel?.font = .systemFont(ofSize: 24, weight: .bold)
+                $0.backgroundColor = .clear
+                $0.layer.cornerRadius = 16
+                $0.layer.borderWidth = 1
                 $0.layer.borderColor = CustomColors.brown.cgColor
-                   $0.addTarget(self, action: #selector(ageButtonTapped(_:)), for: .touchUpInside)
+                $0.addTarget(self, action: #selector(ageButtonTapped(_:)), for: .touchUpInside)
                 $0.snp.makeConstraints { make in
                     make.height.equalTo(104)
                 }
-               }
-//            ageButtons.append(button)
-            if index <= 2 {
+            }
+            if ageRange.rawValue <= 2 {
                 column1.addArrangedSubview(button)
             } else {
                 column2.addArrangedSubview(button)
             }
         }
 
-
         grid.addArrangedSubview(column1)
         grid.addArrangedSubview(column2)
-
         view.addSubview(grid)
         grid.snp.makeConstraints { make in
             make.top.equalTo(ageLabel.snp.bottom ).offset(24)  // Adjust as needed
