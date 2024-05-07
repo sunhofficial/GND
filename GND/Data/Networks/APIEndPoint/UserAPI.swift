@@ -10,7 +10,7 @@ import Alamofire
 enum UserAPI {
     case requestlogin(LoginRequest)
     case requestRefreshToken
-    case requestSetuser
+    case requestSetuser(UserInfoDTO)
     case requestUpdateprofile
     case requestUpdatenickname
 }

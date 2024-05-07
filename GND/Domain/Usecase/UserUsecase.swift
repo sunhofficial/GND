@@ -8,16 +8,18 @@
 import Combine
 protocol UserUseCaseProtocol {
     func requestLogin(_ loginData: Login) -> AnyPublisher<User, Error>
+    func postUserData(_ info: UserInfo) -> AnyPublisher<UserInfo, Error>
 }
 class UserUsecase: UserUseCaseProtocol {
 
-    
-//    var userDa
     var userReposiotry: UserRepositoryProtocol
     init(userReposiotry: UserRepositoryProtocol) {
         self.userReposiotry = userReposiotry
     }
     func requestLogin(_ loginData: Login) -> AnyPublisher<User, Error> {
         return userReposiotry.postLogin(loginData)
+    }
+    func postUserData(_ info: UserInfo) -> AnyPublisher<UserInfo, Error> {
+        return userReposiotry.postUserData(info)
     }
 }

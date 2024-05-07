@@ -22,7 +22,6 @@ class NicknameViewController: UIViewController {
         $0.placeholder = "닉네임을 입력해주세요"
         $0.delegate = self
         $0.addLeftPadding()
-//        $0.textAlignment = .center
     }
     let notiNicknameLabel = UILabel().then {
         $0.text = "닉네임은 8자 이하로 입력해주세요"
