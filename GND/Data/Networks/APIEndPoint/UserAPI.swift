@@ -62,12 +62,15 @@ extension UserAPI: Router, URLRequestConvertible {
         case .requestlogin(let loginRequest):
             return ["type": loginRequest.type,
                     "id": loginRequest.id]
-        default: 
+        case .requestSetuser(let userDTO):
+            return ["gender": userDTO.gender,
+                    "age": userDTO.age,
+                    "nickname": userDTO.nickname]
+        default:
             return [:]
 //        case .requestRefreshToken:
 //            <#code#>
-//        case .requestSetuser:
-//            <#code#>
+
 //        case .requestUpdateprofile:
 //            <#code#>
 //        case .requestUpdatenickname:

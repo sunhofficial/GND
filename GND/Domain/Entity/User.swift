@@ -15,6 +15,21 @@ struct UserInfo {
     var age: String
     var nickname: String
 }
+enum Gender: String {
+    case male = "man"
+    case female = "woman"
+    case none
+    var label: String {
+        switch self {
+        case .male:
+            "남자"
+        case .female:
+            "여자"
+        case .none:
+            ""
+        }
+    }
+}
 struct Tokens {
     var accessToken: String
     var refreshToken: String

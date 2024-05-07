@@ -15,7 +15,7 @@ class NicknameViewController: UIViewController {
     private var cancellables: Set<AnyCancellable> = []
     var gender: Gender?
     var ageRange: AgeRange?
-    let viewModel = NickNameViewModel()
+    var viewModel: NickNameViewModel?
     let titleLabel = UILabel().then {
         $0.text = "사용하실 닉네임을 알려주세요"
         $0.font = .systemFont(ofSize: 28, weight: .semibold)
@@ -25,9 +25,12 @@ class NicknameViewController: UIViewController {
         $0.borderStyle = .roundedRect
         $0.backgroundColor = CustomColors.cell
         $0.textColor = .black
+        $0.font = .systemFont(ofSize: 20, weight: .medium)
         $0.placeholder = "닉네임을 입력해주세요"
         $0.delegate = self
+        $0.frame.size.height = 56
         $0.addLeftPadding()
+        $0.setPlaceholderColor(.systemGray)
     }
     let notiNicknameLabel = UILabel().then {
         $0.text = "닉네임은 8자 이하로 입력해주세요"
@@ -39,19 +42,48 @@ class NicknameViewController: UIViewController {
         $0.setTitle("완료", for: .normal)
         $0.backgroundColor = CustomColors.brown
     }
+
     override func viewDidLoad() {
+        self.viewModel = NickNameViewModel(userUseCase: UserUsecase(userReposiotry: UserRepository()), gender: gender!.rawValue, age: ageRange!.toServer)
         view.backgroundColor = CustomColors.bk
         super.viewDidLoad()
         setUI()
         bindings()
+        hideKeyboard()
+    }
+    private func hideKeyboard() {
+           let recognizer = UITapGestureRecognizer(target: self, action: #selector(tappedView))
+           view.addGestureRecognizer(recognizer)
+       }
+    @objc private func tappedView() {
+           self.view.endEditing(true)
+       }
+    @objc private func nextBtnTapped() {
+        viewModel?.inputs.didTapCompleteButton()
+            
     }
     private func bindings() {
-        viewModel.outputs.isCompleteButtonEnabled
+        nextButton.addTarget(self, action: #selector(nextBtnTapped), for: .touchUpInside)
+        nicknameField.publisher
+                 .receive(on: RunLoop.main)
+                 .assign(to: \.!.nickNameText, on: viewModel)
+                 .store(in: &cancellables)
+        viewModel!.outputs.isCompleteButtonEnabled
             .receive(on: DispatchQueue.main)
             .sink { [weak self] isValid in
                 self?.nextButton.isEnabled = isValid
                 self?.nextButton.backgroundColor = isValid ? CustomColors.brown : UIColor.lightGray
                                }.store(in: &cancellables)
+        viewModel?.outputs.postPublisher
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { completion in
+                print(completion)
+            }, receiveValue: { isSucceed in
+                self.goNextView()
+            })   .store(in: &cancellables)
+    }
+    private func goNextView() {
+        navigationController?.pushViewController(TabbarViewController(), animated: true)
     }
     private func setUI(){
         [titleLabel, nicknameField, notiNicknameLabel, nextButton].forEach {

@@ -9,11 +9,7 @@ import UIKit
 import SnapKit
 import Then
 import Combine
-enum Gender: String {
-    case male = "남자"
-    case female = "여자"
-    case none
-}
+
 enum AgeRange: Int, CaseIterable {
     case under50
     case from50to55
@@ -35,6 +31,22 @@ enum AgeRange: Int, CaseIterable {
             "70-80세"
         case .above80:
             "80세 이상"
+        }
+    }
+    var toServer: String {
+        switch self {
+        case .under50:
+            "~50"
+        case .from50to55:
+            "50~55"
+        case .from55to60:
+            "55~60"
+        case .from60to70:
+            "60~70"
+        case .from70to80:
+            "70~80"
+        case .above80:
+            "80~"
         }
     }
 }
@@ -80,10 +92,11 @@ class ProfileViewController: UIViewController {
     var viewmodel = ProfileViewModel()
 
     override func viewDidLoad() {
-        view.backgroundColor = CustomColors.bk
-        navigationController?.isNavigationBarHidden = true
         super.viewDidLoad()
         setupUI()
+        view.backgroundColor = CustomColors.bk
+        navigationController?.isNavigationBarHidden = true
+
         bindVM()
     }
 

@@ -16,6 +16,9 @@ class UserRepository: UserRepositoryProtocol {
     func postUserData(_ info: UserInfo) -> AnyPublisher<UserInfo, any Error> {
         return Future<UserInfo, Error> {promise in
             AF.request(UserAPI.requestSetuser(UserInfoDTO(gender: info.gender, age: info.age, nickname: info.nickname)))
+                .response { response in
+                      debugPrint(response)
+                  }
                 .responseDecodable(of: UserInfoDTO.self) { response in
                     if let data = response.value {
                         promise(.success(data.toDomain()))
