@@ -33,7 +33,7 @@ class LoginCoordinator: LoginCoordinatorProtocol {
     
     func showNicknameViewController(gender: String, age: String) {
         let nicknameViewController = NicknameViewController()
-        nicknameViewController.viewModel = NickNameViewModel(userUseCase: userusecase, gender: gender, age: age)
+        nicknameViewController.viewModel = NickNameViewModel(coordinator: self, userUseCase: userusecase, gender: gender, age: age)
         self.navigationController.pushViewController(nicknameViewController, animated: true)
     }
     

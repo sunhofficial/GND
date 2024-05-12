@@ -82,7 +82,7 @@ class NicknameViewController: UIViewController {
             })   .store(in: &cancellables)
     }
     private func goNextView() {
-        navigationController?.pushViewController(TabbarViewController(), animated: true)
+//        navigationController?.pushViewController(TabbarViewController(), animated: true)
     }
     private func setUI(){
         [titleLabel, nicknameField, notiNicknameLabel, nextButton].forEach {

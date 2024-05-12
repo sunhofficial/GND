@@ -33,8 +33,11 @@ class NickNameViewModel: NickNameViewModelType {
     private let userUseCase: UserUsecase
     var gender: String
     var age: String
-    
-    init(userUseCase: UserUsecase, gender: String, age: String) {
+    private weak var coordinator: LoginCoordinator?
+    var cancellables: Set<AnyCancellable> = []
+
+    init(coordinator: LoginCoordinator, userUseCase: UserUsecase, gender: String, age: String) {
+        self.coordinator = coordinator
         self.userUseCase = userUseCase
         self.gender = gender
         self.age = age
@@ -50,8 +53,9 @@ class NickNameViewModel: NickNameViewModelType {
                 }
             }) { userinfo in
                 print("유저")
+                self.coordinator?.finish()
                 self.postPublisher.send(true)
-            }
+            }.store(in: &cancellables)
     }
 
 

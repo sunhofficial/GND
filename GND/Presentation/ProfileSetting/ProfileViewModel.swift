@@ -47,7 +47,7 @@ class ProfileViewModel: ProfileViewModelType{
 
   
     func sendProfile() {
-        coordinator?.showNicknameViewController(gender: selectedGender.label, age: selectedAge!.toServer)
+        coordinator?.showNicknameViewController(gender: selectedGender.rawValue, age: selectedAge!.toServer)
 
     }
     
