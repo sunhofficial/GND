@@ -89,7 +89,7 @@ class ProfileViewController: UIViewController {
     }
     var ageButtons: [UIButton] = []
     var selectedAgeButton: UIButton?
-    var viewmodel = ProfileViewModel()
+    var viewmodel: ProfileViewModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -190,7 +190,7 @@ extension ProfileViewController {
         guard sender.view != nil else {return }
         guard let view = sender.view else { return }
         selectedGender = (view.tag == 1) ? .female : .male
-        viewmodel.selectGender.send(selectedGender)
+        viewmodel?.selectGender.send(selectedGender)
     }
     private func updateUI() {
         // 모든 성별 뷰의 UI 업데이트
@@ -264,21 +264,21 @@ extension ProfileViewController {
         
         selectedAgeButton = sender
         if let ageRange = AgeRange(rawValue: sender.tag) {
-            self.viewmodel.selectAgeRange.send(ageRange)
+            self.viewmodel?.selectAgeRange.send(ageRange)
            }
     }
     @objc private func nextButtonTapped() {
-        let nicknameViewController = NicknameViewController()
-        nicknameViewController.gender = viewmodel.selectedGender
-        nicknameViewController.ageRange = viewmodel.selectedAge
-        navigationController?.pushViewController(nicknameViewController, animated: true)
-        viewmodel.sendProfile()
+//        let nicknameViewController = NicknameViewController()
+//        nicknameViewController.gender = viewmodel.selectedGender
+//        nicknameViewController.ageRange = viewmodel.selectedAge
+//        navigationController?.pushViewController(nicknameViewController, animated: true)
+        viewmodel?.sendProfile()
     }
     func bindVM() {
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
-        viewmodel.isFormValid
+        viewmodel?.isFormValid
             .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { [weak self]isValid in
+            .sink(receiveValue: { [weak self] isValid in
                 self?.nextButton.isEnabled = isValid
                 self?.nextButton.backgroundColor = isValid ? CustomColors.brown : UIColor.lightGray
                             

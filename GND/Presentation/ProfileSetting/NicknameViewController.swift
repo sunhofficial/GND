@@ -13,8 +13,7 @@ import Combine
 
 class NicknameViewController: UIViewController {
     private var cancellables: Set<AnyCancellable> = []
-    var gender: Gender?
-    var ageRange: AgeRange?
+
     var viewModel: NickNameViewModel?
     let titleLabel = UILabel().then {
         $0.text = "사용하실 닉네임을 알려주세요"
@@ -44,7 +43,7 @@ class NicknameViewController: UIViewController {
     }
 
     override func viewDidLoad() {
-        self.viewModel = NickNameViewModel(userUseCase: UserUsecase(userReposiotry: UserRepository()), gender: gender!.rawValue, age: ageRange!.toServer)
+        
         view.backgroundColor = CustomColors.bk
         super.viewDidLoad()
         setUI()

@@ -31,12 +31,14 @@ class LoginViewModel: NSObject, LoginViewModelType {
     var kakaoLoginPublisher = PassthroughSubject<User, Error>()
     private var cancellables = Set<AnyCancellable>()
     private let kakaologinService = KakaoLoginServices()
+    private weak var coordinator: LoginCoordinator?
     @Published var user: User? {
         didSet {
             print(user)
         }
     }
-    init(userUseCase: UserUsecase) {
+    init(coordinator: LoginCoordinator, userUseCase: UserUsecase) {
+            self.coordinator = coordinator
           self.userUseCase = userUseCase
           super.init()
       }
@@ -74,7 +76,8 @@ class LoginViewModel: NSObject, LoginViewModelType {
                 }
             } receiveValue: { user in
                 self.user = user
-                self.appleLoginPublisher.send(user.firstTime ? true : false)
+//                self.appleLoginPublisher.send(user.firstTime ? true : false)
+                user.firstTime ? self.coordinator?.showProfileSettingViewController() : self.coordinator?.finish()
             }.store(in: &self.cancellables)
                 }
             }
@@ -102,7 +105,8 @@ extension LoginViewModel: ASAuthorizationControllerDelegate, ASAuthorizationCont
             } receiveValue: { user in
                 self.user = user
 
-                self.appleLoginPublisher.send(user.firstTime ? true : false)
+//                self.appleLoginPublisher.send(user.firstTime ? true : false)
+                user.firstTime ? self.coordinator?.showProfileSettingViewController() : self.coordinator?.finish()
             }.store(in: &self.cancellables)
 
         print(credential.user)

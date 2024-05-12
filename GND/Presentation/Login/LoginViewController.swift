@@ -26,7 +26,7 @@ class LoginViewController: UIViewController {
     let appleLoginButton = UIButton().then {
         $0.setImage(UIImage(named: "appleLogin.svg"), for: .normal)
     }
-    private var viewModel: LoginViewModel = LoginViewModel(userUseCase: UserUsecase(userReposiotry: UserRepository()))
+    var viewModel: LoginViewModel?
     private var cancellable = Set<AnyCancellable>()
     
     override func viewDidLoad() {
@@ -71,15 +71,15 @@ class LoginViewController: UIViewController {
 
     @objc
     func kakaoLoginTapped() {
-        viewModel.performKakaoLogin()
+        viewModel?.performKakaoLogin()
     }
     @objc
     func appleLoginTapped() {
-        viewModel.performAppleLogin()
+        viewModel?.performAppleLogin()
     }
 
     private func bind() {
-        viewModel.appleLoginPublisher
+        viewModel?.appleLoginPublisher
             .sink { [weak self] completion in
                 switch completion {
                 case .finished:

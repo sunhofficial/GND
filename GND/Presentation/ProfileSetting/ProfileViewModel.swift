@@ -22,12 +22,13 @@ protocol ProfileViewModelType: ProfileViewModelInput, ProfileViewModelOutput {
 class ProfileViewModel: ProfileViewModelType{
     var selectGender =  CurrentValueSubject<Gender, Never>(.none)
     var selectAgeRange = CurrentValueSubject<AgeRange?, Never>(nil)
-    
+    private weak var coordinator: LoginCoordinator?
     @Published private(set) var selectedGender: Gender = .none
     @Published private(set) var selectedAge: AgeRange?
-
+    
     private var cancellables = Set<AnyCancellable>()
-    init() {
+    init(coordinator: LoginCoordinator) {
+        self.coordinator = coordinator
         selectGender
                 .assign(to: &$selectedGender)
 
@@ -46,7 +47,8 @@ class ProfileViewModel: ProfileViewModelType{
 
   
     func sendProfile() {
-        print(selectedGender, selectedAge)
+        coordinator?.showNicknameViewController(gender: selectedGender.label, age: selectedAge!.toServer)
+
     }
     
 }

@@ -50,6 +50,13 @@
 		C7BD5B842BE9FCBD0060CC38 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5B832BE9FCBD0060CC38 /* KeychainManager.swift */; };
 		C7BD5B862BEA07DB0060CC38 /* NickNameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5B852BEA07DB0060CC38 /* NickNameViewModel.swift */; };
 		C7BD5B8A2BEA0E380060CC38 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C7BD5B892BEA0E380060CC38 /* SnapKit */; };
+		C7C294652BF06BFF009FACD8 /* ExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C294642BF06BFF009FACD8 /* ExerciseViewController.swift */; };
+		C7C294672BF07053009FACD8 /* CoreLocationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C294662BF07053009FACD8 /* CoreLocationServices.swift */; };
+		C7C2946A2BF0AF6A009FACD8 /* CoreMotionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C294692BF0AF6A009FACD8 /* CoreMotionService.swift */; };
+		C7C2946D2BF0C158009FACD8 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C2946C2BF0C158009FACD8 /* Coordinator.swift */; };
+		C7C2946F2BF0C1CD009FACD8 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C2946E2BF0C1CD009FACD8 /* AppCoordinator.swift */; };
+		C7C294712BF0CB46009FACD8 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C294702BF0CB46009FACD8 /* LoginCoordinator.swift */; };
+		C7C294732BF10A08009FACD8 /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C294722BF10A08009FACD8 /* TabCoordinator.swift */; };
 		C7DE2B882BEA425E00A049A9 /* KakaoLoginServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DE2B872BEA425E00A049A9 /* KakaoLoginServices.swift */; };
 /* End PBXBuildFile section */
 
@@ -107,6 +114,13 @@
 		C7BD5B812BE9CC740060CC38 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		C7BD5B832BE9FCBD0060CC38 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		C7BD5B852BEA07DB0060CC38 /* NickNameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickNameViewModel.swift; sourceTree = "<group>"; };
+		C7C294642BF06BFF009FACD8 /* ExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseViewController.swift; sourceTree = "<group>"; };
+		C7C294662BF07053009FACD8 /* CoreLocationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLocationServices.swift; sourceTree = "<group>"; };
+		C7C294692BF0AF6A009FACD8 /* CoreMotionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMotionService.swift; sourceTree = "<group>"; };
+		C7C2946C2BF0C158009FACD8 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		C7C2946E2BF0C1CD009FACD8 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		C7C294702BF0CB46009FACD8 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		C7C294722BF10A08009FACD8 /* TabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinator.swift; sourceTree = "<group>"; };
 		C7DE2B872BEA425E00A049A9 /* KakaoLoginServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLoginServices.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -163,6 +177,8 @@
 		C7BD5ADF2BE6042D0060CC38 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				C7C2946B2BF0BF99009FACD8 /* Coordinators */,
+				C7C294632BF06BE3009FACD8 /* MapView */,
 				C7BD5B692BE8CE650060CC38 /* Common */,
 				C7BD5B4F2BE81C460060CC38 /* PartyView */,
 				C7BD5B3C2BE7A4220060CC38 /* MainView */,
@@ -326,10 +342,31 @@
 			path = APIEndPoint;
 			sourceTree = "<group>";
 		};
+		C7C294632BF06BE3009FACD8 /* MapView */ = {
+			isa = PBXGroup;
+			children = (
+				C7C294642BF06BFF009FACD8 /* ExerciseViewController.swift */,
+			);
+			path = MapView;
+			sourceTree = "<group>";
+		};
+		C7C2946B2BF0BF99009FACD8 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				C7C2946C2BF0C158009FACD8 /* Coordinator.swift */,
+				C7C2946E2BF0C1CD009FACD8 /* AppCoordinator.swift */,
+				C7C294702BF0CB46009FACD8 /* LoginCoordinator.swift */,
+				C7C294722BF10A08009FACD8 /* TabCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
 		C7DE2B862BEA425100A049A9 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				C7DE2B872BEA425E00A049A9 /* KakaoLoginServices.swift */,
+				C7C294662BF07053009FACD8 /* CoreLocationServices.swift */,
+				C7C294692BF0AF6A009FACD8 /* CoreMotionService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -422,31 +459,38 @@
 				C72E721D2BE375DD0003176E /* AppDelegate.swift in Sources */,
 				C7BD5B652BE8CB120060CC38 /* UserUsecase.swift in Sources */,
 				C7BD5B7A2BE903F50060CC38 /* LoginRequest.swift in Sources */,
+				C7C2946A2BF0AF6A009FACD8 /* CoreMotionService.swift in Sources */,
 				C7BD5B782BE901FE0060CC38 /* UserAPI.swift in Sources */,
 				C7BD5B4E2BE812170060CC38 /* ExerciseButton.swift in Sources */,
 				C7BD5B682BE8CB3C0060CC38 /* LoginResponse.swift in Sources */,
 				C7DE2B882BEA425E00A049A9 /* KakaoLoginServices.swift in Sources */,
 				C7BD5B402BE7B8350060CC38 /* UIViewController+.swift in Sources */,
 				C7BD5B6B2BE8CE790060CC38 /* TabbarViewController.swift in Sources */,
+				C7C294652BF06BFF009FACD8 /* ExerciseViewController.swift in Sources */,
 				C7BD5B842BE9FCBD0060CC38 /* KeychainManager.swift in Sources */,
 				C7BD5B552BE890F60060CC38 /* PartyModel.swift in Sources */,
 				C7BD5B592BE8A12B0060CC38 /* PartyDetailView.swift in Sources */,
+				C7C2946F2BF0C1CD009FACD8 /* AppCoordinator.swift in Sources */,
 				C7BD5B422BE7D55C0060CC38 /* EnterRoomCell.swift in Sources */,
 				C7BD5AEB2BE605650060CC38 /* LoginViewController.swift in Sources */,
+				C7C294732BF10A08009FACD8 /* TabCoordinator.swift in Sources */,
 				C7BD5B7C2BE904620060CC38 /* API.swift in Sources */,
 				C7BD5AEE2BE608E80060CC38 /* LoginViewModel.swift in Sources */,
 				C7BD5B862BEA07DB0060CC38 /* NickNameViewModel.swift in Sources */,
 				C7BD5B532BE81CE40060CC38 /* PartyCell.swift in Sources */,
 				C7BD5B4A2BE805CC0060CC38 /* CourseModel.swift in Sources */,
+				C7C294672BF07053009FACD8 /* CoreLocationServices.swift in Sources */,
 				C7BD5B472BE802F90060CC38 /* CellView.swift in Sources */,
 				C7BD5B732BE8E40F0060CC38 /* UserRepository.swift in Sources */,
 				C7BD5B5E2BE8A6010060CC38 /* CustomColors.swift in Sources */,
 				C7BD5B572BE898140060CC38 /* GridCollectionViewFlowLayout.swift in Sources */,
 				C7BD5B442BE7F4A70060CC38 /* EnterModel.swift in Sources */,
 				C7BD5B5B2BE8A2510060CC38 /* PartyDetailCell.swift in Sources */,
+				C7C294712BF0CB46009FACD8 /* LoginCoordinator.swift in Sources */,
 				C72E721F2BE375DD0003176E /* SceneDelegate.swift in Sources */,
 				C7BD5AFE2BE6C34B0060CC38 /* NicknameViewController.swift in Sources */,
 				C7BD5B3E2BE7A4330060CC38 /* MainViewController.swift in Sources */,
+				C7C2946D2BF0C158009FACD8 /* Coordinator.swift in Sources */,
 				C7BD5B752BE9013B0060CC38 /* Router.swift in Sources */,
 				C7BD5AFA2BE62BFA0060CC38 /* ProfileViewController.swift in Sources */,
 				C7BD5B022BE6D3100060CC38 /* UITextFiled+.swift in Sources */,
