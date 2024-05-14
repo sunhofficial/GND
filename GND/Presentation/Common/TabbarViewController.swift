@@ -20,7 +20,7 @@ final class TabbarViewController: UITabBarController {
     }
     func setTabbar() {
         let mainView = UINavigationController(rootViewController: MainViewController())
-        let partyView = UINavigationController(rootViewController: PartyView())
+        let partyView = UINavigationController(rootViewController: PartyViewController())
         
         mainView.tabBarItem = UITabBarItem(title: "산책하기", image: UIImage(systemName: "shoeprints.fill"), selectedImage: UIImage(systemName: "shoeprints.fill"))
         partyView.tabBarItem = UITabBarItem(title: "함께하기", image: UIImage(systemName: "person.3"), selectedImage: UIImage(systemName: "person.3.fill"))

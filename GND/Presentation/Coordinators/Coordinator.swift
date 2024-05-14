@@ -42,4 +42,7 @@ enum CoordinatorType {
     case app
     case login
     case tab
+    case home, party, analyze
+    case setting, walking
+    
 }

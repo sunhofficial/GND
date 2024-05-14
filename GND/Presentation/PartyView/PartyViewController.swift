@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-class PartyView: UIViewController {
+class PartyViewController: UIViewController {
     var dummydata = [PartyModel(mapImageString: "map", partyTitle: "안녕여긴", participantCount: 10, distance: 3),PartyModel(mapImageString: "map", partyTitle: "안녕여긴", participantCount: 10, distance: 3),PartyModel(mapImageString: "map", partyTitle: "안녕여긴", participantCount: 10, distance: 3),PartyModel(mapImageString: "map", partyTitle: "안녕여긴", participantCount: 10, distance: 3),PartyModel(mapImageString: "map", partyTitle: "안녕여긴", participantCount: 10, distance: 3),PartyModel(mapImageString: "map", partyTitle: "안녕여긴", participantCount: 10, distance: 3)]
     private let gridFlowLayout = GridCollectionViewFlowLayout().then {
         $0.cellSpacing = 24
@@ -44,7 +44,7 @@ class PartyView: UIViewController {
         navigationItem.title = "현재 인기있는 걷기모임"
         navigationController?.navigationBar.prefersLargeTitles = true}
 }
-extension PartyView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+extension PartyViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dummydata.count
     }
@@ -79,6 +79,6 @@ extension PartyView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSou
 }
 
 #Preview {
-    let vc = UINavigationController(rootViewController: PartyView())
+    let vc = UINavigationController(rootViewController: PartyViewController())
     return vc
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 struct API {
-    static let baseURL = "http://gunilda-dev.kro.kr"
+    static let baseURL = "http://sonserver.duckdns.org"
     enum NetworkHeaderKey: String {
         case contentType = "Content-Type"
         case authorization = "Authorization"

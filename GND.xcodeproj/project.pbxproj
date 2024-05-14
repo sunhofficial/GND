@@ -29,7 +29,7 @@
 		C7BD5B4A2BE805CC0060CC38 /* CourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5B492BE805CC0060CC38 /* CourseModel.swift */; };
 		C7BD5B4C2BE80BCE0060CC38 /* CellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5B4B2BE80BCE0060CC38 /* CellType.swift */; };
 		C7BD5B4E2BE812170060CC38 /* ExerciseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5B4D2BE812170060CC38 /* ExerciseButton.swift */; };
-		C7BD5B512BE81C580060CC38 /* PartyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5B502BE81C580060CC38 /* PartyView.swift */; };
+		C7BD5B512BE81C580060CC38 /* PartyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5B502BE81C580060CC38 /* PartyViewController.swift */; };
 		C7BD5B532BE81CE40060CC38 /* PartyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5B522BE81CE40060CC38 /* PartyCell.swift */; };
 		C7BD5B552BE890F60060CC38 /* PartyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5B542BE890F60060CC38 /* PartyModel.swift */; };
 		C7BD5B572BE898140060CC38 /* GridCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5B562BE898140060CC38 /* GridCollectionViewFlowLayout.swift */; };
@@ -57,6 +57,9 @@
 		C7C2946F2BF0C1CD009FACD8 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C2946E2BF0C1CD009FACD8 /* AppCoordinator.swift */; };
 		C7C294712BF0CB46009FACD8 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C294702BF0CB46009FACD8 /* LoginCoordinator.swift */; };
 		C7C294732BF10A08009FACD8 /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C294722BF10A08009FACD8 /* TabCoordinator.swift */; };
+		C7C294752BF1FD9B009FACD8 /* StrideCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C294742BF1FD9B009FACD8 /* StrideCoordinator.swift */; };
+		C7C294772BF1FDA2009FACD8 /* TogetherCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C294762BF1FDA2009FACD8 /* TogetherCoordinator.swift */; };
+		C7C2947C2BF1FEB2009FACD8 /* AnalyzeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C2947B2BF1FEB2009FACD8 /* AnalyzeViewController.swift */; };
 		C7DE2B882BEA425E00A049A9 /* KakaoLoginServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DE2B872BEA425E00A049A9 /* KakaoLoginServices.swift */; };
 /* End PBXBuildFile section */
 
@@ -94,7 +97,7 @@
 		C7BD5B492BE805CC0060CC38 /* CourseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseModel.swift; sourceTree = "<group>"; };
 		C7BD5B4B2BE80BCE0060CC38 /* CellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellType.swift; sourceTree = "<group>"; };
 		C7BD5B4D2BE812170060CC38 /* ExerciseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseButton.swift; sourceTree = "<group>"; };
-		C7BD5B502BE81C580060CC38 /* PartyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyView.swift; sourceTree = "<group>"; };
+		C7BD5B502BE81C580060CC38 /* PartyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyViewController.swift; sourceTree = "<group>"; };
 		C7BD5B522BE81CE40060CC38 /* PartyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyCell.swift; sourceTree = "<group>"; };
 		C7BD5B542BE890F60060CC38 /* PartyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyModel.swift; sourceTree = "<group>"; };
 		C7BD5B562BE898140060CC38 /* GridCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
@@ -121,6 +124,9 @@
 		C7C2946E2BF0C1CD009FACD8 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		C7C294702BF0CB46009FACD8 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		C7C294722BF10A08009FACD8 /* TabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinator.swift; sourceTree = "<group>"; };
+		C7C294742BF1FD9B009FACD8 /* StrideCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrideCoordinator.swift; sourceTree = "<group>"; };
+		C7C294762BF1FDA2009FACD8 /* TogetherCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TogetherCoordinator.swift; sourceTree = "<group>"; };
+		C7C2947B2BF1FEB2009FACD8 /* AnalyzeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeViewController.swift; sourceTree = "<group>"; };
 		C7DE2B872BEA425E00A049A9 /* KakaoLoginServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLoginServices.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -177,6 +183,7 @@
 		C7BD5ADF2BE6042D0060CC38 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				C7C2947A2BF1FEA7009FACD8 /* AnalyzeView */,
 				C7C2946B2BF0BF99009FACD8 /* Coordinators */,
 				C7C294632BF06BE3009FACD8 /* MapView */,
 				C7BD5B692BE8CE650060CC38 /* Common */,
@@ -253,7 +260,7 @@
 		C7BD5B4F2BE81C460060CC38 /* PartyView */ = {
 			isa = PBXGroup;
 			children = (
-				C7BD5B502BE81C580060CC38 /* PartyView.swift */,
+				C7BD5B502BE81C580060CC38 /* PartyViewController.swift */,
 				C7BD5B562BE898140060CC38 /* GridCollectionViewFlowLayout.swift */,
 				C7BD5B522BE81CE40060CC38 /* PartyCell.swift */,
 				C7BD5B542BE890F60060CC38 /* PartyModel.swift */,
@@ -357,8 +364,18 @@
 				C7C2946E2BF0C1CD009FACD8 /* AppCoordinator.swift */,
 				C7C294702BF0CB46009FACD8 /* LoginCoordinator.swift */,
 				C7C294722BF10A08009FACD8 /* TabCoordinator.swift */,
+				C7C294742BF1FD9B009FACD8 /* StrideCoordinator.swift */,
+				C7C294762BF1FDA2009FACD8 /* TogetherCoordinator.swift */,
 			);
 			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		C7C2947A2BF1FEA7009FACD8 /* AnalyzeView */ = {
+			isa = PBXGroup;
+			children = (
+				C7C2947B2BF1FEB2009FACD8 /* AnalyzeViewController.swift */,
+			);
+			path = AnalyzeView;
 			sourceTree = "<group>";
 		};
 		C7DE2B862BEA425100A049A9 /* Services */ = {
@@ -460,6 +477,7 @@
 				C7BD5B652BE8CB120060CC38 /* UserUsecase.swift in Sources */,
 				C7BD5B7A2BE903F50060CC38 /* LoginRequest.swift in Sources */,
 				C7C2946A2BF0AF6A009FACD8 /* CoreMotionService.swift in Sources */,
+				C7C294752BF1FD9B009FACD8 /* StrideCoordinator.swift in Sources */,
 				C7BD5B782BE901FE0060CC38 /* UserAPI.swift in Sources */,
 				C7BD5B4E2BE812170060CC38 /* ExerciseButton.swift in Sources */,
 				C7BD5B682BE8CB3C0060CC38 /* LoginResponse.swift in Sources */,
@@ -476,6 +494,7 @@
 				C7C294732BF10A08009FACD8 /* TabCoordinator.swift in Sources */,
 				C7BD5B7C2BE904620060CC38 /* API.swift in Sources */,
 				C7BD5AEE2BE608E80060CC38 /* LoginViewModel.swift in Sources */,
+				C7C294772BF1FDA2009FACD8 /* TogetherCoordinator.swift in Sources */,
 				C7BD5B862BEA07DB0060CC38 /* NickNameViewModel.swift in Sources */,
 				C7BD5B532BE81CE40060CC38 /* PartyCell.swift in Sources */,
 				C7BD5B4A2BE805CC0060CC38 /* CourseModel.swift in Sources */,
@@ -483,6 +502,7 @@
 				C7BD5B472BE802F90060CC38 /* CellView.swift in Sources */,
 				C7BD5B732BE8E40F0060CC38 /* UserRepository.swift in Sources */,
 				C7BD5B5E2BE8A6010060CC38 /* CustomColors.swift in Sources */,
+				C7C2947C2BF1FEB2009FACD8 /* AnalyzeViewController.swift in Sources */,
 				C7BD5B572BE898140060CC38 /* GridCollectionViewFlowLayout.swift in Sources */,
 				C7BD5B442BE7F4A70060CC38 /* EnterModel.swift in Sources */,
 				C7BD5B5B2BE8A2510060CC38 /* PartyDetailCell.swift in Sources */,
@@ -495,7 +515,7 @@
 				C7BD5AFA2BE62BFA0060CC38 /* ProfileViewController.swift in Sources */,
 				C7BD5B022BE6D3100060CC38 /* UITextFiled+.swift in Sources */,
 				C7BD5B822BE9CC740060CC38 /* ProfileViewModel.swift in Sources */,
-				C7BD5B512BE81C580060CC38 /* PartyView.swift in Sources */,
+				C7BD5B512BE81C580060CC38 /* PartyViewController.swift in Sources */,
 				C7BD5B7E2BE9384C0060CC38 /* Login.swift in Sources */,
 				C7BD5B802BE93D830060CC38 /* User.swift in Sources */,
 			);
