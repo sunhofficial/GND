@@ -7,23 +7,32 @@
 
 import Foundation
 import CoreLocation
+import Combine
 
-class CoreLocationServices: NSObject, ObservableObject {
+protocol CoreLocationServicesProtocol {
+    var locationPublisher: AnyPublisher<[CLLocation], Never> { get }
+    var errorPublisher: AnyPublisher<Error, Never> { get }
+    func startupdatingLocation()
+    func stopupdatingLocation()
+}
+
+class CoreLocationServices: NSObject, CoreLocationServicesProtocol {
+    private let locationSubject = PassthroughSubject<[CLLocation], Never>()
     private let locationManager = CLLocationManager()
-    @Published var locations: [CLLocation] = [] {
-        didSet {
-            print(locations)
-        }
+    private let errorSubject = PassthroughSubject<Error, Never>()
+    var locationPublisher: AnyPublisher<[CLLocation], Never> {
+        locationSubject.eraseToAnyPublisher()
     }
-    @Published var locationdraw: [CLLocationCoordinate2D] = []
-    private var oldLocatio: CLLocation?
+    var errorPublisher: AnyPublisher<Error, Never> {
+        errorSubject.eraseToAnyPublisher()
+    }
     override init() {
         super.init()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.distanceFilter = 20
         locationManager.allowsBackgroundLocationUpdates = true
-
+        setup()
     }
     private func setup() {
         switch locationManager.authorizationStatus {
@@ -35,10 +44,10 @@ class CoreLocationServices: NSObject, ObservableObject {
             break
         }
     }
-    func startagain() {
+    func startupdatingLocation() {
         locationManager.startUpdatingLocation()
     }
-    func stop() {
+    func stopupdatingLocation() {
         locationManager.stopUpdatingLocation()
     }
 }
@@ -48,20 +57,21 @@ extension CoreLocationServices: CLLocationManagerDelegate {
           locationManager.requestLocation()
     }
     func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {
-        print(error)
+        errorSubject.send(error)
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print(locations)
-        guard let newLocation = locations.last else {return}
-        guard let oldLocation = locations.first else {
-            self.oldLocatio = newLocation
-            return
-        }
-        locationdraw.append(newLocation.coordinate)
-        locations.last.map {
-            region in
-            self.locations.append(region)
-        }
-        self.oldLocatio = newLocation
+        locationSubject.send(locations)
+//        print(locations)
+//        guard let newLocation = locations.last else {return}
+//        guard let oldLocation = locations.first else {
+//            self.oldLocatio = newLocation
+//            return
+//        }
+//        locationdraw.append(newLocation.coordinate)
+//        locations.last.map {
+//            region in
+//            self.locations.append(region)
+//        }
+//        self.oldLocatio = newLocation
     }
 }

@@ -71,7 +71,6 @@ class TabCoordinator: TabCoordinatorProtocol {
     }
     private func configureTabBar(with tabViewControllers: [UIViewController]) {
         self.tabbarController.setViewControllers(tabViewControllers, animated: true)
-//        self.tabbarController.selectedIndex = TabBarPage.home.pageOrderNumber()
         self.tabbarController.view.backgroundColor = .systemBackground
         self.tabbarController.tabBar.backgroundColor = .systemBackground
         self.tabbarController.tabBar.tintColor = UIColor.black

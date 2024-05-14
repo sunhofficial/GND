@@ -60,6 +60,8 @@
 		C7C294752BF1FD9B009FACD8 /* StrideCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C294742BF1FD9B009FACD8 /* StrideCoordinator.swift */; };
 		C7C294772BF1FDA2009FACD8 /* TogetherCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C294762BF1FDA2009FACD8 /* TogetherCoordinator.swift */; };
 		C7C2947C2BF1FEB2009FACD8 /* AnalyzeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C2947B2BF1FEB2009FACD8 /* AnalyzeViewController.swift */; };
+		C7C2947E2BF30BF3009FACD8 /* ExerciseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C2947D2BF30BF3009FACD8 /* ExerciseViewModel.swift */; };
+		C7C294802BF3424C009FACD8 /* ExerciseUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C2947F2BF3424C009FACD8 /* ExerciseUseCase.swift */; };
 		C7DE2B882BEA425E00A049A9 /* KakaoLoginServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DE2B872BEA425E00A049A9 /* KakaoLoginServices.swift */; };
 /* End PBXBuildFile section */
 
@@ -127,6 +129,8 @@
 		C7C294742BF1FD9B009FACD8 /* StrideCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrideCoordinator.swift; sourceTree = "<group>"; };
 		C7C294762BF1FDA2009FACD8 /* TogetherCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TogetherCoordinator.swift; sourceTree = "<group>"; };
 		C7C2947B2BF1FEB2009FACD8 /* AnalyzeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeViewController.swift; sourceTree = "<group>"; };
+		C7C2947D2BF30BF3009FACD8 /* ExerciseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseViewModel.swift; sourceTree = "<group>"; };
+		C7C2947F2BF3424C009FACD8 /* ExerciseUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseUseCase.swift; sourceTree = "<group>"; };
 		C7DE2B872BEA425E00A049A9 /* KakaoLoginServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLoginServices.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -292,6 +296,7 @@
 			isa = PBXGroup;
 			children = (
 				C7BD5B642BE8CB120060CC38 /* UserUsecase.swift */,
+				C7C2947F2BF3424C009FACD8 /* ExerciseUseCase.swift */,
 			);
 			path = Usecase;
 			sourceTree = "<group>";
@@ -353,6 +358,7 @@
 			isa = PBXGroup;
 			children = (
 				C7C294642BF06BFF009FACD8 /* ExerciseViewController.swift */,
+				C7C2947D2BF30BF3009FACD8 /* ExerciseViewModel.swift */,
 			);
 			path = MapView;
 			sourceTree = "<group>";
@@ -473,6 +479,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7BD5B4C2BE80BCE0060CC38 /* CellType.swift in Sources */,
+				C7C294802BF3424C009FACD8 /* ExerciseUseCase.swift in Sources */,
 				C72E721D2BE375DD0003176E /* AppDelegate.swift in Sources */,
 				C7BD5B652BE8CB120060CC38 /* UserUsecase.swift in Sources */,
 				C7BD5B7A2BE903F50060CC38 /* LoginRequest.swift in Sources */,
@@ -509,6 +516,7 @@
 				C7C294712BF0CB46009FACD8 /* LoginCoordinator.swift in Sources */,
 				C72E721F2BE375DD0003176E /* SceneDelegate.swift in Sources */,
 				C7BD5AFE2BE6C34B0060CC38 /* NicknameViewController.swift in Sources */,
+				C7C2947E2BF30BF3009FACD8 /* ExerciseViewModel.swift in Sources */,
 				C7BD5B3E2BE7A4330060CC38 /* MainViewController.swift in Sources */,
 				C7C2946D2BF0C158009FACD8 /* Coordinator.swift in Sources */,
 				C7BD5B752BE9013B0060CC38 /* Router.swift in Sources */,
