@@ -17,6 +17,7 @@
             $0.delegate = self
             $0.showsUserLocation = true
             $0.userTrackingMode  = .followWithHeading
+            $0.overrideUserInterfaceStyle = .light
             $0.addGestureRecognizer(UIPanGestureRecognizer())
         }
         let progressBar = UIProgressView().then {
@@ -96,8 +97,12 @@
                 }.store(in: &cancellables)
         }
         func updateMap(with coordinates: [CLLocationCoordinate2D]) {
-            let polyLine = MKPolyline(coordinates: coordinates, count: coordinates.count)
-            mapView.addOverlay(polyLine)
+            guard coordinates.count > 1 else { return }
+
+             let newCoordinates = Array(coordinates.suffix(2))
+             let polyLine = MKPolyline(coordinates: newCoordinates, count: newCoordinates.count)
+             mapView.addOverlay(polyLine)
+       
         }
         @objc func stopExercise() {
             viewModel?.stopTracking()
@@ -114,9 +119,5 @@
 
             return renderer
         }
-        func drawLine(from start: CLLocationCoordinate2D, to end: CLLocationCoordinate2D) {
-            let coordinates = [start, end]
-            let line = MKPolyline(coordinates: coordinates, count: coordinates.count)
-            self.mapView.addOverlay(line)
-        }
+
     }

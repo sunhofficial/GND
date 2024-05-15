@@ -14,6 +14,7 @@ protocol ExerciseUseCaseProtocol {
     var errorPublisher: AnyPublisher<Error, Never> { get }
     func startUpdating()
     func stopUpdating()
+    
 }
 
 

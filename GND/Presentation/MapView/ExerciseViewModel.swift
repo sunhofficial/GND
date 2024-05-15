@@ -18,8 +18,14 @@ final class ExerciseViewModel: ObservableObject, ExerciseViewModelOutput {
     private var exerciseUsecase: ExerciseUseCaseProtocol
     private var cancellables = Set<AnyCancellable>()
 
-     @Published var locationUpdates: [CLLocationCoordinate2D] = []
+    @Published var locationUpdates: [CLLocationCoordinate2D] = [] {
+        didSet {
+            print(locationUpdates)
+        }
+    }
     init( exerciseUsecase: ExerciseUsecase) {
+//        super.init()
+//        self.startTracking()
         self.exerciseUsecase = exerciseUsecase
         exerciseUsecase.locationPublisher
             .receive(on: RunLoop.main)
@@ -33,9 +39,10 @@ final class ExerciseViewModel: ObservableObject, ExerciseViewModelOutput {
              .store(in: &cancellables)
     }
     func startTracking() {
-        exerciseUsecase.stopUpdating()
+        exerciseUsecase.startUpdating()
     }
     func stopTracking() {
+        print("운동종료")
         exerciseUsecase.stopUpdating()
     }
 }

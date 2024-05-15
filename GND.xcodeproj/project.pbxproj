@@ -12,6 +12,8 @@
 		C72E72262BE375DF0003176E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C72E72252BE375DF0003176E /* Assets.xcassets */; };
 		C72E72292BE375DF0003176E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = C72E72282BE375DF0003176E /* Base */; };
 		C7B0BE332BF4613A009ACE74 /* ExerciseBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0BE322BF4613A009ACE74 /* ExerciseBarView.swift */; };
+		C7B0BE352BF48DEA009ACE74 /* ExerciseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0BE342BF48DEA009ACE74 /* ExerciseRepository.swift */; };
+		C7B0BE372BF48DF5009ACE74 /* ExerciseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0BE362BF48DF5009ACE74 /* ExerciseAPI.swift */; };
 		C7BD5AE32BE604CD0060CC38 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = C7BD5AE22BE604CD0060CC38 /* Then */; };
 		C7BD5AEB2BE605650060CC38 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5AEA2BE605650060CC38 /* LoginViewController.swift */; };
 		C7BD5AEE2BE608E80060CC38 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5AED2BE608E80060CC38 /* LoginViewModel.swift */; };
@@ -89,6 +91,8 @@
 		C72E72282BE375DF0003176E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C72E722A2BE375DF0003176E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7B0BE322BF4613A009ACE74 /* ExerciseBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseBarView.swift; sourceTree = "<group>"; };
+		C7B0BE342BF48DEA009ACE74 /* ExerciseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRepository.swift; sourceTree = "<group>"; };
+		C7B0BE362BF48DF5009ACE74 /* ExerciseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseAPI.swift; sourceTree = "<group>"; };
 		C7BD5AEA2BE605650060CC38 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C7BD5AEC2BE606750060CC38 /* GND.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GND.entitlements; sourceTree = "<group>"; };
 		C7BD5AED2BE608E80060CC38 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -338,6 +342,7 @@
 			isa = PBXGroup;
 			children = (
 				C7BD5B722BE8E40F0060CC38 /* UserRepository.swift */,
+				C7B0BE342BF48DEA009ACE74 /* ExerciseRepository.swift */,
 				C7BD5B832BE9FCBD0060CC38 /* KeychainManager.swift */,
 			);
 			path = Repository;
@@ -358,6 +363,7 @@
 			children = (
 				C7BD5B7B2BE904620060CC38 /* API.swift */,
 				C7BD5B772BE901FE0060CC38 /* UserAPI.swift */,
+				C7B0BE362BF48DF5009ACE74 /* ExerciseAPI.swift */,
 			);
 			path = APIEndPoint;
 			sourceTree = "<group>";
@@ -522,8 +528,10 @@
 				C7BD5B5E2BE8A6010060CC38 /* CustomColors.swift in Sources */,
 				C7C2947C2BF1FEB2009FACD8 /* AnalyzeViewController.swift in Sources */,
 				C7BD5B572BE898140060CC38 /* GridCollectionViewFlowLayout.swift in Sources */,
+				C7B0BE352BF48DEA009ACE74 /* ExerciseRepository.swift in Sources */,
 				C7BD5B442BE7F4A70060CC38 /* EnterModel.swift in Sources */,
 				C7B0BE332BF4613A009ACE74 /* ExerciseBarView.swift in Sources */,
+				C7B0BE372BF48DF5009ACE74 /* ExerciseAPI.swift in Sources */,
 				C7BD5B5B2BE8A2510060CC38 /* PartyDetailCell.swift in Sources */,
 				C7C294712BF0CB46009FACD8 /* LoginCoordinator.swift in Sources */,
 				C72E721F2BE375DD0003176E /* SceneDelegate.swift in Sources */,
