@@ -8,13 +8,13 @@
 import UIKit
 
 class ExerciseButton: UIButton {
-    init(title: String, backgroundColor: UIColor, fontsize: CGFloat = 16) {
+    init(mode: ExerciseMode, fontsize: CGFloat = 16) {
         super.init(frame: .zero)
-        self.setTitle(title, for: .normal)
+        self.setTitle(mode.rawValue, for: .normal)
         self.titleLabel?.font = UIFont.systemFont(ofSize: fontsize, weight: .bold)
-        self.backgroundColor = backgroundColor
+        self.backgroundColor = mode.buttonColor
         self.layer.cornerRadius = 48
-
+        self.accessibilityIdentifier = mode.rawValue
     }
     required init?(coder: NSCoder) {
           fatalError("init(coder:) has not been implemented")

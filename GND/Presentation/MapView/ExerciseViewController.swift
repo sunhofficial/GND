@@ -12,7 +12,7 @@
     import SnapKit
     class ExerciseViewController: UIViewController {
         private var cancellables = Set<AnyCancellable>()
-        private var viewModel: ExerciseViewModel?
+         var viewModel: ExerciseViewModel?
         private lazy var mapView = MKMapView().then {
             $0.delegate = self
             $0.showsUserLocation = true
@@ -21,8 +21,11 @@
 
         }
         override func viewDidLoad() {
+
             super.viewDidLoad()
+            view.backgroundColor = .background
             viewModel?.startTracking()
+            configureUI()
         }
 
         func configureUI() {

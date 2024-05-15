@@ -32,7 +32,7 @@ final class ExerciseUsecase: ExerciseUseCaseProtocol {
         coreLocationService.errorPublisher.eraseToAnyPublisher()
     }
 
-    init(coreLocationService: CoreLocationServicesProtocol = CoreLocationServices()) {
+    init(coreLocationService: CoreLocationServicesProtocol) {
         self.coreLocationService = coreLocationService
     }
 

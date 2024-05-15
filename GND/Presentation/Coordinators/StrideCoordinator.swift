@@ -8,14 +8,17 @@
 import UIKit
 
 protocol StrideCoordinatorProtocol: Coordinator {
-    func doExerciseView()
+    func doExerciseView(mode: ExerciseMode)
     func showRecentView()
     func finishExerciseView()
 
 }
 class StrideCoordinator: StrideCoordinatorProtocol {
-    func doExerciseView() {
-        
+    var exerciseUseCase = ExerciseUsecase(coreLocationService: CoreLocationServices()) // 이것도 어디서 주입할지 생각해봐야할듯 여기서부터 필요한가?
+    func doExerciseView(mode: ExerciseMode) {
+        let exerciseViewController = ExerciseViewController()
+        exerciseViewController.viewModel = ExerciseViewModel(exerciseUsecase: exerciseUseCase)
+        navigationController.pushViewController(exerciseViewController, animated: false)
     }
     
     func showRecentView() {
@@ -35,7 +38,8 @@ class StrideCoordinator: StrideCoordinatorProtocol {
     var type: CoordinatorType {.home}
 
     func start() {
-        self.navigationController.pushViewController(mainviewController, animated: true)
+        mainviewController.viewModel = MainViewModel(coordinator: self)
+        self.navigationController.pushViewController(mainviewController, animated: false)
     }
     
     required init(_ navigationController: UINavigationController) {

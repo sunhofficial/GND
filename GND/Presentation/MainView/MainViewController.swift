@@ -15,6 +15,7 @@ class MainViewController: UIViewController {
         $0.layer.cornerRadius = 16
         $0.backgroundColor = CustomColors.cell
     }
+    var viewModel: MainViewModel?
     private var overlayView: UIView?
     private lazy var collectionView: UICollectionView = {
          let layout = UICollectionViewFlowLayout()
@@ -26,7 +27,7 @@ class MainViewController: UIViewController {
          collectionView.backgroundColor = .white
          return collectionView
      }()
-    private let exerciseButton = ExerciseButton(title: "운동하기", backgroundColor: CustomColors.brown)
+    private let exerciseButton = ExerciseButton(mode: ExerciseMode.normal )
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = CustomColors.bk
@@ -185,16 +186,14 @@ class MainViewController: UIViewController {
         self.overlayView = overlay
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissOverlay))
          overlay.addGestureRecognizer(tapGesture)
-        let buttons = [
-                ExerciseButton(title: "산책하기", backgroundColor: .systemGray),
-                ExerciseButton(title: "속도훈련", backgroundColor: .systemGray),
-                ExerciseButton(title: "보폭훈련", backgroundColor: .lightGray),
-                ExerciseButton(title: "X", backgroundColor: .red)
-            ]
+        let buttons = ExerciseMode.allCases.filter { $0 != .normal }.map { mode -> UIButton in
+                   let button = ExerciseButton(mode: mode)
+                   button.addTarget(self, action: #selector(buttonAction(sender:)), for: .touchUpInside)
+                   return button
+               }
          // Buttons 생성
         buttons.forEach { button in
                   overlayView?.addSubview(button)
-                  button.addTarget(self, action: #selector(buttonAction(sender:)), for: .touchUpInside)
               }
         buttons[0].snp.makeConstraints { $0.bottom.equalTo(exerciseButton.snp.top).offset(-96); $0.centerX.equalToSuperview() }
              buttons[1].snp.makeConstraints { $0.bottom.equalTo(exerciseButton.snp.top); $0.trailing.equalTo(exerciseButton.snp.leading) }
@@ -208,7 +207,11 @@ class MainViewController: UIViewController {
     }
 
     @objc private func buttonAction(sender: UIButton) {
-        print("Button Pressed: \(sender.currentTitle ?? "")")
+        guard let modeIdentifier = sender.accessibilityIdentifier,
+                   let mode = ExerciseMode(rawValue: modeIdentifier) else {
+                 return
+             }
+        viewModel?.moveToExercise(mode: mode)
         dismissOverlay()
     }
 }
