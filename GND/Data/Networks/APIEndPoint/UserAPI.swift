@@ -20,7 +20,7 @@ extension UserAPI: Router, URLRequestConvertible {
     }
     var path: String {
         switch self {
-        case .requestlogin(let loginRequest):
+        case .requestlogin:
             "auth/login"
         case .requestRefreshToken:
             "auth/refresh"
@@ -35,7 +35,7 @@ extension UserAPI: Router, URLRequestConvertible {
     
     var method: HTTPMethod {
         switch self {
-        case .requestlogin(let loginRequest):
+        case .requestlogin:
                 .post
         case .requestRefreshToken:
                 .post
@@ -48,26 +48,23 @@ extension UserAPI: Router, URLRequestConvertible {
         }
     }
     
-    var headers: [String : String] {
+    var headers: HTTPHeaders {
         switch self {
         case .requestlogin, .requestRefreshToken:
-            API.headerwithoutToken
+            API.headerWithoutToken
         default:
             API.headerwithAuthorization
         }
     }
     
-    var parameters: [String : Any]? {
+    var parameters: Encodable? {
         switch self {
         case .requestlogin(let loginRequest):
-            return ["type": loginRequest.type,
-                    "id": loginRequest.id]
+           return loginRequest
         case .requestSetuser(let userDTO):
-            return ["gender": userDTO.gender,
-                    "age": userDTO.age,
-                    "nickname": userDTO.nickname]
+            return userDTO
         default:
-            return [:]
+            return nil
 //        case .requestRefreshToken:
 //            <#code#>
 
@@ -78,22 +75,22 @@ extension UserAPI: Router, URLRequestConvertible {
         }
     }
     
-    var encoding: ParameterEncoding? {
-        switch self {
-        case .requestlogin:
-            return JSONEncoding.default
-        default:
-            return JSONEncoding.default
-        }
-    }
+//    var encoding: ParameterEncoding? {
+//        switch self {
+//        case .requestlogin:
+//            return JSONEncoding.default
+//        default:
+//            return JSONEncoding.default
+//        }
+//    }
     
     func asURLRequest() throws -> URLRequest {
         let url = URL(string: baseURL + path)
         var request = URLRequest(url: url!)
         request.method = method
-        request.headers = HTTPHeaders(headers)
-        if let encoding = encoding {
-            return try encoding.encode(request, with: parameters)
+        request.headers = headers
+        if let parameters = parameters {
+            request = try JSONParameterEncoder().encode(parameters, into: request)
         }
         return request
     }

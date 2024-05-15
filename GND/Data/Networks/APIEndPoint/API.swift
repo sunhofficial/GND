@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import Alamofire
+
 struct API {
     static let baseURL = "http://sonserver.duckdns.org"
     enum NetworkHeaderKey: String {
@@ -13,9 +15,12 @@ struct API {
         case authorization = "Authorization"
     }
     static let applicationJSON = "application/json"
-    static var headerwithoutToken = [
-        NetworkHeaderKey.contentType.rawValue : API.applicationJSON ]
-    static var headerwithAuthorization: [String:  String] =  [
+    static var headerWithoutToken: HTTPHeaders {
+          return [
+            NetworkHeaderKey.contentType.rawValue : applicationJSON
+          ]
+      }
+    static var headerwithAuthorization: HTTPHeaders =  [
         NetworkHeaderKey.contentType.rawValue: API.applicationJSON,
         NetworkHeaderKey.authorization.rawValue: "Bearer \(KeychainManager.shared.readToken(key: "accessToken") ?? "")"
     ]

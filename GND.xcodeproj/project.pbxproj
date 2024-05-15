@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C716082E2BF4A89F005A937A /* SaveExerciseRequset.swift in Sources */ = {isa = PBXBuildFile; fileRef = C716082D2BF4A89F005A937A /* SaveExerciseRequset.swift */; };
+		C71608302BF4AAEE005A937A /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = C716082F2BF4AAEE005A937A /* Exercise.swift */; };
 		C72E721D2BE375DD0003176E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72E721C2BE375DD0003176E /* AppDelegate.swift */; };
 		C72E721F2BE375DD0003176E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72E721E2BE375DD0003176E /* SceneDelegate.swift */; };
 		C72E72262BE375DF0003176E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C72E72252BE375DF0003176E /* Assets.xcassets */; };
@@ -84,6 +86,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C716082D2BF4A89F005A937A /* SaveExerciseRequset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveExerciseRequset.swift; sourceTree = "<group>"; };
+		C716082F2BF4AAEE005A937A /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		C72E72192BE375DD0003176E /* GND.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GND.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C72E721C2BE375DD0003176E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C72E721E2BE375DD0003176E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -317,6 +321,7 @@
 			children = (
 				C7BD5B672BE8CB3C0060CC38 /* LoginResponse.swift */,
 				C7BD5B792BE903F50060CC38 /* LoginRequest.swift */,
+				C716082D2BF4A89F005A937A /* SaveExerciseRequset.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -354,6 +359,7 @@
 				C7BD5B7D2BE9384C0060CC38 /* Login.swift */,
 				C7BD5B7F2BE93D830060CC38 /* User.swift */,
 				C7C294832BF34CE8009FACD8 /* ExerciseMode.swift */,
+				C716082F2BF4AAEE005A937A /* Exercise.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -501,6 +507,7 @@
 				C7BD5B7A2BE903F50060CC38 /* LoginRequest.swift in Sources */,
 				C7C2946A2BF0AF6A009FACD8 /* CoreMotionService.swift in Sources */,
 				C7C294752BF1FD9B009FACD8 /* StrideCoordinator.swift in Sources */,
+				C716082E2BF4A89F005A937A /* SaveExerciseRequset.swift in Sources */,
 				C7BD5B782BE901FE0060CC38 /* UserAPI.swift in Sources */,
 				C7BD5B4E2BE812170060CC38 /* ExerciseButton.swift in Sources */,
 				C7BD5B682BE8CB3C0060CC38 /* LoginResponse.swift in Sources */,
@@ -542,6 +549,7 @@
 				C7BD5B752BE9013B0060CC38 /* Router.swift in Sources */,
 				C7BD5AFA2BE62BFA0060CC38 /* ProfileViewController.swift in Sources */,
 				C7BD5B022BE6D3100060CC38 /* UITextFiled+.swift in Sources */,
+				C71608302BF4AAEE005A937A /* Exercise.swift in Sources */,
 				C7BD5B822BE9CC740060CC38 /* ProfileViewModel.swift in Sources */,
 				C7BD5B512BE81C580060CC38 /* PartyViewController.swift in Sources */,
 				C7BD5B7E2BE9384C0060CC38 /* Login.swift in Sources */,

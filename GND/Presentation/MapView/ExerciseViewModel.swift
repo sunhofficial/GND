@@ -43,6 +43,9 @@ final class ExerciseViewModel: ObservableObject, ExerciseViewModelOutput {
     }
     func stopTracking() {
         print("운동종료")
+        let coordinates = locationUpdates.map { Coordinate(latitude: $0.latitude, longitude: $0.longitude) }
+        print(coordinates)
         exerciseUsecase.stopUpdating()
     }
+
 }
