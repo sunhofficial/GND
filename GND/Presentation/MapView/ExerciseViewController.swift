@@ -19,6 +19,21 @@
             $0.userTrackingMode  = .followWithHeading
             $0.overrideUserInterfaceStyle = .light
             $0.addGestureRecognizer(UIPanGestureRecognizer())
+
+        }
+        private lazy var currentSpotView = MKUserTrackingButton(mapView: mapView)
+        private lazy var customTrackingButton = UIButton().then {
+            var titleContainer = AttributeContainer()
+            titleContainer.font =  UIFont.systemFont(ofSize: 24, weight: .bold)
+            var config = UIButton.Configuration.bordered()
+            config.titlePadding = 16
+            config.imagePlacement = .top
+            config.imagePadding = 8
+            config.image = UIImage(systemName: "location")
+            config.attributedTitle = AttributedString("현재 위치", attributes: titleContainer)
+            config.baseBackgroundColor = CustomColors.brown
+            $0.configuration = config
+            $0.addTarget(self, action: #selector(centerMapOnUserButtonClicked), for: .touchUpInside)
         }
         let progressBar = UIProgressView().then {
             $0.progress = 0.1
@@ -76,6 +91,7 @@
         func configureUI() {
             self.view.addSubview(mapView)
             self.view.addSubview(exerciseBar)
+            self.view.addSubview(customTrackingButton)
             exerciseBar.snp.makeConstraints {
                 $0.left.right.equalToSuperview()
                 $0.bottom.equalToSuperview().inset(self.tabBarController?.tabBar.frame.height ?? 49)
@@ -85,7 +101,10 @@
                 $0.top.left.right.equalToSuperview()
                 $0.bottom.equalTo(exerciseBar.snp.top)
             }
-
+            customTrackingButton.snp.makeConstraints {
+                $0.top.equalToSuperview().offset(160)
+                $0.trailing.equalToSuperview().inset(16)
+            }
         }
 
         func bindViewModel() {
@@ -106,6 +125,10 @@
         }
         @objc func stopExercise() {
             viewModel?.stopTracking()
+        }
+        @objc func centerMapOnUserButtonClicked() {
+            guard let userLocation = mapView.userLocation.location?.coordinate else { return }
+                  mapView.setCenter(userLocation, animated: true)
         }
     }
     extension ExerciseViewController: MKMapViewDelegate {
