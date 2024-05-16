@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C716082E2BF4A89F005A937A /* SaveExerciseRequset.swift in Sources */ = {isa = PBXBuildFile; fileRef = C716082D2BF4A89F005A937A /* SaveExerciseRequset.swift */; };
 		C71608302BF4AAEE005A937A /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = C716082F2BF4AAEE005A937A /* Exercise.swift */; };
+		C71608322BF50E70005A937A /* ExerciseTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71608312BF50E70005A937A /* ExerciseTracking.swift */; };
 		C72E721D2BE375DD0003176E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72E721C2BE375DD0003176E /* AppDelegate.swift */; };
 		C72E721F2BE375DD0003176E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72E721E2BE375DD0003176E /* SceneDelegate.swift */; };
 		C72E72262BE375DF0003176E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C72E72252BE375DF0003176E /* Assets.xcassets */; };
@@ -88,6 +89,7 @@
 /* Begin PBXFileReference section */
 		C716082D2BF4A89F005A937A /* SaveExerciseRequset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveExerciseRequset.swift; sourceTree = "<group>"; };
 		C716082F2BF4AAEE005A937A /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
+		C71608312BF50E70005A937A /* ExerciseTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseTracking.swift; sourceTree = "<group>"; };
 		C72E72192BE375DD0003176E /* GND.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GND.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C72E721C2BE375DD0003176E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C72E721E2BE375DD0003176E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -216,7 +218,6 @@
 		C7BD5AE02BE604370060CC38 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				C7DE2B862BEA425100A049A9 /* Services */,
 				C7BD5B6F2BE8DD970060CC38 /* Entity */,
 				C7BD5B632BE8CAF60060CC38 /* Usecase */,
 			);
@@ -337,6 +338,7 @@
 		C7BD5B6C2BE8DD430060CC38 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				C7DE2B862BEA425100A049A9 /* Services */,
 				C7BD5B5F2BE8C1820060CC38 /* Networks */,
 				C7BD5B6E2BE8DD8A0060CC38 /* Repository */,
 			);
@@ -360,6 +362,7 @@
 				C7BD5B7F2BE93D830060CC38 /* User.swift */,
 				C7C294832BF34CE8009FACD8 /* ExerciseMode.swift */,
 				C716082F2BF4AAEE005A937A /* Exercise.swift */,
+				C71608312BF50E70005A937A /* ExerciseTracking.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -535,6 +538,7 @@
 				C7BD5B5E2BE8A6010060CC38 /* CustomColors.swift in Sources */,
 				C7C2947C2BF1FEB2009FACD8 /* AnalyzeViewController.swift in Sources */,
 				C7BD5B572BE898140060CC38 /* GridCollectionViewFlowLayout.swift in Sources */,
+				C71608322BF50E70005A937A /* ExerciseTracking.swift in Sources */,
 				C7B0BE352BF48DEA009ACE74 /* ExerciseRepository.swift in Sources */,
 				C7BD5B442BE7F4A70060CC38 /* EnterModel.swift in Sources */,
 				C7B0BE332BF4613A009ACE74 /* ExerciseBarView.swift in Sources */,

@@ -14,7 +14,11 @@ protocol StrideCoordinatorProtocol: Coordinator {
 
 }
 class StrideCoordinator: StrideCoordinatorProtocol {
-    var exerciseUseCase = ExerciseUsecase(coreLocationService: CoreLocationServices()) // 이것도 어디서 주입할지 생각해봐야할듯 여기서부터 필요한가?
+    var exerciseUseCase = ExerciseUsecase(coreLocationService: CoreLocationServices(), exerciseRepository: ExerciseRepository(), coreMotionService: CoreMotionService()) // 이것도 어디서 주입할지 생각해봐야할듯 여기서부터 필요한가?
+    required init(_ navigationController: UINavigationController) {
+        self.navigationController = navigationController
+        self.mainviewController = MainViewController()
+    }
     func doExerciseView(mode: ExerciseMode) {
         let exerciseViewController = ExerciseViewController()
         exerciseViewController.viewModel = ExerciseViewModel(exerciseUsecase: exerciseUseCase)
@@ -42,10 +46,7 @@ class StrideCoordinator: StrideCoordinatorProtocol {
         self.navigationController.pushViewController(mainviewController, animated: false)
     }
     
-    required init(_ navigationController: UINavigationController) {
-        self.navigationController = navigationController
-        self.mainviewController = MainViewController()
-    }
+
     
     
 }

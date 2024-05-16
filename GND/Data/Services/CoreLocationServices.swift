@@ -61,17 +61,5 @@ extension CoreLocationServices: CLLocationManagerDelegate {
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         locationSubject.send(locations)
-//        print(locations)
-//        guard let newLocation = locations.last else {return}
-//        guard let oldLocation = locations.first else {
-//            self.oldLocatio = newLocation
-//            return
-//        }
-//        locationdraw.append(newLocation.coordinate)
-//        locations.last.map {
-//            region in
-//            self.locations.append(region)
-//        }
-//        self.oldLocatio = newLocation
     }
 }
