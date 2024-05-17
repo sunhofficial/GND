@@ -27,6 +27,8 @@
             exerciseDatas.eraseToAnyPublisher()
         }
         private var counter = 0
+        private var stationaryCounter = 0
+
         var speedDatas = [Double]()
         var strideDatas = [Double]()
         var distanceDatas = [Double]()
@@ -34,15 +36,26 @@
         var trackingPublisher: AnyPublisher<ExerciseTracking, Error> {
             trackingSubject.eraseToAnyPublisher()
         }
+
         func startPedometer()  {
             pastTime = Date()
             activityManager.startActivityUpdates(to: .main) { [weak self] activity in
                 guard let self = self else {return}
                 guard let activity = activity else {return}
+                print(activity)
                 if activity.stationary {
-
+                    stationaryCounter += 1
+                    guard timer != nil else{ return}
+                    if stationaryCounter >= 4  {
+                        timer?.cancel()
+                        timer = nil
+                    }
                 } else {
-                    self.startStepping()
+                    stationaryCounter = 0
+                    if timer == nil {
+                        self.startStepping()
+                    }
+
                 }
             }
         }
@@ -60,7 +73,8 @@
             walkCountDatas.removeAll()
         }
         private func startStepping() {
-            self.timer = Timer.publish(every: 20.0, tolerance: 1, on: .main, in: .common)
+//            guard timer == nil else {return}
+            self.timer = Timer.publish(every: 10.0, tolerance: 1, on: .main, in: .common)
                 .autoconnect()
                 .sink {
                     [weak self] _ in
@@ -86,13 +100,13 @@
                 let steps = data.numberOfSteps.intValue
 
                 self.pastTime = nowDate
-                if self.counter % 6 == 0 {
+//                if self.counter % 6 == 0 {
                     speedDatas.append(speed)
                     strideDatas.append(distance / Double(steps))
                     distanceDatas.append(distance)
                     walkCountDatas.append(steps)
                     self.counter = 0
-                }
+//                }
                 DispatchQueue.main.async {
                     self.trackingSubject.send(ExerciseTracking(walkingSpeed: speed, walkingDistance: distance, walkingCount: steps))
                 }

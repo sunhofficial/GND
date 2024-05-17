@@ -58,8 +58,8 @@ final class ExerciseViewModel: ObservableObject, ExerciseViewModelOutput {
                 case .failure(let err):
                     print(err)
                 }
-            } receiveValue: { [weak self] exercisedata in
-                print(exercisedata)
+            } receiveValue: { [weak self] exerciseTracking in
+                print(exerciseTracking)
             }.store(in: &cancellables)
         exerciseUsecase.exerciseDataPublisher
             .receive(on: DispatchQueue.main) // x
