@@ -24,6 +24,7 @@ enum ChartMode: String {
             "걸음"
         }
     }
+
 }
 struct ChartButton: View {
 
@@ -49,15 +50,12 @@ struct ChartButton: View {
 }
 struct ChartView: View {
     @ObservedObject var viewModel: ExerciseViewModel
-    @State private var selectedMode: ChartMode? {
-        didSet {
-            updateChart(for: selectedMode)
-        }
-    }
+    @State private var selectedMode: ChartMode?
     @State private var datapoints: [DataPoint] = []
+    @State private var animatedDatapoints: [DataPoint] = []
     @State private var goalValue = 10.0
     var body: some View {
-        VStack {
+        VStack(spacing: 16) {
             HStack(spacing: 16){
                 ChartButton(mode: .speed, isSeleceted: selectedMode == .speed, value: viewModel.exerciseData?.averageSpeed ?? 0) {
                     selectedMode = .speed
@@ -74,15 +72,18 @@ struct ChartView: View {
                     selectedMode = .walkCount
                 }
             }
+            HStack {
+                Spacer()
+                Text("운동 시간 \(viewModel.exerciseTime ?? "2시간 1분")")
+                    .font(.system(size: 24, weight: .medium))
+            }
 
             Chart {
-
-                ForEach(datapoints) { dataPoint in
+                ForEach(animatedDatapoints) { dataPoint in
                     LineMark(
                         x: .value("Time", dataPoint.time),
-                        y: .value("Value", dataPoint.animate ?  dataPoint.value : 0)
+                        y: .value("Value", dataPoint.value )
                     ).lineStyle(.init(lineWidth: 3))
-
                         .interpolationMethod(.cardinal)
                         .foregroundStyle(Color(uiColor: CustomColors.brown))
                 }
@@ -110,16 +111,24 @@ struct ChartView: View {
                     selectedMode = .speed // 초기 선택 모드 설정
                 }
             }
+            .onChange(of: selectedMode) { oldValue, newValue in
+                datapoints = []
+//                if oldValue != newValue {
+                    updateChart(for: newValue)
+//                }
+            }
+
 
 
     }
     private func updateChart(for mode: ChartMode?) {
         guard let mode = mode else {return}
         datapoints = dataPoints(for: mode)
-        for (index, _) in datapoints.enumerated() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + Double(index) * 0.05) {
-                withAnimation(.snappy(duration: 1)) {
-                    datapoints[index].animate = true
+        animatedDatapoints = []
+        for (index, point) in datapoints.enumerated() {
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(index) * 0.1) {
+                withAnimation(.easeOut(duration: 0.5)) {
+                    animatedDatapoints.append(point)
                 }
             }
         }
@@ -144,8 +153,8 @@ struct ChartView: View {
 struct DataPoint: Identifiable {
     let id = UUID()
     let time: Int
-    let value: Double
-    var animate: Bool = false
+    var value: Double
+//    var animate: Bool = false
 }
 struct DummyData {
     static func generateDummyExerciseData() -> ExerciseData {

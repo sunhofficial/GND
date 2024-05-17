@@ -12,11 +12,11 @@ import CoreLocation
 
 protocol ExerciseViewModelOutput {
     var locationUpdatesPublisher: Published<[CLLocationCoordinate2D]>.Publisher {get}
-//    var motionUpdatesPublihser: Published<ExerciseTracking>.Publisher { get  }
+    //    var motionUpdatesPublihser: Published<ExerciseTracking>.Publisher { get  }
     var motionPublisher: PassthroughSubject<Bool, Error> {get}
 }
 final class ExerciseViewModel: ObservableObject, ExerciseViewModelOutput {
-//    var motionUpdatesPublihser: Published<ExerciseTracking>.Publisher
+    //    var motionUpdatesPublihser: Published<ExerciseTracking>.Publisher
     var motionPublisher =  PassthroughSubject<Bool,  Error>()
     var locationUpdatesPublisher: Published<[CLLocationCoordinate2D]>.Publisher {$locationUpdates} //locationupdates가 달라질때마다 구독자에게 이벤트 방출함.
     private var exerciseUsecase: ExerciseUseCaseProtocol?
@@ -27,13 +27,18 @@ final class ExerciseViewModel: ObservableObject, ExerciseViewModelOutput {
             print(locationUpdates)
         }
     }
-    
+
     @Published var exerciseData: ExerciseData? = nil
     var startTime: Date?
-    var endTime: Date?
+    var endTime: Date? {
+        didSet {
+            calculateExerciseTime()
+        }
+    }
+    @Published var exerciseTime: String?
     init(dummyData: ExerciseData) {
-           self.exerciseData = dummyData
-       }
+        self.exerciseData = dummyData
+    }
     init(coordinator: StrideCoordinator, exerciseUsecase: ExerciseUsecase) {
         self.coordinator = coordinator
         self.exerciseUsecase = exerciseUsecase
@@ -44,12 +49,12 @@ final class ExerciseViewModel: ObservableObject, ExerciseViewModelOutput {
             }.store(in: &cancellables)
         exerciseUsecase.errorPublisher
             .receive(on: DispatchQueue.main)
-             .sink(receiveValue: { error in
-                 print("Location update failed with error: \(error)")
-             })
-             .store(in: &cancellables)
+            .sink(receiveValue: { error in
+                print("Location update failed with error: \(error)")
+            })
+            .store(in: &cancellables)
         exerciseUsecase.motionPublisher
-//            .receive(on: DispatchQueue.main)
+        //            .receive(on: DispatchQueue.main)
             .receive(on: RunLoop.main)  //스크롤등 busy할때 안하다가인터렉션이 끝나면 작동한다. 현재 이것은 타이머를 통해 데이터를 받아와 피드백이기에
             .sink { completion in
                 switch completion {
@@ -82,5 +87,16 @@ final class ExerciseViewModel: ObservableObject, ExerciseViewModelOutput {
         coordinator?.finishExerciseView()
         endTime = Date()
     }
+    private func calculateExerciseTime() {
+        guard let startTime = startTime, let endTime = endTime else {
+            exerciseTime = nil
+            return
+        }
 
+        let elapsedTime = endTime.timeIntervalSince(startTime)
+        let hours = Int(elapsedTime) / 3600
+        let minutes = (Int(elapsedTime) % 3600) / 60
+
+        exerciseTime = String(format: "%02d시간 %02d분", hours, minutes)
+    }
 }
