@@ -19,7 +19,6 @@
             $0.userTrackingMode  = .followWithHeading
             $0.overrideUserInterfaceStyle = .light
             $0.addGestureRecognizer(UIPanGestureRecognizer())
-
         }
         private lazy var currentSpotView = MKUserTrackingButton(mapView: mapView)
         private lazy var customTrackingButton = UIButton().then {
@@ -132,6 +131,10 @@
         }
     }
     extension ExerciseViewController: MKMapViewDelegate {
+        private func addAnotation(_ coordinates: [CLLocationCoordinate2D]) {
+            guard let firstCoordinate = coordinates.first, let lastCoordinate = coordinates.last else {return}
+
+        }
         func mapView(_ mapView: MKMapView, rendererFor overlay: any MKOverlay) -> MKOverlayRenderer {
             guard let polyLine = overlay as? MKPolyline else { return MKOverlayRenderer() }
 
@@ -142,5 +145,6 @@
 
             return renderer
         }
+      
 
     }

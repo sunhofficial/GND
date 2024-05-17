@@ -10,11 +10,13 @@
 		C716082E2BF4A89F005A937A /* SaveExerciseRequset.swift in Sources */ = {isa = PBXBuildFile; fileRef = C716082D2BF4A89F005A937A /* SaveExerciseRequset.swift */; };
 		C71608302BF4AAEE005A937A /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = C716082F2BF4AAEE005A937A /* Exercise.swift */; };
 		C71608322BF50E70005A937A /* ExerciseTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71608312BF50E70005A937A /* ExerciseTracking.swift */; };
+		C71608342BF5DEF6005A937A /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71608332BF5DEF6005A937A /* Annotation.swift */; };
+		C71608362BF60D0A005A937A /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71608352BF60D0A005A937A /* ChartView.swift */; };
 		C72E721D2BE375DD0003176E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72E721C2BE375DD0003176E /* AppDelegate.swift */; };
 		C72E721F2BE375DD0003176E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72E721E2BE375DD0003176E /* SceneDelegate.swift */; };
 		C72E72262BE375DF0003176E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C72E72252BE375DF0003176E /* Assets.xcassets */; };
 		C72E72292BE375DF0003176E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = C72E72282BE375DF0003176E /* Base */; };
-		C7B0BE332BF4613A009ACE74 /* ExerciseBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0BE322BF4613A009ACE74 /* ExerciseBarView.swift */; };
+		C7B0BE332BF4613A009ACE74 /* FinishExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0BE322BF4613A009ACE74 /* FinishExerciseViewController.swift */; };
 		C7B0BE352BF48DEA009ACE74 /* ExerciseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0BE342BF48DEA009ACE74 /* ExerciseRepository.swift */; };
 		C7B0BE372BF48DF5009ACE74 /* ExerciseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0BE362BF48DF5009ACE74 /* ExerciseAPI.swift */; };
 		C7BD5AE32BE604CD0060CC38 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = C7BD5AE22BE604CD0060CC38 /* Then */; };
@@ -90,13 +92,15 @@
 		C716082D2BF4A89F005A937A /* SaveExerciseRequset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveExerciseRequset.swift; sourceTree = "<group>"; };
 		C716082F2BF4AAEE005A937A /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		C71608312BF50E70005A937A /* ExerciseTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseTracking.swift; sourceTree = "<group>"; };
+		C71608332BF5DEF6005A937A /* Annotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
+		C71608352BF60D0A005A937A /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		C72E72192BE375DD0003176E /* GND.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GND.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C72E721C2BE375DD0003176E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C72E721E2BE375DD0003176E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		C72E72252BE375DF0003176E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C72E72282BE375DF0003176E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C72E722A2BE375DF0003176E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C7B0BE322BF4613A009ACE74 /* ExerciseBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseBarView.swift; sourceTree = "<group>"; };
+		C7B0BE322BF4613A009ACE74 /* FinishExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishExerciseViewController.swift; sourceTree = "<group>"; };
 		C7B0BE342BF48DEA009ACE74 /* ExerciseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRepository.swift; sourceTree = "<group>"; };
 		C7B0BE362BF48DF5009ACE74 /* ExerciseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseAPI.swift; sourceTree = "<group>"; };
 		C7BD5AEA2BE605650060CC38 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -381,8 +385,10 @@
 			isa = PBXGroup;
 			children = (
 				C7C294642BF06BFF009FACD8 /* ExerciseViewController.swift */,
-				C7B0BE322BF4613A009ACE74 /* ExerciseBarView.swift */,
+				C7B0BE322BF4613A009ACE74 /* FinishExerciseViewController.swift */,
+				C71608352BF60D0A005A937A /* ChartView.swift */,
 				C7C2947D2BF30BF3009FACD8 /* ExerciseViewModel.swift */,
+				C71608332BF5DEF6005A937A /* Annotation.swift */,
 			);
 			path = MapView;
 			sourceTree = "<group>";
@@ -530,18 +536,20 @@
 				C7BD5AEE2BE608E80060CC38 /* LoginViewModel.swift in Sources */,
 				C7C294772BF1FDA2009FACD8 /* TogetherCoordinator.swift in Sources */,
 				C7BD5B862BEA07DB0060CC38 /* NickNameViewModel.swift in Sources */,
+				C71608342BF5DEF6005A937A /* Annotation.swift in Sources */,
 				C7BD5B532BE81CE40060CC38 /* PartyCell.swift in Sources */,
 				C7BD5B4A2BE805CC0060CC38 /* CourseModel.swift in Sources */,
 				C7C294672BF07053009FACD8 /* CoreLocationServices.swift in Sources */,
 				C7BD5B472BE802F90060CC38 /* CellView.swift in Sources */,
 				C7BD5B732BE8E40F0060CC38 /* UserRepository.swift in Sources */,
 				C7BD5B5E2BE8A6010060CC38 /* CustomColors.swift in Sources */,
+				C71608362BF60D0A005A937A /* ChartView.swift in Sources */,
 				C7C2947C2BF1FEB2009FACD8 /* AnalyzeViewController.swift in Sources */,
 				C7BD5B572BE898140060CC38 /* GridCollectionViewFlowLayout.swift in Sources */,
 				C71608322BF50E70005A937A /* ExerciseTracking.swift in Sources */,
 				C7B0BE352BF48DEA009ACE74 /* ExerciseRepository.swift in Sources */,
 				C7BD5B442BE7F4A70060CC38 /* EnterModel.swift in Sources */,
-				C7B0BE332BF4613A009ACE74 /* ExerciseBarView.swift in Sources */,
+				C7B0BE332BF4613A009ACE74 /* FinishExerciseViewController.swift in Sources */,
 				C7B0BE372BF48DF5009ACE74 /* ExerciseAPI.swift in Sources */,
 				C7BD5B5B2BE8A2510060CC38 /* PartyDetailCell.swift in Sources */,
 				C7C294712BF0CB46009FACD8 /* LoginCoordinator.swift in Sources */,

@@ -14,23 +14,29 @@ protocol StrideCoordinatorProtocol: Coordinator {
 
 }
 class StrideCoordinator: StrideCoordinatorProtocol {
-    var exerciseUseCase = ExerciseUsecase(coreLocationService: CoreLocationServices(), exerciseRepository: ExerciseRepository(), coreMotionService: CoreMotionService()) // 이것도 어디서 주입할지 생각해봐야할듯 여기서부터 필요한가?
+    var exerciseUseCase: ExerciseUsecase?
+    var exerciseViewModel: ExerciseViewModel?
     required init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
         self.mainviewController = MainViewController()
+
     }
     func doExerciseView(mode: ExerciseMode) {
         let exerciseViewController = ExerciseViewController()
-        exerciseViewController.viewModel = ExerciseViewModel(exerciseUsecase: exerciseUseCase)
+        self.exerciseUseCase =  ExerciseUsecase(coreLocationService: CoreLocationServices(), exerciseRepository: ExerciseRepository(), coreMotionService: CoreMotionService()) // 이것도 어디서 주입할지 생각해봐야할듯 여기서부터 필요한가?
+        self.exerciseViewModel = ExerciseViewModel(coordinator: self, exerciseUsecase: exerciseUseCase!)
+        exerciseViewController.viewModel = exerciseViewModel
         navigationController.pushViewController(exerciseViewController, animated: false)
     }
     
     func showRecentView() {
-
+        
     }
     
     func finishExerciseView() {
-
+        let finshExerciseViewController = FinishExerciseViewController()
+        finshExerciseViewController.viewModel = exerciseViewModel
+        navigationController.pushViewController(finshExerciseViewController, animated: true)
     }
     
     weak var finishDelegate: CoordinatorFinishDelegate?
@@ -43,6 +49,7 @@ class StrideCoordinator: StrideCoordinatorProtocol {
 
     func start() {
         mainviewController.viewModel = MainViewModel(coordinator: self)
+        self.navigationController.isNavigationBarHidden = true
         self.navigationController.pushViewController(mainviewController, animated: false)
     }
     
