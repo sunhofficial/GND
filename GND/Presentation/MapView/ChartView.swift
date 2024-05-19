@@ -60,12 +60,12 @@ struct ChartView: View {
                 ChartButton(mode: .speed, isSeleceted: selectedMode == .speed, value: viewModel.exerciseData?.averageSpeed ?? 0) {
                     selectedMode = .speed
                 }
-                ChartButton(mode: .stride, isSeleceted: selectedMode == .stride, value: viewModel.exerciseData?.averageStride ?? 0) {
+                ChartButton(mode: .stride, isSeleceted: selectedMode == .stride, value: Double(viewModel.exerciseData?.averageStride ?? 0)) {
                     selectedMode = .stride
                 }
             }
             HStack(spacing: 16){
-                ChartButton(mode: .distance, isSeleceted: selectedMode == .distance, value: viewModel.exerciseData?.totalDistance ?? 0) {
+                ChartButton(mode: .distance, isSeleceted: selectedMode == .distance, value: Double(viewModel.exerciseData?.totalDistance ?? 0)) {
                     selectedMode = .distance
                 }
                 ChartButton(mode: .walkCount, isSeleceted: selectedMode == .walkCount, value: Double(viewModel.exerciseData?.totalWalkCount ?? 0)) {
@@ -139,36 +139,34 @@ struct ChartView: View {
         case .speed:
             return exerciseData.speedDatas.enumerated().map { DataPoint(time: $0, value: $1) }
         case .stride:
-            return exerciseData.strideDatas.enumerated().map { DataPoint(time: $0, value: $1) }
+            return exerciseData.strideDatas.enumerated().map { DataPoint(time: $0, value: Double($1)) }
         case .distance:
-            return exerciseData.distanceDatas.enumerated().map { DataPoint(time: $0, value: $1) }
+            return exerciseData.distanceDatas.enumerated().map { DataPoint(time: $0, value: Double($1)) }
         case .walkCount:
             return exerciseData.walkCountDatas.enumerated().map { DataPoint(time: $0, value: Double($1)) }
         }
     }
 }
-//#Preview {
-////    ChartView(viewModel: ExerciseViewModel(exerciseUsecase: ExerciseUsecase(coreLocationService: CoreLocationServices(), exerciseRepository: ExerciseRepository(), coreMotionService: CoreMotionService())))
-//}
+
 struct DataPoint: Identifiable {
     let id = UUID()
     let time: Int
     var value: Double
 //    var animate: Bool = false
 }
-struct DummyData {
-    static func generateDummyExerciseData() -> ExerciseData {
-        return ExerciseData(
-            speedDatas: [5.0, 5.2, 5.1, 5.3,5.0, 5.2, 5.1, 5.3,5.0, 5.2, 5.1, 5.3,75.0, 76.0, 74.5, 75.5],
-            strideDatas: [75.0, 76.0, 74.5, 75.5,100.0, 105.0, 102.0, 108.0,100.0, 105.0, 102.0, 108.0],
-            distanceDatas: [100.0, 105.0, 102.0, 108.0,74.5, 75.5,100.0, 105.0, 102.0, 108.0,100.0, 105.0, 102.0, 108.0],
-            walkCountDatas: [1000, 1050, 1020, 1080]
-        )
-    }
-}
-#Preview {
-
-    //    let exerciseViewModel = ExerciseViewModel(exerciseUsecase: ExerciseUsecase(coreLocationService: CoreLocationServices(), exerciseRepository: ExerciseRepository(), coreMotionService: CoreMotionService()))
-    //    exerciseViewModel.exerciseData = dummyData
-    ChartView(viewModel: ExerciseViewModel(dummyData: DummyData.generateDummyExerciseData()))
-}
+//struct DummyData {
+//    static func generateDummyExerciseData() -> ExerciseData {
+//        return ExerciseData(
+//            speedDatas: [5.0, 5.2, 5.1, 5.3,5.0, 5.2, 5.1, 5.3,5.0, 5.2, 5.1, 5.3,75.0, 76.0, 74.5, 75.5],
+//            strideDatas: [75.0, 76.0, 74.5, 75.5,100.0, 105.0, 102.0, 108.0,100.0, 105.0, 102.0, 108.0],
+//            distanceDatas: [100.0, 105.0, 102.0, 108.0,74.5, 75.5,100.0, 105.0, 102.0, 108.0,100.0, 105.0, 102.0, 108.0],
+//            walkCountDatas: [1000, 1050, 1020, 1080]
+//        )
+//    }
+//}
+//#Preview {
+//
+//    //    let exerciseViewModel = ExerciseViewModel(exerciseUsecase: ExerciseUsecase(coreLocationService: CoreLocationServices(), exerciseRepository: ExerciseRepository(), coreMotionService: CoreMotionService()))
+//    //    exerciseViewModel.exerciseData = dummyData
+//    ChartView(viewModel: ExerciseViewModel(dummyData: DummyData.generateDummyExerciseData()))
+//}

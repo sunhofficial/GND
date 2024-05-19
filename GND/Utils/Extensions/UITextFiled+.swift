@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 extension UITextField {
-    func addLeftPadding(_ paddingLeft: CGFloat = 16) {
+    func addLeftPadding(_ paddingLeft: CGFloat = 8) {
         leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 16.0, height: 0.0))
         leftViewMode = .always
     }

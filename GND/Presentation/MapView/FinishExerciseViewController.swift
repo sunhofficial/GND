@@ -45,7 +45,7 @@ final class FinishExerciseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
-
+        addButtonAction()
 
     }
     private func setUI() {
@@ -105,6 +105,38 @@ final class FinishExerciseViewController: UIViewController {
         }
     }
  
+    private func addButtonAction() {
+        shareButton.addTarget(self, action: #selector(shareCourse), for: .touchUpInside)
+        notshareButton.addTarget(self, action: #selector(notshareCourse), for: .touchUpInside)
+    }
+    @objc func shareCourse() {
+        presentCourseTitleModal()
+    }
+    private func presentCourseTitleModal() {
+          let modalVC = UIViewController()
+          modalVC.modalPresentationStyle = .overFullScreen
+        modalVC.modalTransitionStyle = .crossDissolve
+          modalVC.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+          let modalView = SetCourseTitleModal()
+        modalView.onAddButtonTapped = { title in
+            self.viewModel?.sendToSever(title: title)
+        }
+        modalView.onOutButtonTapped = {
+            modalVC.dismiss(animated: true)
+        }
+        modalVC.view.addSubview(modalView)
+
+          modalView.snp.makeConstraints {
+              $0.center.equalToSuperview()
+              $0.width.equalTo(350)
+              $0.height.equalTo(196)
+          }
+
+          present(modalVC, animated: true, completion: nil)
+      }
+    @objc func notshareCourse() {
+
+    }
     private func addPin() {
         if let locationdatas = viewModel?.locationUpdates {
             let startPin = MKPointAnnotation()

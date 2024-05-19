@@ -73,7 +73,6 @@ final class ExerciseViewModel: ObservableObject, ExerciseViewModelOutput {
             }.store(in: &cancellables)
     }
     func startTracking() {
-
         exerciseUsecase?.startUpdateMotion()
         exerciseUsecase?.startUpdateLocation()
         startTime = Date()
@@ -98,5 +97,18 @@ final class ExerciseViewModel: ObservableObject, ExerciseViewModelOutput {
         let minutes = (Int(elapsedTime) % 3600) / 60
 
         exerciseTime = String(format: "%02d시간 %02d분", hours, minutes)
+    }
+    func sendToSever(title: String) {
+        guard let startTime = startTime, let endTime = endTime, let exerciseData = exerciseData else {return}
+        var course = locationUpdates.map { location in
+            Coordinate(latitude: location.latitude, longitude: location.longitude)
+        }
+        exerciseUsecase?.postExerciseData(ExerciseSession(startTime: startTime, endTime: endTime, course: course, doShareCourse: true, courseName: title), exerciseData )
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { completion in
+                print(completion)
+            }, receiveValue: { result in
+                print("올라간다")
+            })
     }
 }

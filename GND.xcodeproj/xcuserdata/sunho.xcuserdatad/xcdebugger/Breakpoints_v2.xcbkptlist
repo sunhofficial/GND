@@ -350,8 +350,8 @@
             filePath = "GND/Presentation/MapView/ExerciseViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "stopTracking()"
             landmarkType = "7">
          </BreakpointContent>
@@ -519,16 +519,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "22997BE3-FB21-4931-8A18-B95210927CA3"
+            uuid = "5D6593BB-15FE-4A85-8B7B-999199EBE3AC"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GND/Data/Services/CoreMotionService.swift"
+            filePath = "GND/Presentation/MapView/ExerciseViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "startPedometer()"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "sendToSever(title:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

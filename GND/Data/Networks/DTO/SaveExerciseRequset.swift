@@ -21,9 +21,9 @@ struct SaveExerciseRequest: Codable {
     var averageSpeed: Double
     var step: Int
     var distance: Int
-    var startTime: String
-    var endTime: String
-    var stability: Double
+    var startTime: Date
+    var endTime: Date
+//    var stability: Double
     var course: [Coordinate]
     var doShareCourse: Bool
     var courseName: String
@@ -39,27 +39,27 @@ struct SaveExerciseRequest: Codable {
         case distance
         case startTime = "start_time"
         case endTime = "end_time"
-        case stability
+//        case stability
         case course
         case doShareCourse = "do_share_course"
         case courseName = "course_name"
     }
-    func toDomain() -> Exercise {
-         return Exercise(
-             minStride: minStride,
-             maxStride: maxStride,
-             averageStride: averageStride,
-             minSpeed: minSpeed,
-             maxSpeed: maxSpeed,
-             averageSpeed: averageSpeed,
-             step: step,
-             distance: distance,
-             startTime: ISO8601DateFormatter().date(from: startTime) ?? Date(),
-             endTime: ISO8601DateFormatter().date(from: endTime) ?? Date(),
-             stability: stability,
-             course: course.map { Coordinate(latitude: $0.latitude, longitude: $0.longitude) },
-             doShareCourse: doShareCourse,
-             courseName: courseName
-         )
-     }
+//    func toDomain() -> Exercise {
+//         return Exercise(
+//             minStride: minStride,
+//             maxStride: maxStride,
+//             averageStride: averageStride,
+//             minSpeed: minSpeed,
+//             maxSpeed: maxSpeed,
+//             averageSpeed: averageSpeed,
+//             step: step,
+//             distance: distance,
+//             startTime: ISO8601DateFormatter().date(from: startTime) ?? Date(),
+//             endTime: ISO8601DateFormatter().date(from: endTime) ?? Date(),
+////             stability: stability,
+//             course: course.map { Coordinate(latitude: $0.latitude, longitude: $0.longitude) },
+//             doShareCourse: doShareCourse,
+//             courseName: courseName
+//         )
+//     }
 }

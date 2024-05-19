@@ -30,8 +30,8 @@
         private var stationaryCounter = 0
 
         var speedDatas = [Double]()
-        var strideDatas = [Double]()
-        var distanceDatas = [Double]()
+        var strideDatas = [Int]()
+        var distanceDatas = [Int]()
         var walkCountDatas = [Int]()
         var trackingPublisher: AnyPublisher<ExerciseTracking, Error> {
             trackingSubject.eraseToAnyPublisher()
@@ -43,19 +43,19 @@
                 guard let self = self else {return}
                 guard let activity = activity else {return}
                 print(activity)
-                if activity.stationary {
+                if activity.walking || activity.running {
+                    stationaryCounter = 0
+                    if timer == nil {
+                        self.startStepping()
+                    }
+                } else {
+
                     stationaryCounter += 1
                     guard timer != nil else{ return}
                     if stationaryCounter >= 4  {
                         timer?.cancel()
                         timer = nil
                     }
-                } else {
-                    stationaryCounter = 0
-                    if timer == nil {
-                        self.startStepping()
-                    }
-
                 }
             }
         }
@@ -95,14 +95,15 @@
 
             do {
                 let data = try await pedometer.queryPedometerDataAsync(from: pastTime, to: nowDate)
-                let distance = data.distance?.doubleValue ?? 0.0
-                let speed = data.averageActivePace?.doubleValue ?? 0.0
+                guard let distance = data.distance?.intValue, distance != 0, data.numberOfSteps.intValue != 0 else {return }
                 let steps = data.numberOfSteps.intValue
+                let speed = data.averageActivePace?.doubleValue ?? 0
+
 
                 self.pastTime = nowDate
 //                if self.counter % 6 == 0 {
                     speedDatas.append(speed)
-                    strideDatas.append(distance / Double(steps))
+                    strideDatas.append(distance / steps)
                     distanceDatas.append(distance)
                     walkCountDatas.append(steps)
                     self.counter = 0

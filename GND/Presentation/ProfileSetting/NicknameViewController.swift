@@ -43,7 +43,7 @@ class NicknameViewController: UIViewController {
     }
 
     override func viewDidLoad() {
-        
+
         view.backgroundColor = CustomColors.bk
         super.viewDidLoad()
         setUI()
@@ -51,28 +51,28 @@ class NicknameViewController: UIViewController {
         hideKeyboard()
     }
     private func hideKeyboard() {
-           let recognizer = UITapGestureRecognizer(target: self, action: #selector(tappedView))
-           view.addGestureRecognizer(recognizer)
-       }
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(tappedView))
+        view.addGestureRecognizer(recognizer)
+    }
     @objc private func tappedView() {
-           self.view.endEditing(true)
-       }
+        self.view.endEditing(true)
+    }
     @objc private func nextBtnTapped() {
         viewModel?.inputs.didTapCompleteButton()
-            
+
     }
     private func bindings() {
         nextButton.addTarget(self, action: #selector(nextBtnTapped), for: .touchUpInside)
         nicknameField.publisher
-                 .receive(on: RunLoop.main)
-                 .assign(to: \.!.nickNameText, on: viewModel)
-                 .store(in: &cancellables)
+            .receive(on: RunLoop.main)
+            .assign(to: \.!.nickNameText, on: viewModel)
+            .store(in: &cancellables)
         viewModel!.outputs.isCompleteButtonEnabled
             .receive(on: DispatchQueue.main)
             .sink { [weak self] isValid in
                 self?.nextButton.isEnabled = isValid
                 self?.nextButton.backgroundColor = isValid ? CustomColors.brown : UIColor.lightGray
-                               }.store(in: &cancellables)
+            }.store(in: &cancellables)
         viewModel?.outputs.postPublisher
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
@@ -82,7 +82,7 @@ class NicknameViewController: UIViewController {
             })   .store(in: &cancellables)
     }
     private func goNextView() {
-//        navigationController?.pushViewController(TabbarViewController(), animated: true)
+        //        navigationController?.pushViewController(TabbarViewController(), animated: true)
     }
     private func setUI(){
         [titleLabel, nicknameField, notiNicknameLabel, nextButton].forEach {
@@ -111,18 +111,18 @@ class NicknameViewController: UIViewController {
 
 extension NicknameViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-                   print("textFieldDidBeginEditing: \((textField.text) ?? "Empty")")
-               }
-               func textFieldDidEndEditing(_ textField: UITextField) {
-                   print("textFieldDidEndEditing: \((textField.text) ?? "Empty")")
-               }
+        print("textFieldDidBeginEditing: \((textField.text) ?? "Empty")")
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        print("textFieldDidEndEditing: \((textField.text) ?? "Empty")")
+    }
 
-               func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-                   print("textFieldShouldReturn \((textField.text) ?? "Empty")")
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        print("textFieldShouldReturn \((textField.text) ?? "Empty")")
 
-                   textField.resignFirstResponder()
-                   return true
+        textField.resignFirstResponder()
+        return true
 
-               }
+    }
 
 }

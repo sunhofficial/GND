@@ -131,10 +131,6 @@
         }
     }
     extension ExerciseViewController: MKMapViewDelegate {
-        private func addAnotation(_ coordinates: [CLLocationCoordinate2D]) {
-            guard let firstCoordinate = coordinates.first, let lastCoordinate = coordinates.last else {return}
-
-        }
         func mapView(_ mapView: MKMapView, rendererFor overlay: any MKOverlay) -> MKOverlayRenderer {
             guard let polyLine = overlay as? MKPolyline else { return MKOverlayRenderer() }
 

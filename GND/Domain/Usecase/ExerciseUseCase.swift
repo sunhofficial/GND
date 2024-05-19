@@ -17,7 +17,7 @@ protocol ExerciseUseCaseProtocol {
     func stopUpdateLocation()
     func startUpdateMotion()
     func stopUpdateMotion()
-    func postExerciseData(_ exercise: Exercise) -> AnyPublisher<Exercise, Error>
+    func postExerciseData(_ exerciseSession: ExerciseSession, _ exerciseData: ExerciseData) -> AnyPublisher<Bool, Error>
 
 }
 
@@ -57,8 +57,8 @@ final class ExerciseUsecase: ExerciseUseCaseProtocol {
     func stopUpdateLocation() {
         coreLocationService.stopupdatingLocation()
     }
-    func postExerciseData(_ exercise: Exercise) -> AnyPublisher<Exercise, Error> {
-        return exerciseRepository.postSaveExercise(exercise)
+    func postExerciseData(_ exerciseSession: ExerciseSession, _ exerciseData: ExerciseData) -> AnyPublisher<Bool, Error> {
+        return exerciseRepository.postSaveExercise(exerciseSession, exerciseMetrics: ExerciseMetrics(minStride: exerciseData.strideDatas.min() ?? 0, maxStride: exerciseData.strideDatas.max() ?? 0, averageStride: exerciseData.averageStride, minSpeed: exerciseData.speedDatas.min() ?? 0, maxSpeed: exerciseData.speedDatas.max() ?? 0, averageSpeed: exerciseData.averageSpeed, step: exerciseData.totalWalkCount, distance: exerciseData.totalDistance))
     }
     func startUpdateMotion() {
         coreMotionService.startPedometer()
