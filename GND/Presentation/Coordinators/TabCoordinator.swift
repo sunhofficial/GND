@@ -44,11 +44,11 @@ enum TabbarPages: CaseIterable {
     }
 
 }
-protocol TabCoordinatorProtocol: Coordinator {
+protocol TabCoordinatorProtocol:  Coordinator {
     var tabbarController: UITabBarController {get set}
 
 }
-class TabCoordinator: TabCoordinatorProtocol {
+class TabCoordinator: NSObject, TabCoordinatorProtocol {
     weak var finishDelegate: CoordinatorFinishDelegate?
     var navigationController: UINavigationController
     var childCoordinators: [ Coordinator] = []
@@ -78,8 +78,12 @@ class TabCoordinator: TabCoordinatorProtocol {
 
     }
     required init(_ navigationController: UINavigationController) {
+
         self.navigationController = navigationController
+
         self.tabbarController = UITabBarController()
+        super.init()
+        self.tabbarController.delegate = self
 
     }
     private func startTabCoordinator(of page: TabbarPages, to tabNavigationController: UINavigationController) {
@@ -110,4 +114,13 @@ class TabCoordinator: TabCoordinatorProtocol {
 //            self.finishDelegate?.coordinatorDidFinish(childCoordinator: self)
 //        }
 //    }
+}
+extension TabCoordinator:  UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if let selectedVC = tabBarController.selectedViewController,
+           selectedVC == viewController {
+            return false
+        }
+        return true
+    }
 }
