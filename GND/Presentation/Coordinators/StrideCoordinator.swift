@@ -52,7 +52,9 @@ class StrideCoordinator: StrideCoordinatorProtocol {
         self.navigationController.isNavigationBarHidden = true
         self.navigationController.pushViewController(mainviewController, animated: false)
     }
-    
+    func resetToMainView() {
+            navigationController.setViewControllers([mainviewController], animated: true)
+        }
 
     
     

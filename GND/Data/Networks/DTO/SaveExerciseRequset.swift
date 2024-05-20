@@ -21,12 +21,12 @@ struct SaveExerciseRequest: Codable {
     var averageSpeed: Double
     var step: Int
     var distance: Int
-    var startTime: Date
-    var endTime: Date
+    var startTime: String
+    var endTime: String
 //    var stability: Double
     var course: [Coordinate]
     var doShareCourse: Bool
-    var courseName: String
+    var courseName: String?
 
     enum CodingKeys: String, CodingKey {
         case minStride = "min_stride"

@@ -36,9 +36,7 @@ final class ExerciseViewModel: ObservableObject, ExerciseViewModelOutput {
         }
     }
     @Published var exerciseTime: String?
-    init(dummyData: ExerciseData) {
-        self.exerciseData = dummyData
-    }
+
     init(coordinator: StrideCoordinator, exerciseUsecase: ExerciseUsecase) {
         self.coordinator = coordinator
         self.exerciseUsecase = exerciseUsecase
@@ -100,7 +98,7 @@ final class ExerciseViewModel: ObservableObject, ExerciseViewModelOutput {
     }
     func sendToSever(title: String) {
         guard let startTime = startTime, let endTime = endTime, let exerciseData = exerciseData else {return}
-        var course = locationUpdates.map { location in
+        let course = locationUpdates.map { location in
             Coordinate(latitude: location.latitude, longitude: location.longitude)
         }
         exerciseUsecase?.postExerciseData(ExerciseSession(startTime: startTime, endTime: endTime, course: course, doShareCourse: true, courseName: title), exerciseData )
@@ -109,6 +107,18 @@ final class ExerciseViewModel: ObservableObject, ExerciseViewModelOutput {
                 print(completion)
             }, receiveValue: { result in
                 print("올라간다")
+            })
+    }
+    func sendNotsharing() {
+        guard let startTime = startTime, let endTime = endTime, let exerciseData = exerciseData else {return}
+        let course = locationUpdates.map { location in
+            Coordinate(latitude: location.latitude, longitude: location.longitude)
+        }
+        exerciseUsecase?.postExerciseData(ExerciseSession(startTime: startTime, endTime: endTime, course: course, doShareCourse: false), exerciseData)
+            .sink(receiveCompletion: { completion in
+                print(completion)
+            }, receiveValue: {[weak self] result in
+                self?.coordinator?.resetToMainView()
             })
     }
 }

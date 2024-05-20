@@ -12,7 +12,7 @@ struct ExerciseSession {
     var endTime: Date
     var course: [Coordinate]
     var doShareCourse: Bool
-    var courseName: String
+    var courseName: String?
 
 //    func toDTO() -> SaveExerciseRequest {
 //           let formatter = ISO8601DateFormatter()
