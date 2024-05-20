@@ -31,6 +31,7 @@ final class SetCourseTitleModal: UIView {
         $0.setTitleColor(.white, for: .normal)
         $0.layer.cornerRadius = 8
         $0.backgroundColor = CustomColors.brown
+
     }
     let outButton = UIButton().then {
         $0.setImage(.init(systemName: "xmark"), for: .normal)
@@ -44,8 +45,10 @@ final class SetCourseTitleModal: UIView {
         setUI()
         backgroundColor = CustomColors.bk
         layer.cornerRadius = 10
+        addButton.addTarget(self, action: #selector(handleAddButton), for: .touchUpInside)
+        outButton.addTarget(self, action: #selector(handleOutButton), for: .touchUpInside)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -75,6 +78,17 @@ final class SetCourseTitleModal: UIView {
             $0.height.equalTo(40)
         }
     }
+    @objc private func handleAddButton() {
+         guard let title = courseTextField.text, !title.isEmpty else {
+             // Optionally show an error message here
+             return
+         }
+         onAddButtonTapped?(title)
+     }
+
+     @objc private func handleOutButton() {
+         onOutButtonTapped?()
+     }
 }
 extension SetCourseTitleModal: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {

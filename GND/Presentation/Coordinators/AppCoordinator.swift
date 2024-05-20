@@ -21,11 +21,11 @@ final class AppCoordinator: AppCoordinatorProtocol {
          navigationController.setNavigationBarHidden(true, animated: true)
      }
     func start() {
-        if let _ = KeychainManager.shared.readToken(key: "accessToken") {
-            showMainFlow()
-        } else {
-            showLoginFlow()
-        }
+//        if let _ = KeychainManager.shared.readToken(key: "accessToken") {
+//            showMainFlow()
+//        } else {
+//            showLoginFlow()
+//        }
         showLoginFlow()
     }
     func showLoginFlow() {

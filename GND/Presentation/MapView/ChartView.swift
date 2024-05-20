@@ -15,7 +15,7 @@ enum ChartMode: String {
     var units: String {
         switch self {
         case .speed:
-            "m/h"
+            "m/s"
         case .stride:
             "cm"
         case .distance:
@@ -54,6 +54,9 @@ struct ChartView: View {
     @State private var datapoints: [DataPoint] = []
     @State private var animatedDatapoints: [DataPoint] = []
     @State private var goalValue = 10.0
+    @State private var isAnimtedFinish = false
+    @State private var currentTask: Task<Void, Never>?
+
     var body: some View {
         VStack(spacing: 16) {
             HStack(spacing: 16){
@@ -113,9 +116,7 @@ struct ChartView: View {
             }
             .onChange(of: selectedMode) { oldValue, newValue in
                 datapoints = []
-//                if oldValue != newValue {
                     updateChart(for: newValue)
-//                }
             }
 
 
@@ -123,12 +124,15 @@ struct ChartView: View {
     }
     private func updateChart(for mode: ChartMode?) {
         guard let mode = mode else {return}
+        currentTask?.cancel() // 이전 작업 취소
         datapoints = dataPoints(for: mode)
         animatedDatapoints = []
-        for (index, point) in datapoints.enumerated() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + Double(index) * 0.1) {
-                withAnimation(.easeOut(duration: 0.5)) {
-                    animatedDatapoints.append(point)
+        currentTask = Task {
+            for (index, point) in datapoints.enumerated() {
+                DispatchQueue.main.asyncAfter(deadline: .now() + Double(index) * 0.01) {
+                    withAnimation(.easeOut(duration: 1)) {
+                        animatedDatapoints.append(point)
+                    }
                 }
             }
         }

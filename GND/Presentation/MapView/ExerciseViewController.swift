@@ -71,8 +71,8 @@
                 $0.height.equalTo(24)
             }
             stopButton.snp.makeConstraints {
-                $0.top.equalTo(progressBar.snp.bottom).offset(8)
-                $0.bottom.equalToSuperview().inset(8)
+//                $0.top.equalTo(progressBar.snp.bottom).offset(8)
+                $0.bottom.equalToSuperview().inset(16)
                 $0.trailing.equalToSuperview().inset(16)
                 $0.width.equalTo(94)
                 $0.height.equalTo(52).priority(.low)
@@ -86,15 +86,20 @@
             configureUI()
             bindViewModel()
         }
-
+        override func viewWillAppear(_ animated: Bool) {
+            self.tabBarController?.tabBar.isHidden = true
+        }
+        override func viewWillDisappear(_ animated: Bool) {
+            self.tabBarController?.tabBar.isHidden = false
+        }
         func configureUI() {
             self.view.addSubview(mapView)
             self.view.addSubview(exerciseBar)
             self.view.addSubview(customTrackingButton)
             exerciseBar.snp.makeConstraints {
                 $0.left.right.equalToSuperview()
-                $0.bottom.equalToSuperview().inset(self.tabBarController?.tabBar.frame.height ?? 49)
-                $0.height.equalTo(132)
+                $0.bottom.equalToSuperview()
+                $0.height.equalTo(148)
             }
             mapView.snp.makeConstraints {
                 $0.top.left.right.equalToSuperview()

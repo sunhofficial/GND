@@ -66,13 +66,13 @@ extension ExerciseAPI: Router,  URLRequestConvertible {
 //    }
     
     func asURLRequest() throws -> URLRequest {
-        let url = URL(string: baseURL + path)
-        var request = URLRequest(url: url!)
-        request.method = method
+        let url = URL(string: baseURL + path)!
+        var request = try URLRequest(url: url, method: method)
         request.headers = headers
         if let parameters = parameters {
             request = try JSONParameterEncoder().encode(parameters, into: request)
         }
+        
         return request
     }
     

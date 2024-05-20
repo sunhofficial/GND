@@ -103,7 +103,8 @@
                 self.pastTime = nowDate
 //                if self.counter % 6 == 0 {
                     speedDatas.append(speed)
-                    strideDatas.append(distance / steps)
+//                    print("distance", distance, "steps",steps)
+                    strideDatas.append(distance * 100 / steps)
                     distanceDatas.append(distance)
                     walkCountDatas.append(steps)
                     self.counter = 0
