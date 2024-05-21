@@ -10,6 +10,7 @@ struct ExerciseTracking {
     var walkingSpeed: Double
     var walkingDistance: Int
     var walkingCount: Int
+    var warning: Bool = false
 }
 struct ExerciseData {
     let speedDatas: [Double]

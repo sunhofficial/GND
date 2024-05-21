@@ -135,7 +135,7 @@ final class FinishExerciseViewController: UIViewController {
           present(modalVC, animated: true, completion: nil)
       }
     @objc func notshareCourse() {
-        viewModel?.sendNotsharing()
+        viewModel?.inputs.sendNotsharing()
     }
     private func addPin() {
         if let locationdatas = viewModel?.locationUpdates {

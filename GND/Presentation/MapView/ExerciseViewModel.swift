@@ -9,15 +9,51 @@ import Foundation
 import Combine
 import CoreLocation
 
+enum WarningCase {
+    case lowStride(diff: Int)
+    case lowSpeed(diff: Double)
 
-protocol ExerciseViewModelOutput {
+    var warningTitle: String {
+        switch self {
+        case .lowStride:
+            "보폭이 짧아요"
+        case .lowSpeed:
+            "속도가 느려요"
+        }
+    }
+    var warningDescription: String {
+        switch self {
+        case .lowStride(let diff):
+            "\(diff)cm 더 길게 걸어주세요"
+        case .lowSpeed(let diff):
+            "\(diff)m/s 더 빠르게 걸어주세요"
+        }
+    }
+}
+protocol ExerciseViewModelInput {
+    func sendToSever(title: String)
+    func sendNotsharing()
+    func startTracking()
+    func stopTracking()
+}
+protocol ExerciseViewModelOutput{
     var locationUpdatesPublisher: Published<[CLLocationCoordinate2D]>.Publisher {get}
     //    var motionUpdatesPublihser: Published<ExerciseTracking>.Publisher { get  }
-    var motionPublisher: PassthroughSubject<Bool, Error> {get}
+    var feedbackPublisher: PassthroughSubject<WarningCase, Error> {get}
 }
-final class ExerciseViewModel: ObservableObject, ExerciseViewModelOutput {
+protocol ExerciseViewModelType: ExerciseViewModelInput, ExerciseViewModelOutput {
+    var inputs: ExerciseViewModelInput { get }
+    var outputs: ExerciseViewModelOutput {  get }
+}
+final class ExerciseViewModel: ObservableObject, ExerciseViewModelType {
+    var inputs:  ExerciseViewModelInput {return self}
+
+    var outputs: ExerciseViewModelOutput {return self}
+
+
     //    var motionUpdatesPublihser: Published<ExerciseTracking>.Publisher
-    var motionPublisher =  PassthroughSubject<Bool,  Error>()
+    var feedbackPublisher = PassthroughSubject<WarningCase, Error>()
+//    var motionPublisher =  PassthroughSubject<ExerciseTracking,  Error>()
     var locationUpdatesPublisher: Published<[CLLocationCoordinate2D]>.Publisher {$locationUpdates} //locationupdates가 달라질때마다 구독자에게 이벤트 방출함.
     private var exerciseUsecase: ExerciseUseCaseProtocol?
     private var cancellables = Set<AnyCancellable>()
@@ -51,9 +87,8 @@ final class ExerciseViewModel: ObservableObject, ExerciseViewModelOutput {
                 print("Location update failed with error: \(error)")
             })
             .store(in: &cancellables)
-        exerciseUsecase.motionPublisher
-        //            .receive(on: DispatchQueue.main)
-            .receive(on: RunLoop.main)  //스크롤등 busy할때 안하다가인터렉션이 끝나면 작동한다. 현재 이것은 타이머를 통해 데이터를 받아와 피드백이기에
+        exerciseUsecase.feedbackPublisher
+            .receive(on: DispatchQueue.main)
             .sink { completion in
                 switch completion {
                 case .finished:
@@ -61,9 +96,12 @@ final class ExerciseViewModel: ObservableObject, ExerciseViewModelOutput {
                 case .failure(let err):
                     print(err)
                 }
-            } receiveValue: { [weak self] exerciseTracking in
-                print(exerciseTracking)
+            } receiveValue: { warningcase in
+                self.feedbackPublisher.send(warningcase)
+
             }.store(in: &cancellables)
+
+
         exerciseUsecase.exerciseDataPublisher
             .receive(on: DispatchQueue.main) // x
             .sink { exercisedatas in

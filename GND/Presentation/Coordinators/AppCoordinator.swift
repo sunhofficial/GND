@@ -59,6 +59,4 @@ extension AppCoordinator: CoordinatorFinishDelegate {
             break
         }
     }
-    
-
 }

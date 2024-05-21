@@ -58,6 +58,7 @@
 		C7BD5B842BE9FCBD0060CC38 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5B832BE9FCBD0060CC38 /* KeychainManager.swift */; };
 		C7BD5B862BEA07DB0060CC38 /* NickNameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5B852BEA07DB0060CC38 /* NickNameViewModel.swift */; };
 		C7BD5B8A2BEA0E380060CC38 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C7BD5B892BEA0E380060CC38 /* SnapKit */; };
+		C7BE5C042BFB4CF2007B1D3D /* WarningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BE5C032BFB4CF2007B1D3D /* WarningView.swift */; };
 		C7C294652BF06BFF009FACD8 /* ExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C294642BF06BFF009FACD8 /* ExerciseViewController.swift */; };
 		C7C294672BF07053009FACD8 /* CoreLocationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C294662BF07053009FACD8 /* CoreLocationServices.swift */; };
 		C7C2946A2BF0AF6A009FACD8 /* CoreMotionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C294692BF0AF6A009FACD8 /* CoreMotionService.swift */; };
@@ -137,6 +138,7 @@
 		C7BD5B812BE9CC740060CC38 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		C7BD5B832BE9FCBD0060CC38 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		C7BD5B852BEA07DB0060CC38 /* NickNameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickNameViewModel.swift; sourceTree = "<group>"; };
+		C7BE5C032BFB4CF2007B1D3D /* WarningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningView.swift; sourceTree = "<group>"; };
 		C7C294642BF06BFF009FACD8 /* ExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseViewController.swift; sourceTree = "<group>"; };
 		C7C294662BF07053009FACD8 /* CoreLocationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLocationServices.swift; sourceTree = "<group>"; };
 		C7C294692BF0AF6A009FACD8 /* CoreMotionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMotionService.swift; sourceTree = "<group>"; };
@@ -385,6 +387,7 @@
 			isa = PBXGroup;
 			children = (
 				C7C294642BF06BFF009FACD8 /* ExerciseViewController.swift */,
+				C7BE5C032BFB4CF2007B1D3D /* WarningView.swift */,
 				C7B0BE322BF4613A009ACE74 /* FinishExerciseViewController.swift */,
 				C71608352BF60D0A005A937A /* ChartView.swift */,
 				C7C2947D2BF30BF3009FACD8 /* ExerciseViewModel.swift */,
@@ -520,6 +523,7 @@
 				C7BD5B782BE901FE0060CC38 /* UserAPI.swift in Sources */,
 				C7BD5B4E2BE812170060CC38 /* ExerciseButton.swift in Sources */,
 				C7BD5B682BE8CB3C0060CC38 /* LoginResponse.swift in Sources */,
+				C7BE5C042BFB4CF2007B1D3D /* WarningView.swift in Sources */,
 				C7DE2B882BEA425E00A049A9 /* KakaoLoginServices.swift in Sources */,
 				C7BD5B402BE7B8350060CC38 /* UIViewController+.swift in Sources */,
 				C7BD5B6B2BE8CE790060CC38 /* TabbarViewController.swift in Sources */,

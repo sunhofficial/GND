@@ -12,7 +12,7 @@ import CoreLocation
 protocol ExerciseUseCaseProtocol {
     var locationPublisher: AnyPublisher<[CLLocationCoordinate2D], Never> { get }
     var errorPublisher: AnyPublisher<Error, Never> { get }
-    var motionPublisher: AnyPublisher<ExerciseTracking, Error> {get}
+    var feedbackPublisher: AnyPublisher<WarningCase, Error> {get}
     func startUpdateLocation()
     func stopUpdateLocation()
     func startUpdateMotion()
@@ -33,9 +33,8 @@ final class ExerciseUsecase: ExerciseUseCaseProtocol {
             }
             .eraseToAnyPublisher()
     }
-    var motionPublisher: AnyPublisher<ExerciseTracking, Error> {
-        coreMotionService.trackingPublisher
-            .eraseToAnyPublisher()
+    var feedbackPublisher: AnyPublisher<WarningCase, Error> {
+        coreMotionService.warningPublisher.eraseToAnyPublisher()
     }
     var errorPublisher: AnyPublisher<Error, Never> {
         coreLocationService.errorPublisher.eraseToAnyPublisher()

@@ -211,8 +211,8 @@ class MainViewController: UIViewController {
                    let mode = ExerciseMode(rawValue: modeIdentifier) else {
                  return
              }
-        viewModel?.moveToExercise(mode: mode)
-        dismissOverlay()
+        mode == .none ? dismissOverlay() : viewModel?.moveToExercise(mode: mode)
+     
     }
 }
 

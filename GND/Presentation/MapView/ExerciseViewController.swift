@@ -118,8 +118,26 @@
                     self?.updateMap(with: coordinates)
 
                 }.store(in: &cancellables)
+            viewModel?.outputs.feedbackPublisher
+                .receive(on: DispatchQueue.main)
+                .sink(receiveCompletion: { completion in
+                    print(completion)
+                }, receiveValue: { [weak self] feedBack in
+                    self?.showWarningPage(feedback: feedBack)
+                }).store(in: &cancellables)
         }
-        func updateMap(with coordinates: [CLLocationCoordinate2D]) {
+        private func showWarningPage(feedback: WarningCase) {
+            let tapticFeedback = UINotificationFeedbackGenerator()
+            let warningView = WarningView(frame: view.bounds)
+            warningView.warningTitle.text = feedback.warningTitle
+            warningView.warningDescription.text = feedback.warningDescription
+            view.addSubview(warningView)
+            tapticFeedback.notificationOccurred(.warning)
+            warningView.snp.makeConstraints {
+                $0.edges.equalToSuperview()
+            }
+        }
+        private func updateMap(with coordinates: [CLLocationCoordinate2D]) {
             guard coordinates.count > 1 else { return }
 
              let newCoordinates = Array(coordinates.suffix(2))

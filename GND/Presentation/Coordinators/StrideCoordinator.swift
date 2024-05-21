@@ -11,7 +11,7 @@ protocol StrideCoordinatorProtocol: Coordinator {
     func doExerciseView(mode: ExerciseMode)
     func showRecentView()
     func finishExerciseView()
-
+    
 }
 class StrideCoordinator: StrideCoordinatorProtocol {
     var exerciseUseCase: ExerciseUsecase?
@@ -19,11 +19,10 @@ class StrideCoordinator: StrideCoordinatorProtocol {
     required init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
         self.mainviewController = MainViewController()
-
     }
     func doExerciseView(mode: ExerciseMode) {
         let exerciseViewController = ExerciseViewController()
-        self.exerciseUseCase =  ExerciseUsecase(coreLocationService: CoreLocationServices(), exerciseRepository: ExerciseRepository(), coreMotionService: CoreMotionService()) // 이것도 어디서 주입할지 생각해봐야할듯 여기서부터 필요한가?
+        self.exerciseUseCase =  ExerciseUsecase(coreLocationService: CoreLocationServices(), exerciseRepository: ExerciseRepository(), coreMotionService: CoreMotionService(mode: mode)) // 이것도 어디서 주입할지 생각해봐야할듯 여기서부터 필요한가?
         self.exerciseViewModel = ExerciseViewModel(coordinator: self, exerciseUsecase: exerciseUseCase!)
         exerciseViewController.viewModel = exerciseViewModel
         navigationController.pushViewController(exerciseViewController, animated: false)
@@ -40,22 +39,19 @@ class StrideCoordinator: StrideCoordinatorProtocol {
     }
     
     weak var finishDelegate: CoordinatorFinishDelegate?
-
+    
     var navigationController: UINavigationController
     var mainviewController: MainViewController
     var childCoordinators: [ Coordinator] = []
     
     var type: CoordinatorType {.home}
-
+    
     func start() {
         mainviewController.viewModel = MainViewModel(coordinator: self)
         self.navigationController.isNavigationBarHidden = true
         self.navigationController.pushViewController(mainviewController, animated: false)
     }
     func resetToMainView() {
-            navigationController.setViewControllers([mainviewController], animated: true)
-        }
-
-    
-    
+        navigationController.setViewControllers([mainviewController], animated: true)
+    }
 }
