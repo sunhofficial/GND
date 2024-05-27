@@ -8,6 +8,8 @@
 import UIKit
 import Then
 import SnapKit
+import Combine
+
 class MainViewController: UIViewController {
     var enterRooms :[EnterModel] = [ EnterModel(title: "경희대 사람문의", subtitle: "교수 경희대 국제관 하반기", participantCount: 3, imageString: "logo"),
     EnterModel(title: "어쩌구 저쩌구", subtitle: "코스 설명", participantCount: 10, imageString:  "logo")]
@@ -16,7 +18,11 @@ class MainViewController: UIViewController {
         $0.backgroundColor = CustomColors.cell
     }
     var viewModel: MainViewModel?
+    private let loadingView = UIView()
+    private let activityIndicator = UIActivityIndicatorView(style: .large)
     private var overlayView: UIView?
+    private var cancellables = Set<AnyCancellable>()
+    let recentView = CellView()
     private lazy var collectionView: UICollectionView = {
          let layout = UICollectionViewFlowLayout()
          layout.scrollDirection = .horizontal
@@ -29,12 +35,27 @@ class MainViewController: UIViewController {
      }()
     private let exerciseButton = ExerciseButton(mode: ExerciseMode.normal )
     override func viewDidLoad() {
+
         super.viewDidLoad()
+        setupLoadingView()
+        showLoadingView()
+        bindViewModel()
         viewModel?.getUserGoal()
+
         self.view.backgroundColor = CustomColors.bk
-        setupUI()
+
+
+
     }
-    let recentView = CellView()
+    private func bindViewModel() {
+        viewModel?.postPublisher
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] usergoal in
+                self?.hideLoadingView()
+                self?.setupUI()
+            }).store(in: &cancellables)
+    }
+
     private func setupUI() {
         setupNavigationBar()
         setupGoalView()
@@ -42,6 +63,23 @@ class MainViewController: UIViewController {
         setRecentCourse()
         setExerciseButton()
     }
+    private func setupLoadingView() {
+        loadingView.frame = view.bounds
+        loadingView.backgroundColor = .white
+
+        activityIndicator.center = loadingView.center
+        loadingView.addSubview(activityIndicator)
+    }
+
+    private func showLoadingView() {
+        view.addSubview(loadingView)
+        activityIndicator.startAnimating()
+    }
+    private func hideLoadingView() {
+        activityIndicator.stopAnimating()
+        loadingView.removeFromSuperview()
+    }
+
     private func setupNavigationBar() {
 //        navigationController?.navigationBar.ishi = true
 //        self.navigationItem.setHidesBackButton(true, animated: true)

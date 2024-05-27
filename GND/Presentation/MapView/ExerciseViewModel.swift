@@ -58,12 +58,9 @@ final class ExerciseViewModel: ObservableObject, ExerciseViewModelType {
     private var exerciseUsecase: ExerciseUseCaseProtocol?
     private var cancellables = Set<AnyCancellable>()
     private weak var coordinator: StrideCoordinator?
-    @Published var locationUpdates: [CLLocationCoordinate2D] = [] {
-        didSet {
-            print(locationUpdates)
-        }
-    }
-
+    @Published var locationUpdates: [CLLocationCoordinate2D] = [] 
+    var userGoal: Int = 0
+    @Published var progress: Float = 0.0
     @Published var exerciseData: ExerciseData? = nil
     var startTime: Date?
     var endTime: Date? {
@@ -72,10 +69,15 @@ final class ExerciseViewModel: ObservableObject, ExerciseViewModelType {
         }
     }
     @Published var exerciseTime: String?
-
-    init(coordinator: StrideCoordinator, exerciseUsecase: ExerciseUsecase) {
+    private var steps = 0 {
+        didSet {
+            updateProgress()
+        }
+    }
+    init(coordinator: StrideCoordinator, exerciseUsecase: ExerciseUsecase, userGoal:Int ) {
         self.coordinator = coordinator
         self.exerciseUsecase = exerciseUsecase
+        self.userGoal = userGoal
         exerciseUsecase.locationPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] coordinates in
@@ -98,14 +100,20 @@ final class ExerciseViewModel: ObservableObject, ExerciseViewModelType {
                 }
             } receiveValue: { warningcase in
                 self.feedbackPublisher.send(warningcase)
-
+                
             }.store(in: &cancellables)
 
 
         exerciseUsecase.exerciseDataPublisher
-            .receive(on: DispatchQueue.main) // x
+            .receive(on: DispatchQueue.main)
             .sink { exercisedatas in
                 self.exerciseData = exercisedatas
+            }.store(in: &cancellables)
+
+        exerciseUsecase.stepsPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { steps in
+                self.steps += steps
             }.store(in: &cancellables)
     }
     func startTracking() {
@@ -158,5 +166,9 @@ final class ExerciseViewModel: ObservableObject, ExerciseViewModelType {
             }, receiveValue: {[weak self] result in
                 self?.coordinator?.resetToMainView()
             })
+    }
+
+    private func updateProgress() {
+        progress = Float(userGoal/steps)
     }
 }

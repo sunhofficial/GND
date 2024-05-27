@@ -15,6 +15,7 @@ protocol CoreMotionServiceProtocol {
     func stopActivity()
     var warningPublisher: AnyPublisher<WarningCase, Error> { get }
     var exerciseDataPublisher: AnyPublisher<ExerciseData, Never> {get}
+    var stepsPublisher: AnyPublisher<Int, Never> {get}
 }
 class CoreMotionService:  CoreMotionServiceProtocol {
     var mode: ExerciseMode
@@ -28,6 +29,10 @@ class CoreMotionService:  CoreMotionServiceProtocol {
     var exerciseDataPublisher: AnyPublisher<ExerciseData, Never> {
         exerciseDatas.eraseToAnyPublisher()
     }
+    var stepsPublisher: AnyPublisher<Int, Never> {
+        stepsSubject.eraseToAnyPublisher()
+    }
+    var stepsSubject = PassthroughSubject<Int, Never>()
     private var counter = 0
     private var stationaryCounter = 0
     //        private var warning = false
@@ -53,7 +58,6 @@ class CoreMotionService:  CoreMotionServiceProtocol {
                     self.startStepping()
                 }
             } else {
-
                 stationaryCounter += 1
                 guard timer != nil else{ return}
                 if stationaryCounter >= 4  {
@@ -77,7 +81,7 @@ class CoreMotionService:  CoreMotionServiceProtocol {
         walkCountDatas.removeAll()
     }
     private func startStepping() {
-        self.timer = Timer.publish(every: 10.0, tolerance: 1, on: .main, in: .common)
+        self.timer = Timer.publish(every: 20.0, tolerance: 1, on: .main, in: .common)
             .autoconnect()
             .sink {
                 [weak self] _ in
@@ -85,7 +89,6 @@ class CoreMotionService:  CoreMotionServiceProtocol {
                 self.counter += 1
                 Task {
                     await self.fetchStepData()
-
                 }
             }
     }
@@ -103,21 +106,23 @@ class CoreMotionService:  CoreMotionServiceProtocol {
             let speed = data.averageActivePace?.doubleValue ?? 0
             var warning = false
             self.pastTime = nowDate
-            //                if self.counter % 6 == 0 {
-            self.processStepData(distance: distance, steps: steps, speed: speed)
+            let stride = distance * 100 / steps
+            self.stepsSubject.send(steps)
+            if self.counter % 3 == 0 {
+                speedDatas.append(speed)
+                strideDatas.append(stride)
+                distanceDatas.append(distance)
+                walkCountDatas.append(steps)
+                self.counter = 0
+            }
+            self.processStepData(stride: stride, speed: speed)
         } catch {
             DispatchQueue.main.async {
                 self.warningSubject.send(completion: .failure(error))
             }
         }
     }
-    private func processStepData(distance: Int, steps: Int, speed: Double) {
-        speedDatas.append(speed)
-        let stride = distance * 100 / steps
-        strideDatas.append(stride)
-        distanceDatas.append(distance)
-        walkCountDatas.append(steps)
-        self.counter = 0
+    private func processStepData(stride: Int, speed: Double) {
         switch mode {
         case .speedMode:
             let speedGoal = 1.6
@@ -127,7 +132,6 @@ class CoreMotionService:  CoreMotionServiceProtocol {
                     self.warningSubject.send(WarningCase.lowSpeed(diff: diff))
                 }
             }
-
         case .strideMode:
             let strideGoal = 100
             if stride < strideGoal {

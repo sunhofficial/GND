@@ -17,6 +17,8 @@ class UserRepository: UserRepositoryProtocol {
     func getTodayGoal() -> AnyPublisher<UserGoal,  Error> {
         return Future<UserGoal, Error> {promise in
             AF.request(UserAPI.requestUserGoal)
+                .response {res in
+                debugPrint(res)}
                 .responseDecodable(of: TodayGoalResponse.self) { res in
                     if let data = res.value {
                         promise(.success(data.toDomain()))

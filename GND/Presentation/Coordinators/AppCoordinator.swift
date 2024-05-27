@@ -16,6 +16,7 @@ final class AppCoordinator: AppCoordinatorProtocol {
     var navigationController: UINavigationController
     var type: CoordinatorType {.app}
     var childCoordinators =  [Coordinator]()
+    var userusecase = UserUsecase(userReposiotry: UserRepository())
     required init(_ navigationController: UINavigationController) {
          self.navigationController = navigationController
          navigationController.setNavigationBarHidden(true, animated: true)
@@ -31,6 +32,7 @@ final class AppCoordinator: AppCoordinatorProtocol {
     func showLoginFlow() {
 //로그인에 관련한 코디네이터 생성하고 child에 추가
         let loginCoordinator = LoginCoordinator(navigationController)
+        loginCoordinator.userusecase  = userusecase
         loginCoordinator.finishDelegate = self
         loginCoordinator.start()
         childCoordinators.append(loginCoordinator)
@@ -38,6 +40,7 @@ final class AppCoordinator: AppCoordinatorProtocol {
     func showMainFlow() {
 //메인에 관련한 코디네이터 생성후 child추가
         let tabCoordinator = TabCoordinator(navigationController)
+        tabCoordinator.userUsecase = userusecase
         tabCoordinator.finishDelegate = self
         tabCoordinator.start()
         childCoordinators.append(tabCoordinator)

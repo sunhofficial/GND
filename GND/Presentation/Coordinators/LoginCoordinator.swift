@@ -18,10 +18,10 @@ class LoginCoordinator: LoginCoordinatorProtocol {
     var navigationController: UINavigationController
     var childCoordinators = [ Coordinator]()
     var type: CoordinatorType {.login}
-    var userusecase = UserUsecase(userReposiotry: UserRepository())
+    var userusecase: UserUsecase?
     func showLoginViewController() {
         let loginVC = LoginViewController()
-        loginVC.viewModel = LoginViewModel(coordinator: self, userUseCase: userusecase)
+        loginVC.viewModel = LoginViewModel(coordinator: self, userUseCase: userusecase!)
         self.navigationController.viewControllers = [loginVC	]
     }
     
@@ -33,7 +33,7 @@ class LoginCoordinator: LoginCoordinatorProtocol {
     
     func showNicknameViewController(gender: String, age: String) {
         let nicknameViewController = NicknameViewController()
-        nicknameViewController.viewModel = NickNameViewModel(coordinator: self, userUseCase: userusecase, gender: gender, age: age)
+        nicknameViewController.viewModel = NickNameViewModel(coordinator: self, userUseCase: userusecase!, gender: gender, age: age)
         self.navigationController.pushViewController(nicknameViewController, animated: true)
     }
     

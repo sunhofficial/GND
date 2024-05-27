@@ -19,17 +19,19 @@ final class MainViewModel: ObservableObject, MainviewModelInput {
     private var cancellables = Set<AnyCancellable>()
     @Published var userLevel: UserLevel = .low
     @Published var userGoal: UserGoal?
+    var postPublisher = PassthroughSubject<Bool,  Never>()
     func moveToExercise(mode: ExerciseMode) {
-        coordinator?.doExerciseView(mode: mode  )
+        coordinator?.doExerciseView(mode: mode, userGoal: (userGoal?.goalStep ?? 0) - (userGoal?.todayStep ?? 0))
     }
-    init(coordinator: StrideCoordinator) {
+    init(coordinator: StrideCoordinator, useCase: UserUseCaseProtocol) {
         self.coordinator = coordinator
+        self.userUsecase = useCase
     }
-    func getUserGoal() {
+    func getUserGoal()  {
         userUsecase?.getUserGoal()
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { compleiton in
-                print(compleiton)
+                self.postPublisher.send(true)
             }, receiveValue: { data in
                 if let level = UserLevel(rawValue: data.level) {
                     self.userLevel = level

@@ -13,6 +13,7 @@ protocol ExerciseUseCaseProtocol {
     var locationPublisher: AnyPublisher<[CLLocationCoordinate2D], Never> { get }
     var errorPublisher: AnyPublisher<Error, Never> { get }
     var feedbackPublisher: AnyPublisher<WarningCase, Error> {get}
+    var stepsPublisher: AnyPublisher<Int,Never> {get}
     func startUpdateLocation()
     func stopUpdateLocation()
     func startUpdateMotion()
@@ -43,6 +44,9 @@ final class ExerciseUsecase: ExerciseUseCaseProtocol {
         coreMotionService.exerciseDataPublisher.eraseToAnyPublisher()
     }
 
+    var stepsPublisher: AnyPublisher<Int, Never> {
+        coreMotionService.stepsPublisher.eraseToAnyPublisher()
+    }
     init(coreLocationService: CoreLocationServicesProtocol, exerciseRepository: ExerciseRepository, coreMotionService: CoreMotionServiceProtocol) {
         self.coreLocationService = coreLocationService
         self.exerciseRepository = exerciseRepository
