@@ -9,6 +9,7 @@ import Combine
 protocol UserUseCaseProtocol {
     func requestLogin(_ loginData: Login) -> AnyPublisher<User, Error>
     func postUserData(_ info: UserInfo) -> AnyPublisher<UserInfo, Error>
+    func getUserGoal() -> AnyPublisher<UserGoal, Error>
 }
 class UserUsecase: UserUseCaseProtocol {
 
@@ -21,5 +22,8 @@ class UserUsecase: UserUseCaseProtocol {
     }
     func postUserData(_ info: UserInfo) -> AnyPublisher<UserInfo, Error> {
         return userReposiotry.postUserData(info)
+    }
+    func getUserGoal() -> AnyPublisher<UserGoal, Error> {
+        return userReposiotry.getTodayGoal()
     }
 }

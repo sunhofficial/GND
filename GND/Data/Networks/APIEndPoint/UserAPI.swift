@@ -13,6 +13,7 @@ enum UserAPI {
     case requestSetuser(UserInfoDTO)
     case requestUpdateprofile
     case requestUpdatenickname
+    case requestUserGoal
 }
 extension UserAPI: Router, URLRequestConvertible {
     var baseURL: String {
@@ -30,6 +31,8 @@ extension UserAPI: Router, URLRequestConvertible {
             "user/profile"
         case .requestUpdatenickname:
             "user/nickname"
+        case .requestUserGoal:
+            "user/goal"
         }
     }
     
@@ -45,6 +48,8 @@ extension UserAPI: Router, URLRequestConvertible {
                 .put
         case .requestUpdatenickname:
                 .put
+        case .requestUserGoal:
+                .get
         }
     }
     

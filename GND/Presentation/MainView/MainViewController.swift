@@ -30,6 +30,7 @@ class MainViewController: UIViewController {
     private let exerciseButton = ExerciseButton(mode: ExerciseMode.normal )
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel?.getUserGoal()
         self.view.backgroundColor = CustomColors.bk
         setupUI()
     }
@@ -64,26 +65,46 @@ class MainViewController: UIViewController {
             $0.font = .systemFont(ofSize: 32, weight: .bold)
         }
         let levelLabel = UILabel().then {
-            $0.text = "LV 2"
+            $0.text = viewModel?.userLevel.title ?? "숙련자"
             $0.font = .systemFont(ofSize: 32, weight: .bold)
             $0.textColor = .black
         }
-        let meterGoalView = makeGoalInfoView(current: 3500, goal: 5000, measure: "미터")
-        let speedGoalView = makeGoalInfoView(current: 4.8, goal: 5.0, measure: "km/h")
-        let distanceGoalView = makeGoalInfoView(current: 2000, goal: 4000, measure: "걸음")
+        let expProgressView = UIProgressView(progressViewStyle: .default).then {
+            $0.progress = Float(viewModel?.userGoal?.exp ?? 5) / 10.0
+            $0.tintColor = UIColor(named: viewModel?.userLevel.colorString ?? "lowLevelColor")
+            $0.clipsToBounds = true
+            $0.layer.cornerRadius = 10
+            }
+        let levelImage = UIImageView(image: UIImage(named: viewModel?.userLevel.imageString ?? "lowLevel"))
+        let meterGoalView = makeGoalInfoView(current: viewModel?.userGoal?.todayStride ?? 0, goal: viewModel?.userGoal?.goalStride ?? 0, measure: "cm")
+        let speedGoalView = makeGoalInfoView(current: viewModel?.userGoal?.todaySpeed ?? 0.0 , goal: viewModel?.userGoal?.goalSpeed ?? 0.0, measure: "km/h")
+        let distanceGoalView = makeGoalInfoView(current: viewModel?.userGoal?.todayStep ?? 0, goal: viewModel?.userGoal?.goalStep ?? 0, measure: "걸음")
         let infoStack = UIStackView(arrangedSubviews: [meterGoalView, speedGoalView, distanceGoalView]).then {
             $0.axis = .horizontal
             $0.distribution = .fillEqually
         }
-        goalView.addSubview(levelLabel)
-        goalView.addSubview(infoStack)
+        [levelLabel, levelImage, infoStack, expProgressView]
+            .forEach {
+                goalView.addSubview($0)
+            }
+
         levelLabel.snp.makeConstraints {
             $0.top.leading.equalToSuperview().offset(16)
+        }
+        levelImage.snp.makeConstraints {
+            $0.centerY.equalTo(levelLabel.snp.centerY)
+            $0.leading.equalTo(levelLabel.snp.trailing).offset(4)
         }
         infoStack.snp.makeConstraints {
             $0.top.equalTo(levelLabel.snp.bottom).offset(16)
             $0.leading.trailing.equalToSuperview().inset(24)
             $0.bottom.equalToSuperview().inset(8)
+        }
+        expProgressView.snp.makeConstraints {
+            $0.centerY.equalTo(levelImage.snp.centerY)
+            $0.leading.equalTo(levelImage.snp.trailing).offset(16)
+            $0.trailing.equalToSuperview().inset(16)
+            $0.height.equalTo(24)
         }
         view.addSubview(titleLabel)
         view.addSubview(goalView)
@@ -96,7 +117,7 @@ class MainViewController: UIViewController {
             $0.leading.trailing.equalToSuperview().inset(8)
         }
     }
-    func makeGoalInfoView(current: Double, goal: Double, measure: String) -> UIStackView {
+    func makeGoalInfoView<T: Comparable>(current: T, goal: T, measure: String) -> UIStackView {
         let topLabel = UILabel().then {
             $0.text = "\(current)"
             $0.font = UIFont.systemFont(ofSize: 20, weight: .bold)

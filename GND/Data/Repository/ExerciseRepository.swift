@@ -10,7 +10,7 @@ import Combine
 import Foundation
 
 protocol ExerciseRepositoryProtocol {
-    func getTodayGoal()
+
     func postSaveExercise(_ exerciseSession: ExerciseSession, exerciseMetrics: ExerciseMetrics) -> AnyPublisher<Bool,  Error>
 }
 
@@ -33,9 +33,6 @@ class ExerciseRepository: ExerciseRepositoryProtocol {
                 }
         }.eraseToAnyPublisher()
     }
-    
-    func getTodayGoal() {
 
-    }
 
 }
