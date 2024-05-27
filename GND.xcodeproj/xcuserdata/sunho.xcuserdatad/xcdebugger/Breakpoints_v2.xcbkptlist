@@ -34,6 +34,36 @@
             endingLineNumber = "152"
             landmarkName = "sendToSever(title:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "658F2C3C-EC50-4EA4-BB8E-39F94779182B - b6757ace3e2ebfb9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GND.ExerciseViewModel.sendToSever(title: Swift.String) -&gt; ()"
+                  moduleName = "GND"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Presentation/MapView/ExerciseViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "152"
+                  endingLineNumber = "152">
+               </Location>
+               <Location
+                  uuid = "658F2C3C-EC50-4EA4-BB8E-39F94779182B - 300cf6d67f6763e7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Combine.Subscribers.Completion&lt;Swift.Error&gt;) -&gt; () in GND.ExerciseViewModel.sendToSever(title: Swift.String) -&gt; ()"
+                  moduleName = "GND"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Presentation/MapView/ExerciseViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "153"
+                  endingLineNumber = "153">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -270,8 +300,8 @@
             filePath = "GND/Presentation/MainView/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
             landmarkName = "getUserGoal()"
             landmarkType = "7">
          </BreakpointContent>
@@ -286,8 +316,8 @@
             filePath = "GND/Presentation/MainView/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "getUserGoal()"
             landmarkType = "7">
          </BreakpointContent>
@@ -338,6 +368,36 @@
             endingLineNumber = "22"
             landmarkName = "getTodayGoal()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FCBED9C2-D13E-4ACC-9E35-534AA05F5B7F - b79b9dff85ad837f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 ((Swift.Result&lt;GND.UserGoal, Swift.Error&gt;) -&gt; ()) -&gt; () in GND.UserRepository.getTodayGoal() -&gt; Combine.AnyPublisher&lt;GND.UserGoal, Swift.Error&gt;"
+                  moduleName = "GND"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Data/Repository/UserRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22">
+               </Location>
+               <Location
+                  uuid = "FCBED9C2-D13E-4ACC-9E35-534AA05F5B7F - 772a4d9babaadd69"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Alamofire.DataResponse&lt;GND.TodayGoalResponse, Alamofire.AFError&gt;) -&gt; () in closure #1 ((Swift.Result&lt;GND.UserGoal, Swift.Error&gt;) -&gt; ()) -&gt; () in GND.UserRepository.getTodayGoal() -&gt; Combine.AnyPublisher&lt;GND.UserGoal, Swift.Error&gt;"
+                  moduleName = "GND"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Data/Repository/UserRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -386,6 +446,36 @@
             endingLineNumber = "18"
             landmarkName = "getTodayGoal()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D466EFA2-B8FE-4CB0-A57C-D39387590629 - 5f3db1e47dec68c4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GND.UserRepository.getTodayGoal() -&gt; Combine.AnyPublisher&lt;GND.UserGoal, Swift.Error&gt;"
+                  moduleName = "GND"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Data/Repository/UserRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18">
+               </Location>
+               <Location
+                  uuid = "D466EFA2-B8FE-4CB0-A57C-D39387590629 - b79b9dff85ad8310"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 ((Swift.Result&lt;GND.UserGoal, Swift.Error&gt;) -&gt; ()) -&gt; () in GND.UserRepository.getTodayGoal() -&gt; Combine.AnyPublisher&lt;GND.UserGoal, Swift.Error&gt;"
+                  moduleName = "GND"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Data/Repository/UserRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -414,8 +504,8 @@
             filePath = "GND/Presentation/MainView/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
             landmarkName = "getUserGoal()"
             landmarkType = "7">
          </BreakpointContent>
@@ -430,8 +520,8 @@
             filePath = "GND/Presentation/MainView/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
             landmarkName = "getUserGoal()"
             landmarkType = "7">
          </BreakpointContent>
@@ -510,6 +600,22 @@
             filePath = "GND/Presentation/MainView/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "getUserGoal()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "17D49D35-FACD-48B1-B95D-44071BEE7DC1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GND/Presentation/MainView/MainViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
             startingLineNumber = "39"
             endingLineNumber = "39"
             landmarkName = "getUserGoal()"
@@ -519,7 +625,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "17D49D35-FACD-48B1-B95D-44071BEE7DC1"
+            uuid = "8A45B7C2-C175-4ECA-B61C-D52E93037363"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -535,17 +641,63 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8A45B7C2-C175-4ECA-B61C-D52E93037363"
+            uuid = "9127AD50-FDAD-4C3D-AAFF-2D9E9F6EB293"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GND/Presentation/MainView/MainViewModel.swift"
+            filePath = "GND/Data/Services/CoreMotionService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "getUserGoal()"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
+            landmarkName = "processStepData(stride:speed:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "662B5110-645F-46B2-BC67-3AFEA3F99362"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GND/Data/Services/CoreMotionService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "processStepData(stride:speed:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "662B5110-645F-46B2-BC67-3AFEA3F99362 - c12b82f832889bdc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GND.CoreMotionService.processStepData(stride: Swift.Int, speed: Swift.Double) -&gt; ()"
+                  moduleName = "GND"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Data/Services/CoreMotionService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "137"
+                  endingLineNumber = "137">
+               </Location>
+               <Location
+                  uuid = "662B5110-645F-46B2-BC67-3AFEA3F99362 - c12b82f832889bff"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GND.CoreMotionService.processStepData(stride: Swift.Int, speed: Swift.Double) -&gt; ()"
+                  moduleName = "GND"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Data/Services/CoreMotionService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "136"
+                  endingLineNumber = "136">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

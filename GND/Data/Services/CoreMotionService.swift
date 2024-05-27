@@ -19,7 +19,7 @@ protocol CoreMotionServiceProtocol {
 }
 class CoreMotionService:  CoreMotionServiceProtocol {
     var mode: ExerciseMode
-
+    var userGoal: UserGoal
     private let pedometer = CMPedometer()
     private let activityManager = CMMotionActivityManager()
     private var pastTime: Date?
@@ -43,8 +43,9 @@ class CoreMotionService:  CoreMotionServiceProtocol {
     var warningPublisher: AnyPublisher<WarningCase, Error> {
         warningSubject.eraseToAnyPublisher()
     }
-    init(mode: ExerciseMode) {
+    init(mode: ExerciseMode, goal: UserGoal) {
         self.mode = mode
+        self.userGoal = goal
     }
     func startPedometer()  {
         pastTime = Date()
@@ -101,21 +102,20 @@ class CoreMotionService:  CoreMotionServiceProtocol {
 
         do {
             let data = try await pedometer.queryPedometerDataAsync(from: pastTime, to: nowDate)
-            guard let distance = data.distance?.intValue, distance != 0, data.numberOfSteps.intValue != 0 else {return }
+            guard let distance = data.distance?.intValue, distance != 0, data.numberOfSteps.intValue != 0, let averagePace = data.averageActivePace else {return }
             let steps = data.numberOfSteps.intValue
-            let speed = data.averageActivePace?.doubleValue ?? 0
-            var warning = false
+            let speedKmh = round(averagePace.doubleValue * 3.6 * 10 ) / 10
             self.pastTime = nowDate
             let stride = distance * 100 / steps
             self.stepsSubject.send(steps)
             if self.counter % 3 == 0 {
-                speedDatas.append(speed)
+                speedDatas.append(speedKmh)
                 strideDatas.append(stride)
                 distanceDatas.append(distance)
                 walkCountDatas.append(steps)
                 self.counter = 0
             }
-            self.processStepData(stride: stride, speed: speed)
+            self.processStepData(stride: stride, speed: speedKmh)
         } catch {
             DispatchQueue.main.async {
                 self.warningSubject.send(completion: .failure(error))
@@ -125,17 +125,17 @@ class CoreMotionService:  CoreMotionServiceProtocol {
     private func processStepData(stride: Int, speed: Double) {
         switch mode {
         case .speedMode:
-            let speedGoal = 1.6
-            if speed < speedGoal {
-                let diff = speedGoal - speed
+            print(speed)
+            if speed < userGoal.goalSpeed {
+                let diff = userGoal.goalSpeed - speed
                 DispatchQueue.main.async {
                     self.warningSubject.send(WarningCase.lowSpeed(diff: diff))
                 }
             }
         case .strideMode:
-            let strideGoal = 100
-            if stride < strideGoal {
-                let diff = strideGoal - stride
+            print(stride)
+            if stride < userGoal.goalStride {
+                let diff = userGoal.goalStride - stride
                 DispatchQueue.main.async {
                     self.warningSubject.send(WarningCase.lowStride(diff: diff))
                 }

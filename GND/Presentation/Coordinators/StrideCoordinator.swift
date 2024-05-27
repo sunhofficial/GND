@@ -8,7 +8,7 @@
 import UIKit
 
 protocol StrideCoordinatorProtocol: Coordinator {
-    func doExerciseView(mode: ExerciseMode, userGoal: Int)
+    func doExerciseView(mode: ExerciseMode, userGoal: Int, goal: UserGoal)
     func showRecentView()
     func finishExerciseView()
     
@@ -21,9 +21,9 @@ class StrideCoordinator: StrideCoordinatorProtocol {
         self.navigationController = navigationController
         self.mainviewController = MainViewController()
     }
-    func doExerciseView(mode: ExerciseMode, userGoal: Int) {
+    func doExerciseView(mode: ExerciseMode, userGoal: Int, goal: UserGoal) {
         let exerciseViewController = ExerciseViewController()
-        self.exerciseUseCase =  ExerciseUsecase(coreLocationService: CoreLocationServices(), exerciseRepository: ExerciseRepository(), coreMotionService: CoreMotionService(mode: mode)) // 이것도 어디서 주입할지 생각해봐야할듯 여기서부터 필요한가?
+        self.exerciseUseCase =  ExerciseUsecase(coreLocationService: CoreLocationServices(), exerciseRepository: ExerciseRepository(), coreMotionService: CoreMotionService(mode: mode, goal: goal)) // 이것도 어디서 주입할지 생각해봐야할듯 여기서부터 필요한가?
         self.exerciseViewModel = ExerciseViewModel(coordinator: self, exerciseUsecase: exerciseUseCase!, userGoal:  userGoal)
         exerciseViewController.viewModel = exerciseViewModel
         navigationController.pushViewController(exerciseViewController, animated: false)

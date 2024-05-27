@@ -21,7 +21,8 @@ final class MainViewModel: ObservableObject, MainviewModelInput {
     @Published var userGoal: UserGoal?
     var postPublisher = PassthroughSubject<Bool,  Never>()
     func moveToExercise(mode: ExerciseMode) {
-        coordinator?.doExerciseView(mode: mode, userGoal: (userGoal?.goalStep ?? 0) - (userGoal?.todayStep ?? 0))
+        guard let userGoal = userGoal else {return}
+        coordinator?.doExerciseView(mode: mode, userGoal: (userGoal.goalStep) - (userGoal.todayStep), goal: userGoal)
     }
     init(coordinator: StrideCoordinator, useCase: UserUseCaseProtocol) {
         self.coordinator = coordinator
