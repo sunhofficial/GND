@@ -23,11 +23,10 @@ struct SaveExerciseRequest: Codable {
     var distance: Int
     var startTime: String
     var endTime: String
-//    var stability: Double
     var course: [Coordinate]
     var doShareCourse: Bool
     var courseName: String?
-
+    var datacount: Int
     enum CodingKeys: String, CodingKey {
         case minStride = "min_stride"
         case maxStride = "max_stride"
@@ -43,6 +42,7 @@ struct SaveExerciseRequest: Codable {
         case course
         case doShareCourse = "do_share_course"
         case courseName = "course_name"
+        case datacount = "data_count"
     }
 //    func toDomain() -> Exercise {
 //         return Exercise(

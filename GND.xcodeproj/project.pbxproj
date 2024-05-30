@@ -76,6 +76,9 @@
 		C7C294842BF34CE8009FACD8 /* ExerciseMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C294832BF34CE8009FACD8 /* ExerciseMode.swift */; };
 		C7CD66FD2C046A9900FB471A /* UserGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD66FC2C046A9900FB471A /* UserGoal.swift */; };
 		C7CD66FF2C047F7C00FB471A /* UserLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD66FE2C047F7C00FB471A /* UserLevel.swift */; };
+		C7CD67012C07FAC900FB471A /* CourseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD67002C07FAC900FB471A /* CourseAPI.swift */; };
+		C7CD67032C08000600FB471A /* GetRecentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD67022C08000600FB471A /* GetRecentRequest.swift */; };
+		C7CD67052C08014B00FB471A /* Encodable+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD67042C08014B00FB471A /* Encodable+.swift */; };
 		C7DE2B882BEA425E00A049A9 /* KakaoLoginServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DE2B872BEA425E00A049A9 /* KakaoLoginServices.swift */; };
 /* End PBXBuildFile section */
 
@@ -159,6 +162,9 @@
 		C7C294832BF34CE8009FACD8 /* ExerciseMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseMode.swift; sourceTree = "<group>"; };
 		C7CD66FC2C046A9900FB471A /* UserGoal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGoal.swift; sourceTree = "<group>"; };
 		C7CD66FE2C047F7C00FB471A /* UserLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLevel.swift; sourceTree = "<group>"; };
+		C7CD67002C07FAC900FB471A /* CourseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseAPI.swift; sourceTree = "<group>"; };
+		C7CD67022C08000600FB471A /* GetRecentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRecentRequest.swift; sourceTree = "<group>"; };
+		C7CD67042C08014B00FB471A /* Encodable+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+.swift"; sourceTree = "<group>"; };
 		C7DE2B872BEA425E00A049A9 /* KakaoLoginServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLoginServices.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -270,6 +276,7 @@
 			children = (
 				C7BD5B012BE6D3100060CC38 /* UITextFiled+.swift */,
 				C7BD5B3F2BE7B8350060CC38 /* UIViewController+.swift */,
+				C7CD67042C08014B00FB471A /* Encodable+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -333,6 +340,7 @@
 			isa = PBXGroup;
 			children = (
 				C7BD5B672BE8CB3C0060CC38 /* LoginResponse.swift */,
+				C7CD67022C08000600FB471A /* GetRecentRequest.swift */,
 				C7BD5B792BE903F50060CC38 /* LoginRequest.swift */,
 				C7BE5C132BFC8837007B1D3D /* TodayGoalResponse.swift */,
 				C716082D2BF4A89F005A937A /* SaveExerciseRequset.swift */,
@@ -388,6 +396,7 @@
 				C7BD5B7B2BE904620060CC38 /* API.swift */,
 				C7BD5B772BE901FE0060CC38 /* UserAPI.swift */,
 				C7B0BE362BF48DF5009ACE74 /* ExerciseAPI.swift */,
+				C7CD67002C07FAC900FB471A /* CourseAPI.swift */,
 			);
 			path = APIEndPoint;
 			sourceTree = "<group>";
@@ -547,6 +556,7 @@
 				C7C294842BF34CE8009FACD8 /* ExerciseMode.swift in Sources */,
 				C7BD5AEB2BE605650060CC38 /* LoginViewController.swift in Sources */,
 				C7C294732BF10A08009FACD8 /* TabCoordinator.swift in Sources */,
+				C7CD67032C08000600FB471A /* GetRecentRequest.swift in Sources */,
 				C7BD5B7C2BE904620060CC38 /* API.swift in Sources */,
 				C7BE5C142BFC8837007B1D3D /* TodayGoalResponse.swift in Sources */,
 				C7BD5AEE2BE608E80060CC38 /* LoginViewModel.swift in Sources */,
@@ -567,11 +577,13 @@
 				C7BD5B442BE7F4A70060CC38 /* EnterModel.swift in Sources */,
 				C7B0BE332BF4613A009ACE74 /* FinishExerciseViewController.swift in Sources */,
 				C7B0BE372BF48DF5009ACE74 /* ExerciseAPI.swift in Sources */,
+				C7CD67012C07FAC900FB471A /* CourseAPI.swift in Sources */,
 				C7BD5B5B2BE8A2510060CC38 /* PartyDetailCell.swift in Sources */,
 				C7C294712BF0CB46009FACD8 /* LoginCoordinator.swift in Sources */,
 				C72E721F2BE375DD0003176E /* SceneDelegate.swift in Sources */,
 				C7BD5AFE2BE6C34B0060CC38 /* NicknameViewController.swift in Sources */,
 				C7C2947E2BF30BF3009FACD8 /* ExerciseViewModel.swift in Sources */,
+				C7CD67052C08014B00FB471A /* Encodable+.swift in Sources */,
 				C7BD5B3E2BE7A4330060CC38 /* MainViewController.swift in Sources */,
 				C7C2946D2BF0C158009FACD8 /* Coordinator.swift in Sources */,
 				C7BD5B752BE9013B0060CC38 /* Router.swift in Sources */,

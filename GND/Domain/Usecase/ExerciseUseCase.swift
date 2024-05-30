@@ -61,7 +61,7 @@ final class ExerciseUsecase: ExerciseUseCaseProtocol {
         coreLocationService.stopupdatingLocation()
     }
     func postExerciseData(_ exerciseSession: ExerciseSession, _ exerciseData: ExerciseData) -> AnyPublisher<Bool, Error> {
-        return exerciseRepository.postSaveExercise(exerciseSession, exerciseMetrics: ExerciseMetrics(minStride: exerciseData.strideDatas.min() ?? 0, maxStride: exerciseData.strideDatas.max() ?? 0, averageStride: exerciseData.averageStride, minSpeed: exerciseData.speedDatas.min() ?? 0, maxSpeed: exerciseData.speedDatas.max() ?? 0, averageSpeed: exerciseData.averageSpeed, step: exerciseData.totalWalkCount, distance: exerciseData.totalDistance))
+        return exerciseRepository.postSaveExercise(exerciseSession, exerciseMetrics: ExerciseMetrics(minStride: exerciseData.strideDatas.min() ?? 0, maxStride: exerciseData.strideDatas.max() ?? 0, averageStride: exerciseData.averageStride, minSpeed: exerciseData.speedDatas.min() ?? 0, maxSpeed: exerciseData.speedDatas.max() ?? 0, averageSpeed: exerciseData.averageSpeed, step: exerciseData.totalWalkCount, distance: exerciseData.totalDistance, datacount: exerciseData.speedDatas.count))
     }
     func startUpdateMotion() {
         coreMotionService.startPedometer()

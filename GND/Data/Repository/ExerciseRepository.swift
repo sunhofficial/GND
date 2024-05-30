@@ -19,7 +19,7 @@ class ExerciseRepository: ExerciseRepositoryProtocol {
         return Future<Bool, Error> { promise in
             let startTime = ISO8601DateFormatter().string(from: exerciseSession.startTime)
             let endTime = ISO8601DateFormatter().string(from: exerciseSession.endTime)
-            let saveExerciseRequest = SaveExerciseRequest(minStride: exerciseMetrics.minStride, maxStride: exerciseMetrics.maxStride, averageStride: exerciseMetrics.averageStride, minSpeed: exerciseMetrics.minSpeed, maxSpeed: exerciseMetrics.maxSpeed, averageSpeed: exerciseMetrics.averageSpeed, step: exerciseMetrics.step, distance: exerciseMetrics.distance, startTime: startTime, endTime: endTime, course: exerciseSession.course, doShareCourse: exerciseSession.doShareCourse, courseName: exerciseSession.courseName)
+            let saveExerciseRequest = SaveExerciseRequest(minStride: exerciseMetrics.minStride, maxStride: exerciseMetrics.maxStride, averageStride: exerciseMetrics.averageStride, minSpeed: exerciseMetrics.minSpeed, maxSpeed: exerciseMetrics.maxSpeed, averageSpeed: exerciseMetrics.averageSpeed, step: exerciseMetrics.step, distance: exerciseMetrics.distance, startTime: startTime, endTime: endTime, course: exerciseSession.course, doShareCourse: exerciseSession.doShareCourse, courseName: exerciseSession.courseName, datacount: exerciseMetrics.datacount)
             AF.request(ExerciseAPI.requestSaveExercise(saveExerciseRequest))
                 .response { response in
                     debugPrint(response)
