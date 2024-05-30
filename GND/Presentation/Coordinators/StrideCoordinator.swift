@@ -23,6 +23,7 @@ class StrideCoordinator: StrideCoordinatorProtocol {
         self.mainviewController = MainViewController()
     }
     func doExerciseView(mode: ExerciseMode, userGoal: Int, goal: UserGoal) {
+        self.navigationController.isNavigationBarHidden = true
         let exerciseViewController = ExerciseViewController()
         self.exerciseUseCase =  ExerciseUsecase(coreLocationService: CoreLocationServices(), exerciseRepository: ExerciseRepository(), coreMotionService: CoreMotionService(mode: mode, goal: goal)) // 이것도 어디서 주입할지 생각해봐야할듯 여기서부터 필요한가?
         self.exerciseViewModel = ExerciseViewModel(coordinator: self, exerciseUsecase: exerciseUseCase!, userGoal:  userGoal)
@@ -50,7 +51,7 @@ class StrideCoordinator: StrideCoordinatorProtocol {
     
     func start() {
         mainviewController.viewModel = MainViewModel(coordinator: self, useCase: userUsecase!, courseUsercase: courseUseCase!)
-        self.navigationController.isNavigationBarHidden = true
+
         self.navigationController.pushViewController(mainviewController, animated: false)
     }
     func resetToMainView() {

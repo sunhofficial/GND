@@ -213,9 +213,6 @@ class MainViewController: UIViewController {
             $0.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
             $0.addTarget(self, action: #selector(moreBtnTouch), for: .touchUpInside)
         }
-        
-//        let recentData = CellType.recentCource(CourseModel(courseTitle: "경희대 뒷길", courseDistance: "5000", courseTime: 10, mapImageString: "logo"))
-    
         view.addSubview(recentView)
         view.addSubview(titleLabel)
         view.addSubview(moreButton)
@@ -243,7 +240,7 @@ class MainViewController: UIViewController {
     private func setExerciseButton() {
         view.addSubview(exerciseButton)
         exerciseButton.snp.makeConstraints {
-            $0.top.equalTo(recentView.snp.bottom).offset(24)
+            $0.bottom.equalToSuperview().inset(104)
             $0.centerX.equalToSuperview()
         }
         exerciseButton.addTarget(self, action: #selector(exerciseButtonTapped), for: .touchUpInside)

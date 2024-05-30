@@ -82,36 +82,6 @@
             endingLineNumber = "20"
             landmarkName = "getMyRecentCourses(showCount:nextID:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "96FBCF9A-049C-498A-B069-C119F36A106B - 40b8a2fe3ab35b3a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 ((Swift.Result&lt;GND.PagenaitedRecentCourse, Swift.Error&gt;) -&gt; ()) -&gt; () in GND.CourseRepository.getMyRecentCourses(showCount: Swift.Int, nextID: Swift.Optional&lt;Swift.Int&gt;) -&gt; Combine.AnyPublisher&lt;GND.PagenaitedRecentCourse, Swift.Error&gt;"
-                  moduleName = "GND"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Data/Repository/CourseRepository.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "20"
-                  endingLineNumber = "20">
-               </Location>
-               <Location
-                  uuid = "96FBCF9A-049C-498A-B069-C119F36A106B - f09a5569241c0f35"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Alamofire.DataResponse&lt;GND.GetRecentResponse, Alamofire.AFError&gt;) -&gt; () in closure #1 ((Swift.Result&lt;GND.PagenaitedRecentCourse, Swift.Error&gt;) -&gt; ()) -&gt; () in GND.CourseRepository.getMyRecentCourses(showCount: Swift.Int, nextID: Swift.Optional&lt;Swift.Int&gt;) -&gt; Combine.AnyPublisher&lt;GND.PagenaitedRecentCourse, Swift.Error&gt;"
-                  moduleName = "GND"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Data/Repository/CourseRepository.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -144,36 +114,6 @@
             endingLineNumber = "59"
             landmarkName = "bindViewModel()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "52B1A384-A01C-4704-AE8A-16363E07142C - 7fc04a6f47e96d96"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GND.MainViewController.bindViewModel() -&gt; ()"
-                  moduleName = "GND"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Presentation/MainView/MainViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "59"
-                  endingLineNumber = "59">
-               </Location>
-               <Location
-                  uuid = "52B1A384-A01C-4704-AE8A-16363E07142C - 9f6223dc70608f3e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Swift.Optional&lt;GND.RecentCourse&gt;) -&gt; () in GND.MainViewController.bindViewModel() -&gt; ()"
-                  moduleName = "GND"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Presentation/MainView/MainViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "59"
-                  endingLineNumber = "59">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -205,22 +145,6 @@
             startingLineNumber = "60"
             endingLineNumber = "60"
             landmarkName = "bindViewModel()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "921CA406-4837-47B3-8094-DD1C3FA3DBF5"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GND/Presentation/MainView/MainViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "218"
-            endingLineNumber = "218"
-            landmarkName = "setRecentCourse()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -8,7 +8,7 @@
 import UIKit
 
 enum ExerciseMode: String, CaseIterable {
-    case normal = "일반 모드"
+    case normal = "운동하기"
        case justMode = "산책하기"
        case speedMode = "속도훈련"
        case strideMode = "보폭훈련"

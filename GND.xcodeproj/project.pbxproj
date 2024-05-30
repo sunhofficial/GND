@@ -84,6 +84,7 @@
 		C7CD670B2C08059D00FB471A /* RecentCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD670A2C08059D00FB471A /* RecentCourse.swift */; };
 		C7CD670D2C0823B700FB471A /* CourseUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD670C2C0823B700FB471A /* CourseUseCase.swift */; };
 		C7CD670F2C08406800FB471A /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD670E2C08406800FB471A /* Date+.swift */; };
+		C7CD67112C08779400FB471A /* RecentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD67102C08779400FB471A /* RecentViewController.swift */; };
 		C7DE2B882BEA425E00A049A9 /* KakaoLoginServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DE2B872BEA425E00A049A9 /* KakaoLoginServices.swift */; };
 /* End PBXBuildFile section */
 
@@ -175,6 +176,7 @@
 		C7CD670A2C08059D00FB471A /* RecentCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentCourse.swift; sourceTree = "<group>"; };
 		C7CD670C2C0823B700FB471A /* CourseUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseUseCase.swift; sourceTree = "<group>"; };
 		C7CD670E2C08406800FB471A /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		C7CD67102C08779400FB471A /* RecentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentViewController.swift; sourceTree = "<group>"; };
 		C7DE2B872BEA425E00A049A9 /* KakaoLoginServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLoginServices.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -297,6 +299,7 @@
 			children = (
 				C7BD5B3D2BE7A4330060CC38 /* MainViewController.swift */,
 				C7C294812BF34C8A009FACD8 /* MainViewModel.swift */,
+				C7CD67102C08779400FB471A /* RecentViewController.swift */,
 				C7BD5B462BE802F90060CC38 /* CellView.swift */,
 				C7BD5B412BE7D55C0060CC38 /* EnterRoomCell.swift */,
 				C7BD5B432BE7F4A70060CC38 /* EnterModel.swift */,
@@ -614,6 +617,7 @@
 				C7BD5B512BE81C580060CC38 /* PartyViewController.swift in Sources */,
 				C7BD5B7E2BE9384C0060CC38 /* Login.swift in Sources */,
 				C7BD5B802BE93D830060CC38 /* User.swift in Sources */,
+				C7CD67112C08779400FB471A /* RecentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
