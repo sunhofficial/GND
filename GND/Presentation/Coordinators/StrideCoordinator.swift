@@ -14,7 +14,8 @@ protocol StrideCoordinatorProtocol: Coordinator {
     
 }
 class StrideCoordinator: StrideCoordinatorProtocol {
-    var exerciseUseCase: ExerciseUsecase?
+    var exerciseUseCase: ExerciseUseCaseProtocol?
+    var courseUseCase: CourseUseCaseProtocol?
     var exerciseViewModel: ExerciseViewModel?
     var userUsecase: UserUsecase?
     required init(_ navigationController: UINavigationController) {
@@ -48,7 +49,7 @@ class StrideCoordinator: StrideCoordinatorProtocol {
     var type: CoordinatorType {.home}
     
     func start() {
-        mainviewController.viewModel = MainViewModel(coordinator: self, useCase: userUsecase!)
+        mainviewController.viewModel = MainViewModel(coordinator: self, useCase: userUsecase!, courseUsercase: courseUseCase!)
         self.navigationController.isNavigationBarHidden = true
         self.navigationController.pushViewController(mainviewController, animated: false)
     }

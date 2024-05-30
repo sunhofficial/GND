@@ -23,6 +23,7 @@ class MainViewController: UIViewController {
     private var overlayView: UIView?
     private var cancellables = Set<AnyCancellable>()
     let recentView = CellView()
+    private var recentData: CellType?
     private lazy var collectionView: UICollectionView = {
          let layout = UICollectionViewFlowLayout()
          layout.scrollDirection = .horizontal
@@ -35,13 +36,12 @@ class MainViewController: UIViewController {
      }()
     private let exerciseButton = ExerciseButton(mode: ExerciseMode.normal )
     override func viewDidLoad() {
-
         super.viewDidLoad()
         setupLoadingView()
         showLoadingView()
         bindViewModel()
         viewModel?.getUserGoal()
-
+        viewModel?.getRecentCourses()
         self.view.backgroundColor = CustomColors.bk
 
 
@@ -53,6 +53,15 @@ class MainViewController: UIViewController {
             .sink(receiveValue: { [weak self] usergoal in
                 self?.hideLoadingView()
                 self?.setupUI()
+            }).store(in: &cancellables)
+        viewModel?.$recentCourses
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] data in
+                guard let data = data else {return}
+                self?.setupUI()
+                self?.recentData = .recentCource(CourseModel(courseTitle: data.courseName ?? "", courseDistance: data.distance, courseTime: data.time, coordinates: data.course))
+                self?.updateRecentView()
+
             }).store(in: &cancellables)
     }
 
@@ -204,9 +213,9 @@ class MainViewController: UIViewController {
             $0.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
             $0.addTarget(self, action: #selector(moreBtnTouch), for: .touchUpInside)
         }
-
-        let recentData = CellType.recentCource(CourseModel(courseTitle: "경희대 뒷길", courseDistance: "5000", courseTime: 10, mapImageString: "logo"))
-        recentView.configure(with: recentData)
+        
+//        let recentData = CellType.recentCource(CourseModel(courseTitle: "경희대 뒷길", courseDistance: "5000", courseTime: 10, mapImageString: "logo"))
+    
         view.addSubview(recentView)
         view.addSubview(titleLabel)
         view.addSubview(moreButton)
@@ -224,6 +233,10 @@ class MainViewController: UIViewController {
             $0.height.equalTo(114)
         }
     }
+    private func updateRecentView() {
+           guard let recentData = recentData else { return }
+           recentView.configure(with: recentData)
+       }
     @objc private func moreBtnTouch() {
         print("더볼래?")
     }

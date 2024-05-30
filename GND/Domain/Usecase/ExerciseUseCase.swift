@@ -14,6 +14,9 @@ protocol ExerciseUseCaseProtocol {
     var errorPublisher: AnyPublisher<Error, Never> { get }
     var feedbackPublisher: AnyPublisher<WarningCase, Error> {get}
     var stepsPublisher: AnyPublisher<Int,Never> {get}
+    var exerciseDataPublisher: AnyPublisher<ExerciseData, Never> {
+       get
+    }
     func startUpdateLocation()
     func stopUpdateLocation()
     func startUpdateMotion()

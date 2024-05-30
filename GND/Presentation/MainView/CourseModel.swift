@@ -8,7 +8,7 @@
 import Foundation
 struct CourseModel {
     let courseTitle: String
-    let courseDistance: String
+    let courseDistance: Int
     let courseTime: Int
-    let mapImageString: String
+    let coordinates: [Coordinate]
 }

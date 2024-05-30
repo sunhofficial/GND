@@ -17,6 +17,7 @@ final class AppCoordinator: AppCoordinatorProtocol {
     var type: CoordinatorType {.app}
     var childCoordinators =  [Coordinator]()
     var userusecase = UserUsecase(userReposiotry: UserRepository())
+    var courseUsecase = CourseUseCase(courseRepository: CourseRepository())
     required init(_ navigationController: UINavigationController) {
          self.navigationController = navigationController
          navigationController.setNavigationBarHidden(true, animated: true)
@@ -41,6 +42,7 @@ final class AppCoordinator: AppCoordinatorProtocol {
 //메인에 관련한 코디네이터 생성후 child추가
         let tabCoordinator = TabCoordinator(navigationController)
         tabCoordinator.userUsecase = userusecase
+        tabCoordinator.courseUseCase = courseUsecase
         tabCoordinator.finishDelegate = self
         tabCoordinator.start()
         childCoordinators.append(tabCoordinator)

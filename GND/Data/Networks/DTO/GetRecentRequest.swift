@@ -8,7 +8,7 @@
 import Foundation
 struct GetRecentRequest: Encodable {
      let showcount: Int
-     let nextcourseid: Int
+     let nextcourseid: Int?
     enum CodingKeys: String, CodingKey {
         case showcount = "show_count"
         case nextcourseid = "next_course_id"

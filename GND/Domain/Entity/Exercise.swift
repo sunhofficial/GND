@@ -7,8 +7,8 @@
 
 import Foundation
 struct ExerciseSession {
-    var startTime: Date
-    var endTime: Date
+    var startTime: String
+    var endTime: String
     var course: [Coordinate]
     var doShareCourse: Bool
     var courseName: String?

@@ -20,6 +20,7 @@ final class WarningView: UIView {
     }
     private var touchImage = UIImageView(image: UIImage(named: "touchFinger"))
     private var noticeText = UILabel().then {
+        $0.numberOfLines = 2
         $0.font = .systemFont(ofSize: 40, weight: .semibold)
         $0.textColor = .white
         $0.text = "확인했다면\n클릭해주세요"

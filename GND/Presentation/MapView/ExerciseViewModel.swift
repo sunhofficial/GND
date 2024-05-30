@@ -74,7 +74,7 @@ final class ExerciseViewModel: ObservableObject, ExerciseViewModelType {
             updateProgress()
         }
     }
-    init(coordinator: StrideCoordinator, exerciseUsecase: ExerciseUsecase, userGoal:Int ) {
+    init(coordinator: StrideCoordinator, exerciseUsecase: ExerciseUseCaseProtocol, userGoal:Int ) {
         self.coordinator = coordinator
         self.exerciseUsecase = exerciseUsecase
         self.userGoal = userGoal
@@ -147,25 +147,25 @@ final class ExerciseViewModel: ObservableObject, ExerciseViewModelType {
         let course = locationUpdates.map { location in
             Coordinate(latitude: location.latitude, longitude: location.longitude)
         }
-        exerciseUsecase?.postExerciseData(ExerciseSession(startTime: startTime, endTime: endTime, course: course, doShareCourse: true, courseName: title), exerciseData )
+        exerciseUsecase?.postExerciseData(ExerciseSession(startTime: startTime.formattedDateString(), endTime: endTime.formattedDateString(), course: course, doShareCourse: true, courseName: title), exerciseData )
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 print(completion)
             }, receiveValue: { result in
                 print("올라간다")
-            })
+            }).store(in: &cancellables)
     }
     func sendNotsharing() {
         guard let startTime = startTime, let endTime = endTime, let exerciseData = exerciseData else {return}
         let course = locationUpdates.map { location in
             Coordinate(latitude: location.latitude, longitude: location.longitude)
         }
-        exerciseUsecase?.postExerciseData(ExerciseSession(startTime: startTime, endTime: endTime, course: course, doShareCourse: false), exerciseData)
+        exerciseUsecase?.postExerciseData(ExerciseSession(startTime: startTime.formattedDateString(), endTime: endTime.formattedDateString(), course: course, doShareCourse: false), exerciseData)
             .sink(receiveCompletion: { completion in
                 print(completion)
             }, receiveValue: {[weak self] result in
                 self?.coordinator?.resetToMainView()
-            })
+            }).store(in: &cancellables)
     }
 
     private func updateProgress() {

@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 enum CourseAPI {
-    case requestGetRecent(showCount: Int, nextCourseID: Int)
+    case requestGetRecent(showCount: Int, nextCourseID: Int?)
 }
 extension CourseAPI: Router, URLRequestConvertible {
     var baseURL: String {

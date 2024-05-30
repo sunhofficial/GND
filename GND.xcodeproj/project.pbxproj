@@ -79,6 +79,11 @@
 		C7CD67012C07FAC900FB471A /* CourseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD67002C07FAC900FB471A /* CourseAPI.swift */; };
 		C7CD67032C08000600FB471A /* GetRecentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD67022C08000600FB471A /* GetRecentRequest.swift */; };
 		C7CD67052C08014B00FB471A /* Encodable+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD67042C08014B00FB471A /* Encodable+.swift */; };
+		C7CD67072C0803A300FB471A /* CourseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD67062C0803A300FB471A /* CourseRepository.swift */; };
+		C7CD67092C08046200FB471A /* GetRecentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD67082C08046200FB471A /* GetRecentResponse.swift */; };
+		C7CD670B2C08059D00FB471A /* RecentCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD670A2C08059D00FB471A /* RecentCourse.swift */; };
+		C7CD670D2C0823B700FB471A /* CourseUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD670C2C0823B700FB471A /* CourseUseCase.swift */; };
+		C7CD670F2C08406800FB471A /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD670E2C08406800FB471A /* Date+.swift */; };
 		C7DE2B882BEA425E00A049A9 /* KakaoLoginServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DE2B872BEA425E00A049A9 /* KakaoLoginServices.swift */; };
 /* End PBXBuildFile section */
 
@@ -165,6 +170,11 @@
 		C7CD67002C07FAC900FB471A /* CourseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseAPI.swift; sourceTree = "<group>"; };
 		C7CD67022C08000600FB471A /* GetRecentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRecentRequest.swift; sourceTree = "<group>"; };
 		C7CD67042C08014B00FB471A /* Encodable+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+.swift"; sourceTree = "<group>"; };
+		C7CD67062C0803A300FB471A /* CourseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseRepository.swift; sourceTree = "<group>"; };
+		C7CD67082C08046200FB471A /* GetRecentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRecentResponse.swift; sourceTree = "<group>"; };
+		C7CD670A2C08059D00FB471A /* RecentCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentCourse.swift; sourceTree = "<group>"; };
+		C7CD670C2C0823B700FB471A /* CourseUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseUseCase.swift; sourceTree = "<group>"; };
+		C7CD670E2C08406800FB471A /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		C7DE2B872BEA425E00A049A9 /* KakaoLoginServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLoginServices.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -277,6 +287,7 @@
 				C7BD5B012BE6D3100060CC38 /* UITextFiled+.swift */,
 				C7BD5B3F2BE7B8350060CC38 /* UIViewController+.swift */,
 				C7CD67042C08014B00FB471A /* Encodable+.swift */,
+				C7CD670E2C08406800FB471A /* Date+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -332,6 +343,7 @@
 			children = (
 				C7BD5B642BE8CB120060CC38 /* UserUsecase.swift */,
 				C7C2947F2BF3424C009FACD8 /* ExerciseUseCase.swift */,
+				C7CD670C2C0823B700FB471A /* CourseUseCase.swift */,
 			);
 			path = Usecase;
 			sourceTree = "<group>";
@@ -340,6 +352,7 @@
 			isa = PBXGroup;
 			children = (
 				C7BD5B672BE8CB3C0060CC38 /* LoginResponse.swift */,
+				C7CD67082C08046200FB471A /* GetRecentResponse.swift */,
 				C7CD67022C08000600FB471A /* GetRecentRequest.swift */,
 				C7BD5B792BE903F50060CC38 /* LoginRequest.swift */,
 				C7BE5C132BFC8837007B1D3D /* TodayGoalResponse.swift */,
@@ -370,6 +383,7 @@
 			isa = PBXGroup;
 			children = (
 				C7BD5B722BE8E40F0060CC38 /* UserRepository.swift */,
+				C7CD67062C0803A300FB471A /* CourseRepository.swift */,
 				C7B0BE342BF48DEA009ACE74 /* ExerciseRepository.swift */,
 				C7BD5B832BE9FCBD0060CC38 /* KeychainManager.swift */,
 			);
@@ -381,6 +395,7 @@
 			children = (
 				C7BD5B7D2BE9384C0060CC38 /* Login.swift */,
 				C7CD66FE2C047F7C00FB471A /* UserLevel.swift */,
+				C7CD670A2C08059D00FB471A /* RecentCourse.swift */,
 				C7BD5B7F2BE93D830060CC38 /* User.swift */,
 				C7C294832BF34CE8009FACD8 /* ExerciseMode.swift */,
 				C716082F2BF4AAEE005A937A /* Exercise.swift */,
@@ -533,8 +548,10 @@
 				C7BD5B4C2BE80BCE0060CC38 /* CellType.swift in Sources */,
 				C7C294802BF3424C009FACD8 /* ExerciseUseCase.swift in Sources */,
 				C72E721D2BE375DD0003176E /* AppDelegate.swift in Sources */,
+				C7CD67072C0803A300FB471A /* CourseRepository.swift in Sources */,
 				C7BD5B652BE8CB120060CC38 /* UserUsecase.swift in Sources */,
 				C7BD5B7A2BE903F50060CC38 /* LoginRequest.swift in Sources */,
+				C7CD670F2C08406800FB471A /* Date+.swift in Sources */,
 				C7C2946A2BF0AF6A009FACD8 /* CoreMotionService.swift in Sources */,
 				C7CD66FF2C047F7C00FB471A /* UserLevel.swift in Sources */,
 				C7C294752BF1FD9B009FACD8 /* StrideCoordinator.swift in Sources */,
@@ -542,11 +559,14 @@
 				C7BD5B782BE901FE0060CC38 /* UserAPI.swift in Sources */,
 				C7BD5B4E2BE812170060CC38 /* ExerciseButton.swift in Sources */,
 				C7BD5B682BE8CB3C0060CC38 /* LoginResponse.swift in Sources */,
+				C7CD67092C08046200FB471A /* GetRecentResponse.swift in Sources */,
 				C7BE5C042BFB4CF2007B1D3D /* WarningView.swift in Sources */,
 				C7DE2B882BEA425E00A049A9 /* KakaoLoginServices.swift in Sources */,
 				C7BD5B402BE7B8350060CC38 /* UIViewController+.swift in Sources */,
 				C7BD5B6B2BE8CE790060CC38 /* TabbarViewController.swift in Sources */,
+				C7CD670B2C08059D00FB471A /* RecentCourse.swift in Sources */,
 				C7C294652BF06BFF009FACD8 /* ExerciseViewController.swift in Sources */,
+				C7CD670D2C0823B700FB471A /* CourseUseCase.swift in Sources */,
 				C7BD5B842BE9FCBD0060CC38 /* KeychainManager.swift in Sources */,
 				C7BD5B552BE890F60060CC38 /* PartyModel.swift in Sources */,
 				C7BD5B592BE8A12B0060CC38 /* PartyDetailView.swift in Sources */,

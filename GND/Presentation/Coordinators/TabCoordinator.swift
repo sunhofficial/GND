@@ -55,6 +55,7 @@ class TabCoordinator: NSObject, TabCoordinatorProtocol {
     var tabbarController: UITabBarController
     var type: CoordinatorType {.tab}
     var userUsecase: UserUsecase?
+    var courseUseCase: CourseUseCaseProtocol?
 
     func start() {
         let pages: [TabbarPages] = TabbarPages.allCases
@@ -93,6 +94,7 @@ class TabCoordinator: NSObject, TabCoordinatorProtocol {
             let strideCoordinator = StrideCoordinator(tabNavigationController)
 //            strideCoordinator.finishDelegate = self
             strideCoordinator.userUsecase = userUsecase
+            strideCoordinator.courseUseCase = courseUseCase
             childCoordinators.append(strideCoordinator)
             strideCoordinator.start()
 //            navigationController.pushViewController(strideCoordinator, animated: true)
