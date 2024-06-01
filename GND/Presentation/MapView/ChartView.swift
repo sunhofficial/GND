@@ -130,7 +130,7 @@ struct ChartView: View {
         currentTask = Task {
             for (index, point) in datapoints.enumerated() {
                 DispatchQueue.main.asyncAfter(deadline: .now() + Double(index) * 0.01) {
-                    withAnimation(.easeOut(duration: 1)) {
+                    withAnimation(.easeIn(duration: 0.1)) {
                         animatedDatapoints.append(point)
                     }
                 }

@@ -41,7 +41,7 @@ class MainViewController: UIViewController {
         showLoadingView()
         bindViewModel()
         viewModel?.getUserGoal()
-        viewModel?.getRecentCourses()
+        viewModel?.getRecent1Course()
         self.view.backgroundColor = CustomColors.bk
 
 
@@ -54,7 +54,7 @@ class MainViewController: UIViewController {
                 self?.hideLoadingView()
                 self?.setupUI()
             }).store(in: &cancellables)
-        viewModel?.$recentCourses
+        viewModel?.$recentCourse
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] data in
                 guard let data = data else {return}
@@ -235,7 +235,7 @@ class MainViewController: UIViewController {
            recentView.configure(with: recentData)
        }
     @objc private func moreBtnTouch() {
-        print("더볼래?")
+        viewModel?.moveToRecent()
     }
     private func setExerciseButton() {
         view.addSubview(exerciseButton)

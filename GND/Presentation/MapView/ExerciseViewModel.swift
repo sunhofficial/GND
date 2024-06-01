@@ -150,9 +150,10 @@ final class ExerciseViewModel: ObservableObject, ExerciseViewModelType {
         exerciseUsecase?.postExerciseData(ExerciseSession(startTime: startTime.formattedDateString(), endTime: endTime.formattedDateString(), course: course, doShareCourse: true, courseName: title), exerciseData )
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
-                print(completion)
+                self.coordinator?.resetToMainView()
             }, receiveValue: { result in
                 print("올라간다")
+                self.coordinator?.resetToMainView()
             }).store(in: &cancellables)
     }
     func sendNotsharing() {
@@ -162,7 +163,7 @@ final class ExerciseViewModel: ObservableObject, ExerciseViewModelType {
         }
         exerciseUsecase?.postExerciseData(ExerciseSession(startTime: startTime.formattedDateString(), endTime: endTime.formattedDateString(), course: course, doShareCourse: false), exerciseData)
             .sink(receiveCompletion: { completion in
-                print(completion)
+                self.coordinator?.resetToMainView()
             }, receiveValue: {[weak self] result in
                 self?.coordinator?.resetToMainView()
             }).store(in: &cancellables)

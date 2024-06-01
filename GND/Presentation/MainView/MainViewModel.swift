@@ -18,11 +18,14 @@ final class MainViewModel: ObservableObject, MainviewModelInput {
     private var userUsecase: UserUseCaseProtocol?
     private var courseUsercase: CourseUseCaseProtocol?
     private var cancellables = Set<AnyCancellable>()
-    @Published var userLevel: UserLevel = .low
+     @Published var userLevel: UserLevel = .low
     @Published var userGoal: UserGoal?
     private var showCount = 1
-    @Published var nextCourseId: Int?
-    @Published var recentCourses: RecentCourse?
+//    @Published var nextCourseId: Int?
+   @Published var recentCourse: RecentCourse?
+    @Published var recentCourses: [RecentCourse] = []
+    private var hasMoreData = true
+    private var nextCourseId: Int?
     var postPublisher = PassthroughSubject<Bool,  Never>()
     func moveToExercise(mode: ExerciseMode) {
         guard let userGoal = userGoal else {return}
@@ -32,6 +35,9 @@ final class MainViewModel: ObservableObject, MainviewModelInput {
         self.coordinator = coordinator
         self.userUsecase = useCase
         self.courseUsercase = courseUsercase
+    }
+    func moveToRecent() {
+        coordinator?.showRecentView()
     }
     func getUserGoal()  {
         userUsecase?.getUserGoal()
@@ -46,14 +52,27 @@ final class MainViewModel: ObservableObject, MainviewModelInput {
             }).store(in: &cancellables)
     }
     func getRecentCourses() {
+        guard hasMoreData else {return}
         courseUsercase?.getRecentCourses(showCount: showCount, nextID: nextCourseId)
             .sink(receiveCompletion: { completion in
                 self.postPublisher.send(true)
-            }, receiveValue: { [weak self]pagenatied in
-                if let data = pagenatied.courses.first {
-                    self?.recentCourses = data
-                }
-//                recentCourses = pagenatied.courses.first
+            }, receiveValue: { [weak self] pagenatied in
+                self?.recentCourses.append(contentsOf: pagenatied.courses)
+                self?.nextCourseId = pagenatied.nextcourseId
+                self?.hasMoreData = pagenatied.hasNext
             }).store(in: &cancellables)
+    }
+    func getRecent1Course() {
+        courseUsercase?.getRecentCourses(showCount: 1, nextID: nil)
+            .sink(receiveCompletion: { completion in
+                self.postPublisher.send(true)
+            }, receiveValue: { [weak self ] page in
+                if let data = page.courses.first {
+                    self?.recentCourse = data
+                }
+            }).store(in: &cancellables)
+    }
+    func eraseRecentCourses() {
+        recentCourses = []
     }
 }
