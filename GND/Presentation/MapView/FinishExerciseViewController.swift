@@ -14,6 +14,7 @@ final class FinishExerciseViewController: UIViewController {
     var viewModel: ExerciseViewModel?
     private let scrollView = UIScrollView()
     private let contentView = UIView()
+    var userGoal: UserGoal?
     lazy var mapView =  MKMapView().then {
         $0.delegate = self
         $0.overrideUserInterfaceStyle = .light
@@ -69,7 +70,7 @@ final class FinishExerciseViewController: UIViewController {
             $0.top.horizontalEdges.equalToSuperview()
             $0.height.equalTo(400)
         }
-        let controller = UIHostingController(rootView: ChartView(viewModel: viewModel!))
+        let controller = UIHostingController(rootView: ChartView(viewModel: viewModel!, userGoal: userGoal!))
         guard let chartsView = controller.view else {
             return
         }

@@ -50,12 +50,28 @@ struct ChartButton: View {
 }
 struct ChartView: View {
     @ObservedObject var viewModel: ExerciseViewModel
-    @State private var selectedMode: ChartMode?
+    @State private var selectedMode: ChartMode? {
+        didSet {
+            switch selectedMode {
+            case .speed:
+                goalValue = userGoal.goalSpeed
+            case .stride:
+                goalValue = Double(userGoal.goalStride)
+            case .distance:
+                goalValue = nil
+            case .walkCount:
+                goalValue = Double(userGoal.goalStep - userGoal.todayStep)
+            case nil:
+                goalValue = nil
+            }
+        }
+    }
     @State private var datapoints: [DataPoint] = []
     @State private var animatedDatapoints: [DataPoint] = []
-    @State private var goalValue = 10.0
+    @State private var goalValue: Double?
     @State private var isAnimtedFinish = false
     @State private var currentTask: Task<Void, Never>?
+    var userGoal: UserGoal
 
     var body: some View {
         VStack(spacing: 16) {
@@ -68,10 +84,10 @@ struct ChartView: View {
                 }
             }
             HStack(spacing: 16){
-                ChartButton(mode: .distance, isSeleceted: selectedMode == .distance, value: Double(viewModel.exerciseData?.totalDistance ?? 0)) {
+                ChartButton(mode: .distance, isSeleceted: selectedMode == .distance, value: Double(viewModel.exerciseData?.distanceDatas.last ?? 0)) {
                     selectedMode = .distance
                 }
-                ChartButton(mode: .walkCount, isSeleceted: selectedMode == .walkCount, value: Double(viewModel.exerciseData?.totalWalkCount ?? 0)) {
+                ChartButton(mode: .walkCount, isSeleceted: selectedMode == .walkCount, value: Double(viewModel.exerciseData?.walkCountDatas.last ?? 0)) {
                     selectedMode = .walkCount
                 }
             }
@@ -90,15 +106,18 @@ struct ChartView: View {
                         .interpolationMethod(.cardinal)
                         .foregroundStyle(Color(uiColor: CustomColors.brown))
                 }
-                RuleMark(y: .value("Goal", goalValue))
-                    .lineStyle(StrokeStyle(lineWidth: 2, dash: [5]))
-                    .foregroundStyle(.gray)
-                    .annotation(position: .trailing, alignment: .leading) {
-                        Text("목표: \(goalValue, specifier: "%.1f")")
-                            .font(.headline)
-                            .foregroundStyle(Color(uiColor: CustomColors.brown))
-                            .offset(x: -30)
-                    }
+                if let goalValue = self.goalValue {
+                    RuleMark(y: .value("Goal", goalValue))
+                        .lineStyle(StrokeStyle(lineWidth: 2, dash: [5]))
+                        .foregroundStyle(.gray)
+                        .annotation(position: .trailing, alignment: .leading) {
+                            Text("목표: \(goalValue, specifier: "%.1f")")
+                                .font(.headline)
+                                .foregroundStyle(Color(uiColor: CustomColors.brown))
+                                .offset(x: -48)
+                        }
+                }
+
 
             }.chartXAxis(.hidden)
                 .chartYAxis(content: {
@@ -156,21 +175,4 @@ struct DataPoint: Identifiable {
     let id = UUID()
     let time: Int
     var value: Double
-//    var animate: Bool = false
 }
-//struct DummyData {
-//    static func generateDummyExerciseData() -> ExerciseData {
-//        return ExerciseData(
-//            speedDatas: [5.0, 5.2, 5.1, 5.3,5.0, 5.2, 5.1, 5.3,5.0, 5.2, 5.1, 5.3,75.0, 76.0, 74.5, 75.5],
-//            strideDatas: [75.0, 76.0, 74.5, 75.5,100.0, 105.0, 102.0, 108.0,100.0, 105.0, 102.0, 108.0],
-//            distanceDatas: [100.0, 105.0, 102.0, 108.0,74.5, 75.5,100.0, 105.0, 102.0, 108.0,100.0, 105.0, 102.0, 108.0],
-//            walkCountDatas: [1000, 1050, 1020, 1080]
-//        )
-//    }
-//}
-//#Preview {
-//
-//    //    let exerciseViewModel = ExerciseViewModel(exerciseUsecase: ExerciseUsecase(coreLocationService: CoreLocationServices(), exerciseRepository: ExerciseRepository(), coreMotionService: CoreMotionService()))
-//    //    exerciseViewModel.exerciseData = dummyData
-//    ChartView(viewModel: ExerciseViewModel(dummyData: DummyData.generateDummyExerciseData()))
-//}

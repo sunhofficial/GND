@@ -26,7 +26,7 @@ enum WarningCase {
         case .lowStride(let diff):
             "\(diff)cm 더 길게 걸어주세요"
         case .lowSpeed(let diff):
-            "\(diff)m/s 더 빠르게 걸어주세요"
+            "\(diff)km/h 더 빠르게 걸어주세요"
         }
     }
 }

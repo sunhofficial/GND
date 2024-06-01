@@ -25,10 +25,4 @@ struct ExerciseData {
 
         return strideDatas.count == 0 ? 0 : strideDatas.reduce(0) {$0 + $1} / strideDatas.count
     }
-    var totalDistance: Int {
-        return distanceDatas.reduce(0) {$0 + $1}
-    }
-    var totalWalkCount: Int {
-        return walkCountDatas.reduce(0) { $0 + $1}
-    }
 }
