@@ -20,7 +20,15 @@ enum CellType {
           case .recentCource(let model):
               view.titleLabel.text = model.courseTitle
               view.subtitleLabel.text = "코스길이: \(model.courseDistance)m"
-              view.lastLabel.text = "운동시간: \(model.courseTime/60)시간 \(model.courseTime % 60)분"
+              let hours = model.courseTime / 3600
+                let minutes = (model.courseTime % 3600) / 60
+                let seconds = model.courseTime % 60
+
+                if hours > 0 {
+                    view.lastLabel.text = "운동시간: \(hours)시간 \(minutes)분"
+                } else {
+                    view.lastLabel.text = "운동시간: \(minutes)분 \(seconds)초"
+                }
               guard let firstCoordinates = model.coordinates.first else {return}
               let startannotation = MKPointAnnotation()
               startannotation.coordinate = CLLocationCoordinate2D(latitude: firstCoordinates.latitude, longitude: firstCoordinates.longitude)

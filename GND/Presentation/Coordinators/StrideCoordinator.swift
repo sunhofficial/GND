@@ -19,6 +19,7 @@
         var exerciseViewModel: ExerciseViewModel?
         var userGoal: UserGoal?
         private var mainViewModel: MainViewModel?
+        var isFirst: Bool?
         var userUsecase: UserUsecase?
         required init(_ navigationController: UINavigationController) {
             self.navigationController = navigationController
@@ -28,7 +29,7 @@
             self.navigationController.isNavigationBarHidden = true
             let exerciseViewController = ExerciseViewController()
             self.userGoal = goal
-            self.exerciseUseCase =  ExerciseUsecase(coreLocationService: CoreLocationServices(), exerciseRepository: ExerciseRepository(), coreMotionService: CoreMotionService(mode: mode, goal: goal)) // 이것도 어디서 주입할지 생각해봐야할듯 여기서부터 필요한가?
+            self.exerciseUseCase =  ExerciseUsecase( exerciseRepository: ExerciseRepository(), coreMotionService: CoreMotionService(mode: mode, goal: goal)) // 이것도 어디서 주입할지 생각해봐야할듯 여기서부터 필요한가?
             self.exerciseViewModel = ExerciseViewModel(coordinator: self, exerciseUsecase: exerciseUseCase!, userGoal:  userGoal)
             exerciseViewController.viewModel = exerciseViewModel
             navigationController.pushViewController(exerciseViewController, animated: false)
@@ -58,7 +59,7 @@
         var type: CoordinatorType {.home}
 
         func start() {
-            mainViewModel = MainViewModel(coordinator: self, useCase: userUsecase!, courseUsercase: courseUseCase!)
+            mainViewModel = MainViewModel(coordinator: self, useCase: userUsecase!, courseUsercase: courseUseCase!, isFirst: isFirst!)
             mainviewController.viewModel = mainViewModel
 
             self.navigationController.pushViewController(mainviewController, animated: false)

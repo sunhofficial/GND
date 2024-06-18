@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 protocol AppCoordinatorProtocol: Coordinator {
     func showLoginFlow()
-    func showMainFlow()
+    func showMainFlow(isFirst: Bool )
 }
 final class AppCoordinator: AppCoordinatorProtocol {    
     weak var finishDelegate: CoordinatorFinishDelegate? = nil
@@ -38,11 +38,12 @@ final class AppCoordinator: AppCoordinatorProtocol {
         loginCoordinator.start()
         childCoordinators.append(loginCoordinator)
     }
-    func showMainFlow() {
+    func showMainFlow(isFirst: Bool = false) {
 //메인에 관련한 코디네이터 생성후 child추가
         let tabCoordinator = TabCoordinator(navigationController)
         tabCoordinator.userUsecase = userusecase
         tabCoordinator.courseUseCase = courseUsecase
+        tabCoordinator.isFirst = isFirst
         tabCoordinator.finishDelegate = self
         tabCoordinator.start()
         childCoordinators.append(tabCoordinator)
@@ -57,7 +58,7 @@ extension AppCoordinator: CoordinatorFinishDelegate {
         self.navigationController.viewControllers.removeAll()
         switch childCoordinator.type {
         case .login:
-            self.showMainFlow()
+            self.showMainFlow(isFirst: true)
         case .tab:
             self.showLoginFlow()
         default:

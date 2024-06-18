@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C70C32482C155B1900C85040 /* GoalModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70C32472C155B1900C85040 /* GoalModalView.swift */; };
 		C716082E2BF4A89F005A937A /* SaveExerciseRequset.swift in Sources */ = {isa = PBXBuildFile; fileRef = C716082D2BF4A89F005A937A /* SaveExerciseRequset.swift */; };
 		C71608302BF4AAEE005A937A /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = C716082F2BF4AAEE005A937A /* Exercise.swift */; };
 		C71608322BF50E70005A937A /* ExerciseTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71608312BF50E70005A937A /* ExerciseTracking.swift */; };
@@ -15,6 +16,7 @@
 		C72E721F2BE375DD0003176E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72E721E2BE375DD0003176E /* SceneDelegate.swift */; };
 		C72E72262BE375DF0003176E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C72E72252BE375DF0003176E /* Assets.xcassets */; };
 		C72E72292BE375DF0003176E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = C72E72282BE375DF0003176E /* Base */; };
+		C7678E142C2055FE008AF44C /* ModalGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7678E132C2055FE008AF44C /* ModalGoal.swift */; };
 		C7ADA9DF2BF9E64C00EE712B /* SetCourseTitleModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ADA9DE2BF9E64C00EE712B /* SetCourseTitleModal.swift */; };
 		C7B0BE332BF4613A009ACE74 /* FinishExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0BE322BF4613A009ACE74 /* FinishExerciseViewController.swift */; };
 		C7B0BE352BF48DEA009ACE74 /* ExerciseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0BE342BF48DEA009ACE74 /* ExerciseRepository.swift */; };
@@ -102,6 +104,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C70C32472C155B1900C85040 /* GoalModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalModalView.swift; sourceTree = "<group>"; };
 		C716082D2BF4A89F005A937A /* SaveExerciseRequset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveExerciseRequset.swift; sourceTree = "<group>"; };
 		C716082F2BF4AAEE005A937A /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		C71608312BF50E70005A937A /* ExerciseTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseTracking.swift; sourceTree = "<group>"; };
@@ -112,6 +115,7 @@
 		C72E72252BE375DF0003176E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C72E72282BE375DF0003176E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C72E722A2BE375DF0003176E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C7678E132C2055FE008AF44C /* ModalGoal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalGoal.swift; sourceTree = "<group>"; };
 		C7ADA9DE2BF9E64C00EE712B /* SetCourseTitleModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCourseTitleModal.swift; sourceTree = "<group>"; };
 		C7B0BE322BF4613A009ACE74 /* FinishExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishExerciseViewController.swift; sourceTree = "<group>"; };
 		C7B0BE342BF48DEA009ACE74 /* ExerciseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRepository.swift; sourceTree = "<group>"; };
@@ -218,7 +222,6 @@
 			children = (
 				C7BD5B6C2BE8DD430060CC38 /* Data */,
 				C7BD5AFF2BE6D2F90060CC38 /* Utils */,
-				C7BD5AEC2BE606750060CC38 /* GND.entitlements */,
 				C7BD5AE02BE604370060CC38 /* Domain */,
 				C72E721C2BE375DD0003176E /* AppDelegate.swift */,
 				C72E721E2BE375DD0003176E /* SceneDelegate.swift */,
@@ -226,6 +229,7 @@
 				C72E72252BE375DF0003176E /* Assets.xcassets */,
 				C72E72272BE375DF0003176E /* LaunchScreen.storyboard */,
 				C72E722A2BE375DF0003176E /* Info.plist */,
+				C7BD5AEC2BE606750060CC38 /* GND.entitlements */,
 			);
 			path = GND;
 			sourceTree = "<group>";
@@ -306,6 +310,7 @@
 				C7BD5B492BE805CC0060CC38 /* CourseModel.swift */,
 				C7BD5B4B2BE80BCE0060CC38 /* CellType.swift */,
 				C7BD5B4D2BE812170060CC38 /* ExerciseButton.swift */,
+				C70C32472C155B1900C85040 /* GoalModalView.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -403,6 +408,7 @@
 				C7C294832BF34CE8009FACD8 /* ExerciseMode.swift */,
 				C716082F2BF4AAEE005A937A /* Exercise.swift */,
 				C7CD66FC2C046A9900FB471A /* UserGoal.swift */,
+				C7678E132C2055FE008AF44C /* ModalGoal.swift */,
 				C71608312BF50E70005A937A /* ExerciseTracking.swift */,
 			);
 			path = Entity;
@@ -581,6 +587,7 @@
 				C7C294732BF10A08009FACD8 /* TabCoordinator.swift in Sources */,
 				C7CD67032C08000600FB471A /* GetRecentRequest.swift in Sources */,
 				C7BD5B7C2BE904620060CC38 /* API.swift in Sources */,
+				C70C32482C155B1900C85040 /* GoalModalView.swift in Sources */,
 				C7BE5C142BFC8837007B1D3D /* TodayGoalResponse.swift in Sources */,
 				C7BD5AEE2BE608E80060CC38 /* LoginViewModel.swift in Sources */,
 				C7C294772BF1FDA2009FACD8 /* TogetherCoordinator.swift in Sources */,
@@ -609,6 +616,7 @@
 				C7CD67052C08014B00FB471A /* Encodable+.swift in Sources */,
 				C7BD5B3E2BE7A4330060CC38 /* MainViewController.swift in Sources */,
 				C7C2946D2BF0C158009FACD8 /* Coordinator.swift in Sources */,
+				C7678E142C2055FE008AF44C /* ModalGoal.swift in Sources */,
 				C7BD5B752BE9013B0060CC38 /* Router.swift in Sources */,
 				C7BD5AFA2BE62BFA0060CC38 /* ProfileViewController.swift in Sources */,
 				C7BD5B022BE6D3100060CC38 /* UITextFiled+.swift in Sources */,

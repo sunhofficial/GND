@@ -50,8 +50,8 @@ final class ExerciseUsecase: ExerciseUseCaseProtocol {
     var stepsPublisher: AnyPublisher<Int, Never> {
         coreMotionService.stepsPublisher.eraseToAnyPublisher()
     }
-    init(coreLocationService: CoreLocationServicesProtocol, exerciseRepository: ExerciseRepository, coreMotionService: CoreMotionServiceProtocol) {
-        self.coreLocationService = coreLocationService
+    init( exerciseRepository: ExerciseRepository, coreMotionService: CoreMotionServiceProtocol) {
+        self.coreLocationService = CoreLocationServices()
         self.exerciseRepository = exerciseRepository
         self.coreMotionService = coreMotionService
     }

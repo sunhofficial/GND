@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 struct API {
-    static let baseURL = "http://sonserver.duckdns.org"
+    static let baseURL = "http://sonserver2.duckdns.org"
     enum NetworkHeaderKey: String {
         case contentType = "Content-Type"
         case authorization = "Authorization"

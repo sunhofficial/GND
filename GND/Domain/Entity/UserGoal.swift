@@ -15,5 +15,6 @@ struct UserGoal {
     var goalSpeed: Double
     var todayStep: Int
     var goalStep: Int
-    
+    var levelup: Bool
+
 }

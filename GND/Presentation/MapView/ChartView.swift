@@ -15,7 +15,7 @@ enum ChartMode: String {
     var units: String {
         switch self {
         case .speed:
-            "m/s"
+            "km/h"
         case .stride:
             "cm"
         case .distance:

@@ -18,7 +18,7 @@ struct TodayGoalResponse: Decodable {
         case todayTierUp = "today_tier_up"
     }
     func toDomain() -> UserGoal {
-        return .init(level: tier, exp: exp, todayStride: stride.todaycurrent, goalStride: stride.todayGoal, todaySpeed: speed.todaycurrent, goalSpeed: speed.todayGoal, todayStep: step.todaycurrent, goalStep: step.todayGoal)
+        return .init(level: tier, exp: exp, todayStride: stride.todaycurrent, goalStride: stride.todayGoal, todaySpeed: speed.todaycurrent, goalSpeed: speed.todayGoal, todayStep: step.todaycurrent, goalStep: step.todayGoal,levelup: todayTierUp)
     }
 }
 

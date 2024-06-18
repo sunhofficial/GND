@@ -12,7 +12,7 @@ import Combine
 
 class MainViewController: UIViewController {
     var enterRooms :[EnterModel] = [ EnterModel(title: "경희대 사람문의", subtitle: "교수 경희대 국제관 하반기", participantCount: 3, imageString: "logo"),
-    EnterModel(title: "어쩌구 저쩌구", subtitle: "코스 설명", participantCount: 10, imageString:  "logo")]
+                                     EnterModel(title: "어쩌구 저쩌구", subtitle: "코스 설명", participantCount: 10, imageString:  "logo")]
     let goalView = UIView().then {
         $0.layer.cornerRadius = 16
         $0.backgroundColor = CustomColors.cell
@@ -24,16 +24,17 @@ class MainViewController: UIViewController {
     private var cancellables = Set<AnyCancellable>()
     let recentView = CellView()
     private var recentData: CellType?
+    private var goalModalView: GoalModalView?
     private lazy var collectionView: UICollectionView = {
-         let layout = UICollectionViewFlowLayout()
-         layout.scrollDirection = .horizontal
-         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(EnterRoomCell.self, forCellWithReuseIdentifier: EnterRoomCell.id)
-         collectionView.delegate = self
-         collectionView.dataSource = self
-         collectionView.backgroundColor = .white
-         return collectionView
-     }()
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.backgroundColor = .white
+        return collectionView
+    }()
     private let exerciseButton = ExerciseButton(mode: ExerciseMode.normal )
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,9 +44,6 @@ class MainViewController: UIViewController {
         viewModel?.getUserGoal()
         viewModel?.getRecent1Course()
         self.view.backgroundColor = CustomColors.bk
-
-
-
     }
     private func bindViewModel() {
         viewModel?.postPublisher
@@ -54,6 +52,20 @@ class MainViewController: UIViewController {
                 self?.hideLoadingView()
                 self?.setupUI()
             }).store(in: &cancellables)
+        viewModel?.firstPublisher
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { isFirst in
+                if isFirst {
+                    self.setupGoalModalView(isFirst: true )
+                }
+            }).store(in: &cancellables)
+        viewModel?.levelupPublisher
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { levelup in
+                if levelup {
+                    self.setupGoalModalView(isFirst: false )
+                }
+            }).store(in: &cancellables)
         viewModel?.$recentCourse
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] data in
@@ -61,10 +73,10 @@ class MainViewController: UIViewController {
                 self?.setupUI()
                 self?.recentData = .recentCource(CourseModel(courseTitle: data.courseName ?? "", courseDistance: data.distance, courseTime: data.time, coordinates: data.course))
                 self?.updateRecentView()
-
+                
             }).store(in: &cancellables)
     }
-
+    
     private func setupUI() {
         setupNavigationBar()
         setupGoalView()
@@ -75,11 +87,11 @@ class MainViewController: UIViewController {
     private func setupLoadingView() {
         loadingView.frame = view.bounds
         loadingView.backgroundColor = .white
-
+        
         activityIndicator.center = loadingView.center
         loadingView.addSubview(activityIndicator)
     }
-
+    
     private func showLoadingView() {
         view.addSubview(loadingView)
         activityIndicator.startAnimating()
@@ -88,14 +100,12 @@ class MainViewController: UIViewController {
         activityIndicator.stopAnimating()
         loadingView.removeFromSuperview()
     }
-
+    
     private func setupNavigationBar() {
-//        navigationController?.navigationBar.ishi = true
-//        self.navigationItem.setHidesBackButton(true, animated: true)
-           let profileButton = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle"), style: .plain, target: self, action: #selector(profileButtonTapped))
-           navigationItem.rightBarButtonItem = profileButton
-       }
-
+        let profileButton = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle"), style: .plain, target: self, action: #selector(profileButtonTapped))
+        navigationItem.rightBarButtonItem = profileButton
+    }
+    
     @objc private func profileButtonTapped() {
         print("프로필 버튼이 클릭되었습니다.")
     }
@@ -121,7 +131,7 @@ class MainViewController: UIViewController {
             $0.tintColor = UIColor(named: viewModel?.userLevel.colorString ?? "lowLevelColor")
             $0.clipsToBounds = true
             $0.layer.cornerRadius = 10
-            }
+        }
         let levelImage = UIImageView(image: UIImage(named: viewModel?.userLevel.imageString ?? "lowLevel"))
         let meterGoalView = makeGoalInfoView(current: viewModel?.userGoal?.todayStride ?? 0, goal: viewModel?.userGoal?.goalStride ?? 0, measure: "cm")
         let speedGoalView = makeGoalInfoView(current: viewModel?.userGoal?.todaySpeed ?? 0.0 , goal: viewModel?.userGoal?.goalSpeed ?? 0.0, measure: "km/h")
@@ -134,7 +144,7 @@ class MainViewController: UIViewController {
             .forEach {
                 goalView.addSubview($0)
             }
-
+        
         levelLabel.snp.makeConstraints {
             $0.top.leading.equalToSuperview().offset(16)
         }
@@ -231,9 +241,9 @@ class MainViewController: UIViewController {
         }
     }
     private func updateRecentView() {
-           guard let recentData = recentData else { return }
-           recentView.configure(with: recentData)
-       }
+        guard let recentData = recentData else { return }
+        recentView.configure(with: recentData)
+    }
     @objc private func moreBtnTouch() {
         viewModel?.moveToRecent()
     }
@@ -244,7 +254,7 @@ class MainViewController: UIViewController {
             $0.centerX.equalToSuperview()
         }
         exerciseButton.addTarget(self, action: #selector(exerciseButtonTapped), for: .touchUpInside)
-        }
+    }
     @objc private func exerciseButtonTapped() {
         showExerciseOptions()
     }
@@ -254,34 +264,55 @@ class MainViewController: UIViewController {
         self.view.addSubview(overlay)
         self.overlayView = overlay
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissOverlay))
-         overlay.addGestureRecognizer(tapGesture)
+        overlay.addGestureRecognizer(tapGesture)
         let buttons = ExerciseMode.allCases.filter { $0 != .normal }.map { mode -> UIButton in
-                   let button = ExerciseButton(mode: mode)
-                   button.addTarget(self, action: #selector(buttonAction(sender:)), for: .touchUpInside)
-                   return button
-               }
-         // Buttons 생성
+            let button = ExerciseButton(mode: mode)
+            button.addTarget(self, action: #selector(buttonAction(sender:)), for: .touchUpInside)
+            return button
+        }
+        // Buttons 생성
         buttons.forEach { button in
-                  overlayView?.addSubview(button)
-              }
+            overlayView?.addSubview(button)
+        }
         buttons[0].snp.makeConstraints { $0.bottom.equalTo(exerciseButton.snp.top).offset(-96); $0.centerX.equalToSuperview() }
-             buttons[1].snp.makeConstraints { $0.bottom.equalTo(exerciseButton.snp.top); $0.trailing.equalTo(exerciseButton.snp.leading) }
-             buttons[2].snp.makeConstraints { $0.bottom.equalTo(exerciseButton.snp.top); $0.leading.equalTo(exerciseButton.snp.trailing) }
-             buttons[3].snp.makeConstraints { $0.edges.equalTo(exerciseButton) }
-
-
+        buttons[1].snp.makeConstraints { $0.bottom.equalTo(exerciseButton.snp.top); $0.trailing.equalTo(exerciseButton.snp.leading) }
+        buttons[2].snp.makeConstraints { $0.bottom.equalTo(exerciseButton.snp.top); $0.leading.equalTo(exerciseButton.snp.trailing) }
+        buttons[3].snp.makeConstraints { $0.edges.equalTo(exerciseButton) }
+    }
+    private func setupGoalModalView(isFirst: Bool) {
+        goalModalView = GoalModalView()
+        goalModalView?.goal = viewModel?.modalGoal
+        if isFirst {
+            goalModalView?.goalType = .first
+        } else {
+            goalModalView?.goalType = .levelup(nextLevel: viewModel!.userLevel)
+        }
+        goalModalView?.layer.cornerRadius = 16
+        goalModalView?.backgroundColor = CustomColors.bk
+        let overlay = UIView(frame: self.view.bounds)
+        overlay.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        self.view.addSubview(overlay)
+        self.view.addSubview(goalModalView!)
+        overlayView = overlay
+        goalModalView?.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.width.equalTo(320)
+            $0.height.equalTo(520)
+        }
+        let tapgesture = UITapGestureRecognizer(target: self, action: #selector(dismissOverlay))
+        overlay.addGestureRecognizer(tapgesture)
     }
     @objc private func dismissOverlay() {
         overlayView?.removeFromSuperview()
     }
-
+    
     @objc private func buttonAction(sender: UIButton) {
         guard let modeIdentifier = sender.accessibilityIdentifier,
-                   let mode = ExerciseMode(rawValue: modeIdentifier) else {
-                 return
-             }
+              let mode = ExerciseMode(rawValue: modeIdentifier) else {
+            return
+        }
         mode == .none ? dismissOverlay() : viewModel?.moveToExercise(mode: mode)
-     
+        
     }
 }
 
@@ -297,15 +328,15 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             fatalError("Unable to dequeue EnterRoomCell")
         }
         let room = enterRooms[indexPath.row]
-         cell.configure(with: room)  // 셀에 데이터 설정
+        cell.configure(with: room)  // 셀에 데이터 설정
         return cell
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.bounds.width - 32, height: collectionView.bounds.height + 8) 
     }
-
-
+    
+    
 }
 #Preview {
     let vc = UINavigationController(rootViewController: MainViewController())

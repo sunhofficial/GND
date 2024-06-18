@@ -75,7 +75,7 @@ class CoreMotionService: CoreMotionServiceProtocol {
             self.currentStep = data?.numberOfSteps.intValue ?? self.currentStep
         }
 
-        timer = Timer.publish(every: 10.0, tolerance: 0.1, on: .main, in: .common)
+        timer = Timer.publish(every: 20.0, tolerance: 0.1, on: .main, in: .common)
             .autoconnect()
             .sink { [weak self] _ in
                 guard let self = self else { return }
@@ -87,7 +87,7 @@ class CoreMotionService: CoreMotionServiceProtocol {
 
     private func fetchStepData(isFinalFetch: Bool = false) async {
         let nowDate = Date()
-        let fromDate = isFinalFetch ? (pastTime ?? nowDate.addingTimeInterval(-10)) : nowDate.addingTimeInterval(-10)
+        let fromDate = isFinalFetch ? (pastTime ?? nowDate.addingTimeInterval(-20)) : nowDate.addingTimeInterval(-20)
 
         do {
             let data = try await pedometer.queryPedometerDataAsync(from: fromDate, to: nowDate)
