@@ -25,6 +25,7 @@ class MainViewController: UIViewController {
     let recentView = CellView()
     private var recentData: CellType?
     private var goalModalView: GoalModalView?
+    private var modalType: GoalType?
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -45,6 +46,9 @@ class MainViewController: UIViewController {
         viewModel?.getRecent1Course()
         self.view.backgroundColor = CustomColors.bk
     }
+    override func viewDidDisappear(_ animated: Bool) {
+        overlayView?.removeFromSuperview()
+    }
     private func bindViewModel() {
         viewModel?.postPublisher
             .receive(on: DispatchQueue.main)
@@ -52,20 +56,7 @@ class MainViewController: UIViewController {
                 self?.hideLoadingView()
                 self?.setupUI()
             }).store(in: &cancellables)
-        viewModel?.firstPublisher
-            .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { isFirst in
-                if isFirst {
-                    self.setupGoalModalView(isFirst: true )
-                }
-            }).store(in: &cancellables)
-        viewModel?.levelupPublisher
-            .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { levelup in
-                if levelup {
-                    self.setupGoalModalView(isFirst: false )
-                }
-            }).store(in: &cancellables)
+
         viewModel?.$recentCourse
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] data in
@@ -73,25 +64,51 @@ class MainViewController: UIViewController {
                 self?.setupUI()
                 self?.recentData = .recentCource(CourseModel(courseTitle: data.courseName ?? "", courseDistance: data.distance, courseTime: data.time, coordinates: data.course))
                 self?.updateRecentView()
-                
+
+            }).store(in: &cancellables)
+        viewModel?.firstPublisher
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { isFirst in
+                if isFirst {
+                    self.modalType = .first
+                }
+            }).store(in: &cancellables)
+        viewModel?.levelupPublisher
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { levelup in
+                if levelup {
+                    self.modalType = .levelup(nextLevel: self.viewModel!.userLevel)
+                }
             }).store(in: &cancellables)
     }
-    
+
     private func setupUI() {
         setupNavigationBar()
         setupGoalView()
         setEnterRooms()
         setRecentCourse()
         setExerciseButton()
+
+        switch modalType {
+        case .first:
+            setupGoalModalView(isFirst: true )
+        case .levelup(let nextLevel):
+            setupGoalModalView(isFirst: false)
+        case nil:
+            break
+        }
+
+
+
     }
     private func setupLoadingView() {
         loadingView.frame = view.bounds
         loadingView.backgroundColor = .white
-        
+
         activityIndicator.center = loadingView.center
         loadingView.addSubview(activityIndicator)
     }
-    
+
     private func showLoadingView() {
         view.addSubview(loadingView)
         activityIndicator.startAnimating()
@@ -100,12 +117,12 @@ class MainViewController: UIViewController {
         activityIndicator.stopAnimating()
         loadingView.removeFromSuperview()
     }
-    
+
     private func setupNavigationBar() {
         let profileButton = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle"), style: .plain, target: self, action: #selector(profileButtonTapped))
         navigationItem.rightBarButtonItem = profileButton
     }
-    
+
     @objc private func profileButtonTapped() {
         print("프로필 버튼이 클릭되었습니다.")
     }
@@ -144,7 +161,7 @@ class MainViewController: UIViewController {
             .forEach {
                 goalView.addSubview($0)
             }
-        
+
         levelLabel.snp.makeConstraints {
             $0.top.leading.equalToSuperview().offset(16)
         }
@@ -292,7 +309,7 @@ class MainViewController: UIViewController {
         let overlay = UIView(frame: self.view.bounds)
         overlay.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         self.view.addSubview(overlay)
-        self.view.addSubview(goalModalView!)
+        overlay.addSubview(goalModalView!)
         overlayView = overlay
         goalModalView?.snp.makeConstraints {
             $0.center.equalToSuperview()
@@ -305,24 +322,25 @@ class MainViewController: UIViewController {
     @objc private func dismissOverlay() {
         overlayView?.removeFromSuperview()
     }
-    
+
     @objc private func buttonAction(sender: UIButton) {
         guard let modeIdentifier = sender.accessibilityIdentifier,
               let mode = ExerciseMode(rawValue: modeIdentifier) else {
             return
         }
         mode == .none ? dismissOverlay() : viewModel?.moveToExercise(mode: mode)
-        
+
     }
 }
 
 
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         enterRooms.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EnterRoomCell.id, for: indexPath) as? EnterRoomCell else {
             fatalError("Unable to dequeue EnterRoomCell")
@@ -331,12 +349,10 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.configure(with: room)  // 셀에 데이터 설정
         return cell
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.bounds.width - 32, height: collectionView.bounds.height + 8) 
+        return CGSize(width: collectionView.bounds.width - 32, height: collectionView.bounds.height + 8)
     }
-    
-    
 }
 #Preview {
     let vc = UINavigationController(rootViewController: MainViewController())
