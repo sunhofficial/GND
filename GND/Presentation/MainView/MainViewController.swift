@@ -61,7 +61,7 @@ class MainViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] data in
                 guard let data = data else {return}
-                self?.setupUI()
+//                self?.setupUI()
                 self?.recentData = .recentCource(CourseModel(courseTitle: data.courseName ?? "", courseDistance: data.distance, courseTime: data.time, coordinates: data.course))
                 self?.updateRecentView()
 

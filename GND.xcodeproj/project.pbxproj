@@ -17,6 +17,11 @@
 		C72E72262BE375DF0003176E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C72E72252BE375DF0003176E /* Assets.xcassets */; };
 		C72E72292BE375DF0003176E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = C72E72282BE375DF0003176E /* Base */; };
 		C7678E142C2055FE008AF44C /* ModalGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7678E132C2055FE008AF44C /* ModalGoal.swift */; };
+		C7678E182C23132E008AF44C /* DropDownTabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7678E172C23132E008AF44C /* DropDownTabelCell.swift */; };
+		C7678E1A2C23148A008AF44C /* DropDownButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7678E192C23148A008AF44C /* DropDownButton.swift */; };
+		C7678E1C2C23335F008AF44C /* DropRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7678E1B2C23335F008AF44C /* DropRange.swift */; };
+		C7678E1E2C23495C008AF44C /* AnalyzeChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7678E1D2C23495C008AF44C /* AnalyzeChartView.swift */; };
+		C7678E202C2349E6008AF44C /* AnalyzeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7678E1F2C2349E6008AF44C /* AnalyzeViewModel.swift */; };
 		C7ADA9DF2BF9E64C00EE712B /* SetCourseTitleModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ADA9DE2BF9E64C00EE712B /* SetCourseTitleModal.swift */; };
 		C7B0BE332BF4613A009ACE74 /* FinishExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0BE322BF4613A009ACE74 /* FinishExerciseViewController.swift */; };
 		C7B0BE352BF48DEA009ACE74 /* ExerciseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0BE342BF48DEA009ACE74 /* ExerciseRepository.swift */; };
@@ -116,6 +121,11 @@
 		C72E72282BE375DF0003176E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C72E722A2BE375DF0003176E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7678E132C2055FE008AF44C /* ModalGoal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalGoal.swift; sourceTree = "<group>"; };
+		C7678E172C23132E008AF44C /* DropDownTabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownTabelCell.swift; sourceTree = "<group>"; };
+		C7678E192C23148A008AF44C /* DropDownButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownButton.swift; sourceTree = "<group>"; };
+		C7678E1B2C23335F008AF44C /* DropRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropRange.swift; sourceTree = "<group>"; };
+		C7678E1D2C23495C008AF44C /* AnalyzeChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeChartView.swift; sourceTree = "<group>"; };
+		C7678E1F2C2349E6008AF44C /* AnalyzeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeViewModel.swift; sourceTree = "<group>"; };
 		C7ADA9DE2BF9E64C00EE712B /* SetCourseTitleModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCourseTitleModal.swift; sourceTree = "<group>"; };
 		C7B0BE322BF4613A009ACE74 /* FinishExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishExerciseViewController.swift; sourceTree = "<group>"; };
 		C7B0BE342BF48DEA009ACE74 /* ExerciseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRepository.swift; sourceTree = "<group>"; };
@@ -232,6 +242,16 @@
 				C7BD5AEC2BE606750060CC38 /* GND.entitlements */,
 			);
 			path = GND;
+			sourceTree = "<group>";
+		};
+		C7678E162C231318008AF44C /* DropDown */ = {
+			isa = PBXGroup;
+			children = (
+				C7678E172C23132E008AF44C /* DropDownTabelCell.swift */,
+				C7678E192C23148A008AF44C /* DropDownButton.swift */,
+				C7678E1B2C23335F008AF44C /* DropRange.swift */,
+			);
+			path = DropDown;
 			sourceTree = "<group>";
 		};
 		C7BD5ADF2BE6042D0060CC38 /* Presentation */ = {
@@ -455,6 +475,9 @@
 			isa = PBXGroup;
 			children = (
 				C7C2947B2BF1FEB2009FACD8 /* AnalyzeViewController.swift */,
+				C7678E1F2C2349E6008AF44C /* AnalyzeViewModel.swift */,
+				C7678E1D2C23495C008AF44C /* AnalyzeChartView.swift */,
+				C7678E162C231318008AF44C /* DropDown */,
 			);
 			path = AnalyzeView;
 			sourceTree = "<group>";
@@ -580,10 +603,12 @@
 				C7BD5B552BE890F60060CC38 /* PartyModel.swift in Sources */,
 				C7BD5B592BE8A12B0060CC38 /* PartyDetailView.swift in Sources */,
 				C7ADA9DF2BF9E64C00EE712B /* SetCourseTitleModal.swift in Sources */,
+				C7678E1A2C23148A008AF44C /* DropDownButton.swift in Sources */,
 				C7C2946F2BF0C1CD009FACD8 /* AppCoordinator.swift in Sources */,
 				C7BD5B422BE7D55C0060CC38 /* EnterRoomCell.swift in Sources */,
 				C7C294842BF34CE8009FACD8 /* ExerciseMode.swift in Sources */,
 				C7BD5AEB2BE605650060CC38 /* LoginViewController.swift in Sources */,
+				C7678E1C2C23335F008AF44C /* DropRange.swift in Sources */,
 				C7C294732BF10A08009FACD8 /* TabCoordinator.swift in Sources */,
 				C7CD67032C08000600FB471A /* GetRecentRequest.swift in Sources */,
 				C7BD5B7C2BE904620060CC38 /* API.swift in Sources */,
@@ -610,7 +635,9 @@
 				C7CD67012C07FAC900FB471A /* CourseAPI.swift in Sources */,
 				C7BD5B5B2BE8A2510060CC38 /* PartyDetailCell.swift in Sources */,
 				C7C294712BF0CB46009FACD8 /* LoginCoordinator.swift in Sources */,
+				C7678E1E2C23495C008AF44C /* AnalyzeChartView.swift in Sources */,
 				C72E721F2BE375DD0003176E /* SceneDelegate.swift in Sources */,
+				C7678E202C2349E6008AF44C /* AnalyzeViewModel.swift in Sources */,
 				C7BD5AFE2BE6C34B0060CC38 /* NicknameViewController.swift in Sources */,
 				C7C2947E2BF30BF3009FACD8 /* ExerciseViewModel.swift in Sources */,
 				C7CD67052C08014B00FB471A /* Encodable+.swift in Sources */,
@@ -624,6 +651,7 @@
 				C7BD5B822BE9CC740060CC38 /* ProfileViewModel.swift in Sources */,
 				C7BD5B512BE81C580060CC38 /* PartyViewController.swift in Sources */,
 				C7BD5B7E2BE9384C0060CC38 /* Login.swift in Sources */,
+				C7678E182C23132E008AF44C /* DropDownTabelCell.swift in Sources */,
 				C7BD5B802BE93D830060CC38 /* User.swift in Sources */,
 				C7CD67112C08779400FB471A /* RecentViewController.swift in Sources */,
 			);
