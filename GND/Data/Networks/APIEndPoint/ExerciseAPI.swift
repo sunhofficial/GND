@@ -11,6 +11,9 @@ import Alamofire
 enum ExerciseAPI {
     case requestGoal
     case requestSaveExercise(SaveExerciseRequest )
+    case requestStrideStats(AnalyzeDataRequest)
+    case requsetspeedStats(AnalyzeDataRequest)
+    case requestStepStats(AnalyzeDataRequest)
 //    case request
 
 }
@@ -28,6 +31,12 @@ extension ExerciseAPI: Router,  URLRequestConvertible {
             "/goal"
         case .requestSaveExercise:
             ""
+        case .requestStrideStats:
+            "/stats/stride"
+        case .requsetspeedStats:
+            "/stats/speed"
+        case .requestStepStats:
+            "/stats/step"
         }
     }
     
@@ -37,6 +46,9 @@ extension ExerciseAPI: Router,  URLRequestConvertible {
                 .get
         case .requestSaveExercise:
                 .post
+        default:
+                .get
+
         }
     }
     
@@ -53,18 +65,15 @@ extension ExerciseAPI: Router,  URLRequestConvertible {
             return  nil
         case .requestSaveExercise(let exerciseData):
             return exerciseData
+        case .requestStepStats(let data):
+            return data
+        case .requestStrideStats(let requestdata):
+            return requestdata
+        case .requsetspeedStats(let requestData):
+            return requestData
         }
     }
-    
-//    var encoding: (any Alamofire.ParameterEncoding)? {
-//        switch self {
-//        case .requestGoal:
-//            <#code#>
-//        case .requestSaveExercise:
-//            <#code#>
-//        }
-//    }
-    
+
     func asURLRequest() throws -> URLRequest {
         let url = URL(string: baseURL + path)!
         var request = try URLRequest(url: url, method: method)

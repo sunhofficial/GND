@@ -6,3 +6,8 @@
 //
 
 import Foundation
+final class AnalyzeViewModel: ObservableObject {
+    @Published var startDate: String = ""
+    @Published var endDate: String = ""
+    
+}

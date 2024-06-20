@@ -12,9 +12,24 @@ import Foundation
 protocol ExerciseRepositoryProtocol {
 
     func postSaveExercise(_ exerciseSession: ExerciseSession, exerciseMetrics: ExerciseMetrics) -> AnyPublisher<Bool,  Error>
+    func getAnalyzeSpeed(type: DropRange, startDate: String, endDate: String)
+    func getAnalyzeStride(type: DropRange, startDate: String, endDate: String)
+    func getAnalyzeSteps(type: DropRange, startDate: String, endDate: String)
 }
 
 class ExerciseRepository: ExerciseRepositoryProtocol {
+    func getAnalyzeSpeed(type: DropRange, startDate: String, endDate: String) {
+        <#code#>
+    }
+    
+    func getAnalyzeStride(type: DropRange, startDate: String, endDate: String) {
+        <#code#>
+    }
+    
+    func getAnalyzeSteps(type: DropRange, startDate: String, endDate: String) {
+        <#code#>
+    }
+    
     func postSaveExercise(_ exerciseSession: ExerciseSession, exerciseMetrics: ExerciseMetrics) -> AnyPublisher<Bool, any Error> {
         return Future<Bool, Error> { promise in
             let startTime  = exerciseSession.startTime
