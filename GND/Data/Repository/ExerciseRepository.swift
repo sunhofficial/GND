@@ -12,24 +12,63 @@ import Foundation
 protocol ExerciseRepositoryProtocol {
 
     func postSaveExercise(_ exerciseSession: ExerciseSession, exerciseMetrics: ExerciseMetrics) -> AnyPublisher<Bool,  Error>
-    func getAnalyzeSpeed(type: DropRange, startDate: String, endDate: String)
-    func getAnalyzeStride(type: DropRange, startDate: String, endDate: String)
-    func getAnalyzeSteps(type: DropRange, startDate: String, endDate: String)
+    func getAnalyzeSpeed(type: DropRange, startDate: String, endDate: String)-> AnyPublisher<AnalzyeDateResponse<AnalyzeSpeedData>, Error>
+    func getAnalyzeStride(type: DropRange, startDate: String, endDate: String) -> AnyPublisher<AnalzyeDateResponse<AnalyzeStrideData>, Error>
+    func getAnalyzeSteps(type: DropRange, startDate: String, endDate: String) -> AnyPublisher<AnalzyeDateResponse<AnalyzeStepData>, Error>
 }
 
 class ExerciseRepository: ExerciseRepositoryProtocol {
-    func getAnalyzeSpeed(type: DropRange, startDate: String, endDate: String) {
-        <#code#>
+    func getAnalyzeStride(type: DropRange, startDate: String, endDate: String) -> AnyPublisher<AnalzyeDateResponse<AnalyzeStrideData>, any Error> {
+        return Future<AnalzyeDateResponse<AnalyzeStrideData>, Error> { promise in
+            let requestStride = AnalyzeDataRequest(type: type, startDate: startDate, endDate: endDate)
+            AF.request(ExerciseAPI.requestStrideStats(requestStride))
+                .response { res in debugPrint(res)}
+                .responseDecodable(of: AnalzyeDateResponse<AnalyzeStrideData>.self) { response in
+                    switch response.result {
+                    case .success(let analyzeDateResponse):
+                        promise(.success(analyzeDateResponse))
+                    case .failure(let error):
+                        promise(.failure(error))
+                    }
+                }
+        }.eraseToAnyPublisher()
+        }
+
+    
+    func getAnalyzeSteps(type: DropRange, startDate: String, endDate: String) -> AnyPublisher<AnalzyeDateResponse<AnalyzeStepData>, any Error> {
+        return Future<AnalzyeDateResponse<AnalyzeStepData>, Error> { promise in
+            let requestStride = AnalyzeDataRequest(type: type, startDate: startDate, endDate: endDate)
+            AF.request(ExerciseAPI.requestStrideStats(requestStride))
+                .response { res in debugPrint(res)}
+                .responseDecodable(of: AnalzyeDateResponse<AnalyzeStepData>.self) { response in
+                    switch response.result {
+                    case .success(let analyzeDateResponse):
+                        promise(.success(analyzeDateResponse))
+                    case .failure(let error):
+                        promise(.failure(error))
+                    }
+                }
+        }.eraseToAnyPublisher()
     }
     
-    func getAnalyzeStride(type: DropRange, startDate: String, endDate: String) {
-        <#code#>
+    func getAnalyzeSpeed(type: DropRange, startDate: String, endDate: String) -> AnyPublisher<AnalzyeDateResponse<AnalyzeSpeedData>, Error> {
+        return Future<AnalzyeDateResponse<AnalyzeSpeedData>, Error> { promise in
+            let requestSpeed = AnalyzeDataRequest(type: type, startDate: startDate, endDate: endDate)
+            AF.request(ExerciseAPI.requestspeedStats(requestSpeed))
+                .response { res in debugPrint(res)}
+                .responseDecodable(of: AnalzyeDateResponse<AnalyzeSpeedData>.self) { response in
+                    switch response.result {
+                    case .success(let analyzeDateResponse):
+                        promise(.success(analyzeDateResponse))
+                    case .failure(let error):
+                        promise(.failure(error))
+                    }
+                }
+        }.eraseToAnyPublisher()
     }
-    
-    func getAnalyzeSteps(type: DropRange, startDate: String, endDate: String) {
-        <#code#>
-    }
-    
+
+
+
     func postSaveExercise(_ exerciseSession: ExerciseSession, exerciseMetrics: ExerciseMetrics) -> AnyPublisher<Bool, any Error> {
         return Future<Bool, Error> { promise in
             let startTime  = exerciseSession.startTime

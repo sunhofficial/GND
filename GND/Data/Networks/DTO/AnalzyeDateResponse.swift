@@ -40,7 +40,7 @@ struct AnalyzeStepData: AnalyzeData {
         case date
     }
 }
-struct analyzeSpeedData: AnalyzeData{
+struct AnalyzeSpeedData: AnalyzeData{
     let minSpeed: Double
       let maxSpeed: Double
       let averageSpeed: Double

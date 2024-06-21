@@ -24,6 +24,7 @@
 		C7678E202C2349E6008AF44C /* AnalyzeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7678E1F2C2349E6008AF44C /* AnalyzeViewModel.swift */; };
 		C7678E222C24187E008AF44C /* AnalyzeDataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7678E212C24187E008AF44C /* AnalyzeDataRequest.swift */; };
 		C7678E242C241ECD008AF44C /* AnalzyeDateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7678E232C241ECD008AF44C /* AnalzyeDateResponse.swift */; };
+		C7678E262C242C61008AF44C /* AnalyzeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7678E252C242C61008AF44C /* AnalyzeUseCase.swift */; };
 		C7ADA9DF2BF9E64C00EE712B /* SetCourseTitleModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ADA9DE2BF9E64C00EE712B /* SetCourseTitleModal.swift */; };
 		C7B0BE332BF4613A009ACE74 /* FinishExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0BE322BF4613A009ACE74 /* FinishExerciseViewController.swift */; };
 		C7B0BE352BF48DEA009ACE74 /* ExerciseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0BE342BF48DEA009ACE74 /* ExerciseRepository.swift */; };
@@ -130,6 +131,7 @@
 		C7678E1F2C2349E6008AF44C /* AnalyzeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeViewModel.swift; sourceTree = "<group>"; };
 		C7678E212C24187E008AF44C /* AnalyzeDataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AnalyzeDataRequest.swift; path = ../../../../../../../.Trash/GND/GND/Data/Networks/DTO/AnalyzeDataRequest.swift; sourceTree = "<group>"; };
 		C7678E232C241ECD008AF44C /* AnalzyeDateResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalzyeDateResponse.swift; sourceTree = "<group>"; };
+		C7678E252C242C61008AF44C /* AnalyzeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeUseCase.swift; sourceTree = "<group>"; };
 		C7ADA9DE2BF9E64C00EE712B /* SetCourseTitleModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCourseTitleModal.swift; sourceTree = "<group>"; };
 		C7B0BE322BF4613A009ACE74 /* FinishExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishExerciseViewController.swift; sourceTree = "<group>"; };
 		C7B0BE342BF48DEA009ACE74 /* ExerciseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRepository.swift; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 			children = (
 				C7BD5B642BE8CB120060CC38 /* UserUsecase.swift */,
 				C7C2947F2BF3424C009FACD8 /* ExerciseUseCase.swift */,
+				C7678E252C242C61008AF44C /* AnalyzeUseCase.swift */,
 				C7CD670C2C0823B700FB471A /* CourseUseCase.swift */,
 			);
 			path = Usecase;
@@ -650,6 +653,7 @@
 				C7C2947E2BF30BF3009FACD8 /* ExerciseViewModel.swift in Sources */,
 				C7CD67052C08014B00FB471A /* Encodable+.swift in Sources */,
 				C7BD5B3E2BE7A4330060CC38 /* MainViewController.swift in Sources */,
+				C7678E262C242C61008AF44C /* AnalyzeUseCase.swift in Sources */,
 				C7C2946D2BF0C158009FACD8 /* Coordinator.swift in Sources */,
 				C7678E142C2055FE008AF44C /* ModalGoal.swift in Sources */,
 				C7BD5B752BE9013B0060CC38 /* Router.swift in Sources */,

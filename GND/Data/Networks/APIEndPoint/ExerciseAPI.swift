@@ -12,7 +12,7 @@ enum ExerciseAPI {
     case requestGoal
     case requestSaveExercise(SaveExerciseRequest )
     case requestStrideStats(AnalyzeDataRequest)
-    case requsetspeedStats(AnalyzeDataRequest)
+    case requestspeedStats(AnalyzeDataRequest)
     case requestStepStats(AnalyzeDataRequest)
 //    case request
 
@@ -33,7 +33,7 @@ extension ExerciseAPI: Router,  URLRequestConvertible {
             ""
         case .requestStrideStats:
             "/stats/stride"
-        case .requsetspeedStats:
+        case .requestspeedStats:
             "/stats/speed"
         case .requestStepStats:
             "/stats/step"
@@ -69,7 +69,7 @@ extension ExerciseAPI: Router,  URLRequestConvertible {
             return data
         case .requestStrideStats(let requestdata):
             return requestdata
-        case .requsetspeedStats(let requestData):
+        case .requestspeedStats(let requestData):
             return requestData
         }
     }

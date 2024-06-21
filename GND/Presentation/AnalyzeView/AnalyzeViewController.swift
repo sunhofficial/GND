@@ -7,11 +7,21 @@
 
 import UIKit
 import SnapKit
+import Combine
 
+enum AnalzyeType: String{
+    case stride = "보폭"
+    case speed = "걸음속도"
+    case steps = "걸음수"
+}
 class AnalyzeViewController: UIViewController {
     let segmentedControl = UISegmentedControl(items: ["보폭", "걸음속도", "걸음수"])
     let dropBoxButton = DropDownButton()
     let dateLabel = UILabel()
+    let viewModel = AnalyzeViewModel(analyzeUsecase: AnalyzeUseCase(exerciseReposiotory: ExerciseRepository()))
+    private var selectedType: AnalzyeType = .stride
+    private var selectedDate: DropRange = .day
+      private var cancellables = Set<AnyCancellable>()
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSegmendtedControl()
@@ -19,7 +29,6 @@ class AnalyzeViewController: UIViewController {
     }
     func setupSegmendtedControl() {
         segmentedControl.selectedSegmentIndex = 0
-        //        segmentedControl.setBackgroundImage(UIImage(), for: .normal, barMetrics: .default)
         segmentedControl.backgroundColor = CustomColors.cell
         segmentedControl.layer.cornerRadius = 10
         segmentedControl.setDividerImage(UIImage(), forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
@@ -38,7 +47,7 @@ class AnalyzeViewController: UIViewController {
         view.addSubview(dropBoxButton)
         dateLabel.font = .systemFont(ofSize: 20, weight: .medium)
         view.addSubview(dateLabel)
-        setdateLabel(range: .day)
+        dateLabel.text = "\(viewModel.dateRanges[selectedDate]!)-\(viewModel.endDate)"
         dropBoxButton.snp.makeConstraints {
             $0.top.equalTo(segmentedControl.snp.bottom).offset(16)
             $0.trailing.equalToSuperview().inset(24)
@@ -48,35 +57,27 @@ class AnalyzeViewController: UIViewController {
             $0.leading.equalToSuperview().offset(24)
         }
     }
-    func setdateLabel(range: DropRange) {
-        let dateFormatter = DateFormatter()
-               dateFormatter.dateFormat = "yyyy.MM.dd"
-               let today = Date()
-        var startDate: Date
-               var endDate: Date = today
-        switch range {
-               case .day:
-                   startDate = Calendar.current.date(byAdding: .day, value: -7, to: today)!
-               case .week:
-                   startDate = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: today)!
-               case .month:
-                   startDate = Calendar.current.date(byAdding: .month, value: -1, to: today)!
-               case .year:
-                   startDate = Calendar.current.date(byAdding: .year, value: -1, to: today)!
-               }
-        let startDateString = dateFormatter.string(from: startDate)
-             let endDateString = dateFormatter.string(from: endDate)
-             dateLabel.text = "\(startDateString) - \(endDateString)"
-    }
     @objc private func didChangeValue(segment: UISegmentedControl) {
+        switch segment.selectedSegmentIndex {
+           case 0:
+               selectedType = .stride
+           case 1:
+               selectedType = .speed
+           case 2:
+               selectedType = .steps
+           default:
+               break
+           }
+        viewModel.fetchChartData(type: selectedType, dateRange: selectedDate)
     }
 }
 extension AnalyzeViewController: DropDownButtonDelegate {
     func didSelect(_ index: Int) {
-        let selectedITEM = dropBoxButton.dataSource[index]
-        setdateLabel(range: selectedITEM)
+        selectedDate = dropBoxButton.dataSource[index]
+        dateLabel.text = "\(viewModel.dateRanges[selectedDate]!)-\(viewModel.endDate)"
+        viewModel.fetchChartData(type: selectedType, dateRange: selectedDate)
     }
-    
+
 
 }
 #Preview {
