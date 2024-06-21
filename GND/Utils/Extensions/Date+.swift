@@ -13,4 +13,9 @@ extension Date {
         isoFormatter.timeZone = TimeZone(identifier: "Asia/Seoul")
         return isoFormatter.string(from: self)
     }
+    func formatToCalendarString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy.MM.dd"
+        return dateFormatter.string(from: self)
+    }
 }

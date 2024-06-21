@@ -48,7 +48,7 @@ class AnalyzeViewController: UIViewController {
         view.addSubview(dropBoxButton)
         dateLabel.font = .systemFont(ofSize: 20, weight: .medium)
         view.addSubview(dateLabel)
-        dateLabel.text = "\(viewModel.dateRanges[selectedDate]!)-\(viewModel.endDate)"
+        dateLabel.text = "\(viewModel.dateRanges[selectedDate]!.formatToCalendarString())-\(viewModel.endDate.formatToCalendarString())"
         dropBoxButton.snp.makeConstraints {
             $0.top.equalTo(segmentedControl.snp.bottom).offset(16)
             $0.trailing.equalToSuperview().inset(24)
@@ -75,7 +75,7 @@ class AnalyzeViewController: UIViewController {
 extension AnalyzeViewController: DropDownButtonDelegate {
     func didSelect(_ index: Int) {
         selectedDate = dropBoxButton.dataSource[index]
-        dateLabel.text = "\(viewModel.dateRanges[selectedDate]!)-\(viewModel.endDate)"
+        dateLabel.text = "\(viewModel.dateRanges[selectedDate]!.formatToCalendarString())-\(viewModel.endDate.formatToCalendarString())"
         viewModel.fetchChartData(type: selectedType, dateRange: selectedDate)
     }
 
