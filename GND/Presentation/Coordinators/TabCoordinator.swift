@@ -81,9 +81,7 @@ class TabCoordinator: NSObject, TabCoordinatorProtocol {
 
     }
     required init(_ navigationController: UINavigationController) {
-
         self.navigationController = navigationController
-
         self.tabbarController = UITabBarController()
         super.init()
         self.tabbarController.delegate = self
@@ -107,7 +105,7 @@ class TabCoordinator: NSObject, TabCoordinatorProtocol {
             togetherCoordinator.start()
         case .analyze:
             let anlayzeVc = AnalyzeViewController()
-            self.navigationController.pushViewController(anlayzeVc, animated: false)
+            tabNavigationController.viewControllers = [anlayzeVc]
         }
     }
 

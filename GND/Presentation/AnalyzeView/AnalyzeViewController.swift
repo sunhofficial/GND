@@ -24,6 +24,7 @@ class AnalyzeViewController: UIViewController {
       private var cancellables = Set<AnyCancellable>()
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.isNavigationBarHidden = true
         setupSegmendtedControl()
         setupDropDownButton()
     }
