@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 import Combine
-
+import Then
 enum AnalzyeType: String{
     case stride = "보폭"
     case speed = "걸음속도"
@@ -19,6 +19,7 @@ class AnalyzeViewController: UIViewController {
     let dropBoxButton = DropDownButton()
     let dateLabel = UILabel()
     let viewModel = AnalyzeViewModel(analyzeUsecase: AnalyzeUseCase(exerciseReposiotory: ExerciseRepository()))
+    let analyzeImage = UIImageView(image: UIImage(named: "analyzeLogo"))
     private var selectedType: AnalzyeType = .stride
     private var selectedDate: DropRange = .day
       private var cancellables = Set<AnyCancellable>()
@@ -48,6 +49,7 @@ class AnalyzeViewController: UIViewController {
         view.addSubview(dropBoxButton)
         dateLabel.font = .systemFont(ofSize: 20, weight: .medium)
         view.addSubview(dateLabel)
+        view.addSubview(analyzeImage)
         dateLabel.text = "\(viewModel.dateRanges[selectedDate]!.formatToCalendarString())-\(viewModel.endDate.formatToCalendarString())"
         dropBoxButton.snp.makeConstraints {
             $0.top.equalTo(segmentedControl.snp.bottom).offset(16)
@@ -56,6 +58,10 @@ class AnalyzeViewController: UIViewController {
         dateLabel.snp.makeConstraints {
             $0.top.equalTo(dropBoxButton.snp.top)
             $0.leading.equalToSuperview().offset(24)
+        }
+        analyzeImage.snp.makeConstraints{
+            $0.top.equalTo(dropBoxButton.snp.bottom).offset(64)
+            $0.width.height.equalTo(280)
         }
     }
     @objc private func didChangeValue(segment: UISegmentedControl) {

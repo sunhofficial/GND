@@ -25,6 +25,9 @@
 		C7678E222C24187E008AF44C /* AnalyzeDataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7678E212C24187E008AF44C /* AnalyzeDataRequest.swift */; };
 		C7678E242C241ECD008AF44C /* AnalzyeDateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7678E232C241ECD008AF44C /* AnalzyeDateResponse.swift */; };
 		C7678E262C242C61008AF44C /* AnalyzeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7678E252C242C61008AF44C /* AnalyzeUseCase.swift */; };
+		C7A6E01D2C26AEA90041D8D3 /* StrideInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A6E01C2C26AEA90041D8D3 /* StrideInfoView.swift */; };
+		C7A6E01F2C26AEAF0041D8D3 /* SpeedInfoVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A6E01E2C26AEAF0041D8D3 /* SpeedInfoVIew.swift */; };
+		C7A6E0212C26AEB40041D8D3 /* StepsInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A6E0202C26AEB40041D8D3 /* StepsInfoView.swift */; };
 		C7ADA9DF2BF9E64C00EE712B /* SetCourseTitleModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ADA9DE2BF9E64C00EE712B /* SetCourseTitleModal.swift */; };
 		C7B0BE332BF4613A009ACE74 /* FinishExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0BE322BF4613A009ACE74 /* FinishExerciseViewController.swift */; };
 		C7B0BE352BF48DEA009ACE74 /* ExerciseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0BE342BF48DEA009ACE74 /* ExerciseRepository.swift */; };
@@ -132,6 +135,9 @@
 		C7678E212C24187E008AF44C /* AnalyzeDataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AnalyzeDataRequest.swift; path = ../../../../../../../.Trash/GND/GND/Data/Networks/DTO/AnalyzeDataRequest.swift; sourceTree = "<group>"; };
 		C7678E232C241ECD008AF44C /* AnalzyeDateResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalzyeDateResponse.swift; sourceTree = "<group>"; };
 		C7678E252C242C61008AF44C /* AnalyzeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeUseCase.swift; sourceTree = "<group>"; };
+		C7A6E01C2C26AEA90041D8D3 /* StrideInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrideInfoView.swift; sourceTree = "<group>"; };
+		C7A6E01E2C26AEAF0041D8D3 /* SpeedInfoVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedInfoVIew.swift; sourceTree = "<group>"; };
+		C7A6E0202C26AEB40041D8D3 /* StepsInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsInfoView.swift; sourceTree = "<group>"; };
 		C7ADA9DE2BF9E64C00EE712B /* SetCourseTitleModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCourseTitleModal.swift; sourceTree = "<group>"; };
 		C7B0BE322BF4613A009ACE74 /* FinishExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishExerciseViewController.swift; sourceTree = "<group>"; };
 		C7B0BE342BF48DEA009ACE74 /* ExerciseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRepository.swift; sourceTree = "<group>"; };
@@ -258,6 +264,16 @@
 				C7678E1B2C23335F008AF44C /* DropRange.swift */,
 			);
 			path = DropDown;
+			sourceTree = "<group>";
+		};
+		C7A6E01B2C26AE860041D8D3 /* InfoWarningViews */ = {
+			isa = PBXGroup;
+			children = (
+				C7A6E01C2C26AEA90041D8D3 /* StrideInfoView.swift */,
+				C7A6E01E2C26AEAF0041D8D3 /* SpeedInfoVIew.swift */,
+				C7A6E0202C26AEB40041D8D3 /* StepsInfoView.swift */,
+			);
+			path = InfoWarningViews;
 			sourceTree = "<group>";
 		};
 		C7BD5ADF2BE6042D0060CC38 /* Presentation */ = {
@@ -485,6 +501,7 @@
 			children = (
 				C7C2947B2BF1FEB2009FACD8 /* AnalyzeViewController.swift */,
 				C7678E1F2C2349E6008AF44C /* AnalyzeViewModel.swift */,
+				C7A6E01B2C26AE860041D8D3 /* InfoWarningViews */,
 				C7678E1D2C23495C008AF44C /* AnalyzeChartView.swift */,
 				C7678E162C231318008AF44C /* DropDown */,
 			);
@@ -585,10 +602,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7A6E0212C26AEB40041D8D3 /* StepsInfoView.swift in Sources */,
 				C7C294822BF34C8A009FACD8 /* MainViewModel.swift in Sources */,
 				C7BD5B4C2BE80BCE0060CC38 /* CellType.swift in Sources */,
 				C7C294802BF3424C009FACD8 /* ExerciseUseCase.swift in Sources */,
 				C72E721D2BE375DD0003176E /* AppDelegate.swift in Sources */,
+				C7A6E01F2C26AEAF0041D8D3 /* SpeedInfoVIew.swift in Sources */,
 				C7CD67072C0803A300FB471A /* CourseRepository.swift in Sources */,
 				C7BD5B652BE8CB120060CC38 /* UserUsecase.swift in Sources */,
 				C7BD5B7A2BE903F50060CC38 /* LoginRequest.swift in Sources */,
@@ -652,6 +671,7 @@
 				C7BD5AFE2BE6C34B0060CC38 /* NicknameViewController.swift in Sources */,
 				C7C2947E2BF30BF3009FACD8 /* ExerciseViewModel.swift in Sources */,
 				C7CD67052C08014B00FB471A /* Encodable+.swift in Sources */,
+				C7A6E01D2C26AEA90041D8D3 /* StrideInfoView.swift in Sources */,
 				C7BD5B3E2BE7A4330060CC38 /* MainViewController.swift in Sources */,
 				C7678E262C242C61008AF44C /* AnalyzeUseCase.swift in Sources */,
 				C7C2946D2BF0C158009FACD8 /* Coordinator.swift in Sources */,
