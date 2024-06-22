@@ -9,26 +9,30 @@ import UIKit
 import Then
 import SnapKit
 
-final class StrideInfoView: UIViewController {
+final class StrideInfoView: UIView {
     let feedbackLabel = UILabel().then {
         $0.font = .systemFont(ofSize: 20, weight: .medium)
         $0.textColor = .black
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setUI()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     let effectTitleLabel = UILabel().then {
         $0.font = .systemFont(ofSize: 32, weight: .bold)
         $0.text = "보폭이 커지면 생기는 효능"
     }
     let effectLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 24, weight: .medium)
+        $0.font = .systemFont(ofSize: 22, weight: .semibold)
         $0.text = """
-    1. 치매를 예방할 수 있다.
-    2. 낙상 예방할 수 있다.
-    3. 근력 유지 및 관절 건강에 도움을 준다.
-    4. 심혈관 건강에 좋다.
+1. 치매를 예방할 수 있다.
+2. 낙상 예방할 수 있다.
+3. 근력 유지 및 관절 건강에 좋다.
+4. 심혈관 건강에 좋다.
 """
         $0.numberOfLines = 0
     }
@@ -48,6 +52,9 @@ final class StrideInfoView: UIViewController {
         $0.textColor =  .red
     }
     private func setUI() {
+        [feedbackLabel,effectTitleLabel,effectLabel,effetDetailLabel,alertLabel].forEach {
+            addSubview($0)
+        }
         feedbackLabel.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(16)
@@ -57,8 +64,16 @@ final class StrideInfoView: UIViewController {
             $0.leading.trailing.equalToSuperview().inset(16)
         }
         effectLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(24)
+            $0.top.equalTo(effectTitleLabel.snp.bottom).offset(24)
             $0.leading.trailing.equalToSuperview().inset(16)
+        }
+        effetDetailLabel.snp.makeConstraints {
+            $0.top.equalTo(effectLabel.snp.bottom).offset(32)
+            $0.leading.trailing.equalToSuperview().inset(16)
+        }
+        alertLabel.snp.makeConstraints { 
+            $0.top.equalTo(effetDetailLabel.snp.bottom).offset(32)
+            $0.centerX.equalToSuperview()
         }
     }
 }

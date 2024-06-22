@@ -5,4 +5,7 @@
 //  Created by 235 on 6/22/24.
 //
 
-import Foundation
+import UIKit
+final class StepsInfoView: UIView {
+    
+}
