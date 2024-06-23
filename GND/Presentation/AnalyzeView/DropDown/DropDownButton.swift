@@ -85,7 +85,6 @@ class DropDownButton: UIView {
         tableView.isHidden.toggle()
     }
     func updateTableDataSource() {
-
         tableViewHeight?.constant = CGFloat(dataSource.count * 40)
 
         tableView.reloadData()

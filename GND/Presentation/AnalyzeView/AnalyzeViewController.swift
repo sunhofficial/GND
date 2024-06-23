@@ -66,17 +66,14 @@ class AnalyzeViewController: UIViewController {
     func setupDropDownButton() {
         dropBoxButton.dataSource = DropRange.allCases
         dropBoxButton.delegate = self
-        containerView.addSubview(dropBoxButton)
+
         dateLabel.font = .systemFont(ofSize: 20, weight: .medium)
         containerView.addSubview(dateLabel)
         containerView.addSubview(analyzeImage)
         dateLabel.text = "\(viewModel.dateRanges[selectedDate]!.formatToCalendarString())-\(viewModel.endDate.formatToCalendarString())"
-        dropBoxButton.snp.makeConstraints {
-            $0.top.equalTo(segmentedControl.snp.bottom).offset(16)
-            $0.trailing.equalToSuperview().inset(24)
-        }
+
         dateLabel.snp.makeConstraints {
-            $0.top.equalTo(dropBoxButton.snp.top)
+            $0.top.equalTo(segmentedControl.snp.bottom).offset(16)
             $0.leading.equalToSuperview().offset(24)
         }
 
@@ -87,10 +84,15 @@ class AnalyzeViewController: UIViewController {
             return
         }
         containerView.addSubview(chartsView)
+        containerView.addSubview(dropBoxButton)
         chartsView.snp.makeConstraints {
             $0.top.equalTo(dateLabel.snp.bottom).offset(16)
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(chartsView.snp.width)
+        }
+        dropBoxButton.snp.makeConstraints {
+            $0.top.equalTo(segmentedControl.snp.bottom).offset(16)
+            $0.trailing.equalToSuperview().inset(24)
         }
         analyzeImage.snp.makeConstraints{
             $0.top.equalTo(chartsView.snp.bottom).offset(24)
