@@ -50,6 +50,7 @@ final class StrideInfoView: UIView {
     인생을 바꾸는 첫걸음입니다
     """
         $0.textColor =  .red
+        $0.numberOfLines = 0
     }
     private func setUI() {
         [feedbackLabel,effectTitleLabel,effectLabel,effetDetailLabel,alertLabel].forEach {
