@@ -501,8 +501,8 @@
 			children = (
 				C7C2947B2BF1FEB2009FACD8 /* AnalyzeViewController.swift */,
 				C7678E1F2C2349E6008AF44C /* AnalyzeViewModel.swift */,
-				C7A6E01B2C26AE860041D8D3 /* InfoWarningViews */,
 				C7678E1D2C23495C008AF44C /* AnalyzeChartView.swift */,
+				C7A6E01B2C26AE860041D8D3 /* InfoWarningViews */,
 				C7678E162C231318008AF44C /* DropDown */,
 			);
 			path = AnalyzeView;

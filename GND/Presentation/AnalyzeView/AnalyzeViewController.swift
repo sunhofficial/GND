@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import Combine
 import Then
+import SwiftUI
 enum AnalzyeType: String{
     case stride = "보폭"
     case speed = "걸음속도"
@@ -21,22 +22,18 @@ class AnalyzeViewController: UIViewController {
     var infoViews: [AnalzyeType: UIView] = [:]
     let viewModel = AnalyzeViewModel(analyzeUsecase: AnalyzeUseCase(exerciseReposiotory: ExerciseRepository()))
     let analyzeImage = UIImageView(image: UIImage(named: "analyzeLogo"))
-    private var selectedType: AnalzyeType = .stride {
-        didSet {
-            updateInfoview()
-        }
-    }
     private var selectedDate: DropRange = .day
     private var cancellables = Set<AnyCancellable>()
     let scrollView = UIScrollView()
     let containerView = UIView()
+    var chartViewHosting: UIHostingController<AnalyzeChartView>? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = true
         setScrollview()
         setupSegmendtedControl()
         setupDropDownButton()
-
+        setChartView()
         setInfoView()
         updateInfoview()
     }
@@ -82,8 +79,21 @@ class AnalyzeViewController: UIViewController {
             $0.top.equalTo(dropBoxButton.snp.top)
             $0.leading.equalToSuperview().offset(24)
         }
+
+    }
+    private func setChartView() {
+        chartViewHosting = UIHostingController(rootView: AnalyzeChartView(viewModel: viewModel))
+        guard let chartsView = chartViewHosting?.view else {
+            return
+        }
+        containerView.addSubview(chartsView)
+        chartsView.snp.makeConstraints {
+            $0.top.equalTo(dateLabel.snp.bottom).offset(16)
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.height.equalTo(chartsView.snp.width)
+        }
         analyzeImage.snp.makeConstraints{
-            $0.top.equalTo(dropBoxButton.snp.bottom).offset(64)
+            $0.top.equalTo(chartsView.snp.bottom).offset(24)
             $0.width.height.equalTo(280)
             $0.centerX.equalToSuperview()
         }
@@ -109,19 +119,20 @@ class AnalyzeViewController: UIViewController {
     @objc private func didChangeValue(segment: UISegmentedControl) {
         switch segment.selectedSegmentIndex {
         case 0:
-            selectedType = .stride
+            viewModel.updateAnalyzeType(type: .stride)
         case 1:
-            selectedType = .speed
+            viewModel.updateAnalyzeType(type: .speed)
         case 2:
-            selectedType = .steps
+            viewModel.updateAnalyzeType(type: .steps)
         default:
             break
         }
-        viewModel.fetchChartData(type: selectedType, dateRange: selectedDate)
+        viewModel.fetchChartData( dateRange: selectedDate)
+        updateInfoview()
     }
     private func updateInfoview() {
         for (type, infoView) in infoViews {
-                  infoView.isHidden = type != selectedType
+            infoView.isHidden = type != viewModel.selectedType
               }
     }
 }
@@ -129,7 +140,7 @@ extension AnalyzeViewController: DropDownButtonDelegate {
     func didSelect(_ index: Int) {
         selectedDate = dropBoxButton.dataSource[index]
         dateLabel.text = "\(viewModel.dateRanges[selectedDate]!.formatToCalendarString())-\(viewModel.endDate.formatToCalendarString())"
-        viewModel.fetchChartData(type: selectedType, dateRange: selectedDate)
+        viewModel.fetchChartData( dateRange: selectedDate)
     }
 
 
