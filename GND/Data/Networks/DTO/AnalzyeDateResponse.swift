@@ -32,11 +32,11 @@ struct AnalyzeStrideData: AnalyzeData {
       }
 }
 struct AnalyzeStepData: AnalyzeData {
-    let steps: Int
+    let step: Int
     let date: String
 
     enum CodingKeys: String, CodingKey {
-        case steps
+        case step
         case date
     }
 }

@@ -42,11 +42,15 @@ class AnalyzeViewController: UIViewController {
         scrollView.addSubview(containerView)
         scrollView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+
         }
         containerView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.bottom.equalToSuperview() // containerView의 상단과 하단을 scrollView와 맞춤
             $0.width.equalToSuperview()
-            $0.height.greaterThanOrEqualTo(scrollView.snp.height)
+//            $0.bottom.
+//            $0.width.equalToSuperview()
+            $0.height.equalTo(1400)
+//            $0.bottom.equalToSuperview()
         }
     }
     func setupSegmendtedControl() {

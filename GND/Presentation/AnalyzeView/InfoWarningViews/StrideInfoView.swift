@@ -51,6 +51,8 @@ final class StrideInfoView: UIView {
     """
         $0.textColor =  .red
         $0.numberOfLines = 0
+        $0.textAlignment = .center
+
     }
     private func setUI() {
         [feedbackLabel,effectTitleLabel,effectLabel,effetDetailLabel,alertLabel].forEach {

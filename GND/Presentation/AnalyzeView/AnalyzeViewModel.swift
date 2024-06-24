@@ -20,9 +20,10 @@ final class AnalyzeViewModel: ObservableObject {
     @Published var dateRanges: [DropRange: Date] = [:]
     @Published var mineData: [AnalyzeData] = []
     @Published var ageGroup: [AnalyzeData] = []
-    @Published var strideChartDatas: AnalzyeDateResponse<AnalyzeStrideData> = .init(mine: [], ageGroup: [])
-    @Published var stepsChartDatas: AnalzyeDateResponse<AnalyzeStepData> = .init(mine: [], ageGroup: [] )
-    @Published var speedChartDatas: AnalzyeDateResponse<AnalyzeSpeedData> = .init(mine: [], ageGroup: [])
+    @Published var strideChartDatas: [AnalyzeDataModel<AnalyzeStrideData>] = []
+//    @Published var strideChartDatas: AnalzyeDateResponse<AnalyzeStrideData> = .init(mine: [], ageGroup: [])
+    @Published var stepsChartDatas: [AnalyzeDataModel<AnalyzeStepData>] = []
+    @Published var speedChartDatas: [AnalyzeDataModel<AnalyzeSpeedData>] = []
     private func calculateAllDateRanges() {
         let today = Date()
         dateRanges[.hour] = Calendar.current.date(byAdding: .hour,value: -24, to: today)!
@@ -40,9 +41,11 @@ final class AnalyzeViewModel: ObservableObject {
             analyzeUsecase.getStrideStats(type: dateRange, startDate: startdate.formattedDateString(), endDate: endDate.formattedDateString())
                 .sink(receiveCompletion: { _ in }, receiveValue: {[weak self]
                     res in
-//                    self?.mineData = res.mine
-//                    self?.ageGroup = res.ageGroup
-                    self?.strideChartDatas = res
+                    self?.strideChartDatas = [AnalyzeDataModel(isMine: true, data:  res.mine)]
+                    self?.strideChartDatas.append(AnalyzeDataModel(isMine: false, data: res.ageGroup))
+////                    self?.mineData = res.mine
+////                    self?.ageGroup = res.ageGroup
+//                    self?.strideChartDatas = res
                 })
                 .store(in: &cancellables)
         case .speed:
@@ -53,7 +56,8 @@ final class AnalyzeViewModel: ObservableObject {
                     res in
 //                    self?.mineData = res.mine
 //                    self?.ageGroup = res.ageGroup
-                    self?.speedChartDatas = res
+                    self?.speedChartDatas = [AnalyzeDataModel(isMine: true, data: res.mine)]
+                    self?.speedChartDatas.append(AnalyzeDataModel(isMine: false, data: res.ageGroup))
                 }        .store(in: &cancellables)
             
         case .steps:
@@ -64,7 +68,9 @@ final class AnalyzeViewModel: ObservableObject {
                     res in
 //                    self?.mineData = res.mine
 //                    self?.ageGroup = res.ageGroup
-                    self?.stepsChartDatas = res
+                    self?.stepsChartDatas = [AnalyzeDataModel(isMine: true, data: res.mine)]
+                    self?.stepsChartDatas.append(AnalyzeDataModel(isMine: false, data: res.ageGroup))
+                 
                 }        .store(in: &cancellables)
         }
     }

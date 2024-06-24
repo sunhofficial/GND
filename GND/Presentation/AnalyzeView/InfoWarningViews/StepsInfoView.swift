@@ -47,6 +47,7 @@ final class StepsInfoView: UIView {
     더 건강해집니다
     """
         $0.textColor =  .red
+        $0.textAlignment = .center
         $0.numberOfLines = 0
     }
     private func setUI() {

@@ -38,7 +38,7 @@ class ExerciseRepository: ExerciseRepositoryProtocol {
     func getAnalyzeSteps(type: DropRange, startDate: String, endDate: String) -> AnyPublisher<AnalzyeDateResponse<AnalyzeStepData>, any Error> {
         return Future<AnalzyeDateResponse<AnalyzeStepData>, Error> { promise in
             let requestStride = AnalyzeDataRequest(type: type, startDate: startDate, endDate: endDate)
-            AF.request(ExerciseAPI.requestStrideStats(requestStride))
+            AF.request(ExerciseAPI.requestStepStats(requestStride))
                 .response { res in debugPrint(res)}
                 .responseDecodable(of: AnalzyeDateResponse<AnalyzeStepData>.self) { response in
                     switch response.result {

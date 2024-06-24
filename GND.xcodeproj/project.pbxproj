@@ -28,6 +28,7 @@
 		C7A6E01D2C26AEA90041D8D3 /* StrideInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A6E01C2C26AEA90041D8D3 /* StrideInfoView.swift */; };
 		C7A6E01F2C26AEAF0041D8D3 /* SpeedInfoVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A6E01E2C26AEAF0041D8D3 /* SpeedInfoVIew.swift */; };
 		C7A6E0212C26AEB40041D8D3 /* StepsInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A6E0202C26AEB40041D8D3 /* StepsInfoView.swift */; };
+		C7A6E0232C292A200041D8D3 /* AnalyzeDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A6E0222C292A200041D8D3 /* AnalyzeDataModel.swift */; };
 		C7ADA9DF2BF9E64C00EE712B /* SetCourseTitleModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ADA9DE2BF9E64C00EE712B /* SetCourseTitleModal.swift */; };
 		C7B0BE332BF4613A009ACE74 /* FinishExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0BE322BF4613A009ACE74 /* FinishExerciseViewController.swift */; };
 		C7B0BE352BF48DEA009ACE74 /* ExerciseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0BE342BF48DEA009ACE74 /* ExerciseRepository.swift */; };
@@ -138,6 +139,7 @@
 		C7A6E01C2C26AEA90041D8D3 /* StrideInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrideInfoView.swift; sourceTree = "<group>"; };
 		C7A6E01E2C26AEAF0041D8D3 /* SpeedInfoVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedInfoVIew.swift; sourceTree = "<group>"; };
 		C7A6E0202C26AEB40041D8D3 /* StepsInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsInfoView.swift; sourceTree = "<group>"; };
+		C7A6E0222C292A200041D8D3 /* AnalyzeDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeDataModel.swift; sourceTree = "<group>"; };
 		C7ADA9DE2BF9E64C00EE712B /* SetCourseTitleModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCourseTitleModal.swift; sourceTree = "<group>"; };
 		C7B0BE322BF4613A009ACE74 /* FinishExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishExerciseViewController.swift; sourceTree = "<group>"; };
 		C7B0BE342BF48DEA009ACE74 /* ExerciseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRepository.swift; sourceTree = "<group>"; };
@@ -455,6 +457,7 @@
 				C7CD66FC2C046A9900FB471A /* UserGoal.swift */,
 				C7678E132C2055FE008AF44C /* ModalGoal.swift */,
 				C71608312BF50E70005A937A /* ExerciseTracking.swift */,
+				C7A6E0222C292A200041D8D3 /* AnalyzeDataModel.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -649,6 +652,7 @@
 				C7BD5B862BEA07DB0060CC38 /* NickNameViewModel.swift in Sources */,
 				C7BD5B532BE81CE40060CC38 /* PartyCell.swift in Sources */,
 				C7BD5B4A2BE805CC0060CC38 /* CourseModel.swift in Sources */,
+				C7A6E0232C292A200041D8D3 /* AnalyzeDataModel.swift in Sources */,
 				C7C294672BF07053009FACD8 /* CoreLocationServices.swift in Sources */,
 				C7BD5B472BE802F90060CC38 /* CellView.swift in Sources */,
 				C7BD5B732BE8E40F0060CC38 /* UserRepository.swift in Sources */,

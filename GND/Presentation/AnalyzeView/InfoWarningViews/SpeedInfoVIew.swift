@@ -47,6 +47,8 @@ final class SpeedInfoVIew: UIView {
     줄어드는 사망률입니다.
     """
         $0.textColor =  .red
+        $0.textAlignment = .center
+
         $0.numberOfLines = 0
     }
     private func setUI() {
