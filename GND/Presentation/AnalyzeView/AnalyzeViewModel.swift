@@ -24,6 +24,7 @@ final class AnalyzeViewModel: ObservableObject {
 //    @Published var strideChartDatas: AnalzyeDateResponse<AnalyzeStrideData> = .init(mine: [], ageGroup: [])
     @Published var stepsChartDatas: [AnalyzeDataModel<AnalyzeStepData>] = []
     @Published var speedChartDatas: [AnalyzeDataModel<AnalyzeSpeedData>] = []
+    @Published var selectedDateRange: DropRange = .day
     private func calculateAllDateRanges() {
         let today = Date()
         dateRanges[.hour] = Calendar.current.date(byAdding: .hour,value: -24, to: today)!
@@ -35,6 +36,7 @@ final class AnalyzeViewModel: ObservableObject {
         self.selectedType = type
     }
     func fetchChartData( dateRange: DropRange) {
+        selectedDateRange  = dateRange
         guard let startdate = dateRanges[dateRange] else {return}
         switch selectedType {
         case .stride:

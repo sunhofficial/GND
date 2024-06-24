@@ -19,8 +19,10 @@ struct AnalyzeChartView: View {
         switch viewModel.selectedType {
         case .stride:
             Chart(viewModel.strideChartDatas, id: \.isMine) { element in
+
                 ForEach(element.data, id: \.date) { data in
-                    BarMark (x: .value("date", data.date),
+                    let date = data.date.toDate()!
+                    BarMark (x: .value("date", date.formattedToChart(for: viewModel.selectedDateRange)),
                              yStart: .value("최소보폭", data.minStride),
                              yEnd: .value("최대보폭", data.maxStride)
                     ).clipShape(RoundedRectangle(cornerRadius: 10))
@@ -34,7 +36,8 @@ struct AnalyzeChartView: View {
         case .steps:
             Chart(viewModel.stepsChartDatas, id: \.isMine) { element in
                 ForEach(element.data, id: \.date) { data in
-                    BarMark (x: .value("date", data.date),
+                    let date = data.date.toDate()!
+                    BarMark (x: .value("date", date.formattedToChart(for: viewModel.selectedDateRange)),
                              y: .value("걸음수", data.step)
                     ).clipShape(RoundedRectangle(cornerRadius: 10))
                 }
@@ -47,7 +50,8 @@ struct AnalyzeChartView: View {
         case .speed:
             Chart(viewModel.speedChartDatas, id: \.isMine) { element in
                 ForEach(element.data, id: \.date) { data in
-                    BarMark (x: .value("date", data.date),
+                    let date = data.date.toDate()!
+                    BarMark (x: .value("date", date.formattedToChart(for: viewModel.selectedDateRange)),
                              yStart: .value("최소보폭", data.minSpeed),
                              yEnd: .value("최대보폭", data.maxSpeed)
                     ).clipShape(RoundedRectangle(cornerRadius: 10))

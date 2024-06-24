@@ -29,6 +29,7 @@
 		C7A6E01F2C26AEAF0041D8D3 /* SpeedInfoVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A6E01E2C26AEAF0041D8D3 /* SpeedInfoVIew.swift */; };
 		C7A6E0212C26AEB40041D8D3 /* StepsInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A6E0202C26AEB40041D8D3 /* StepsInfoView.swift */; };
 		C7A6E0232C292A200041D8D3 /* AnalyzeDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A6E0222C292A200041D8D3 /* AnalyzeDataModel.swift */; };
+		C7A6E0252C29615F0041D8D3 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A6E0242C29615F0041D8D3 /* String+.swift */; };
 		C7ADA9DF2BF9E64C00EE712B /* SetCourseTitleModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ADA9DE2BF9E64C00EE712B /* SetCourseTitleModal.swift */; };
 		C7B0BE332BF4613A009ACE74 /* FinishExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0BE322BF4613A009ACE74 /* FinishExerciseViewController.swift */; };
 		C7B0BE352BF48DEA009ACE74 /* ExerciseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0BE342BF48DEA009ACE74 /* ExerciseRepository.swift */; };
@@ -140,6 +141,7 @@
 		C7A6E01E2C26AEAF0041D8D3 /* SpeedInfoVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedInfoVIew.swift; sourceTree = "<group>"; };
 		C7A6E0202C26AEB40041D8D3 /* StepsInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsInfoView.swift; sourceTree = "<group>"; };
 		C7A6E0222C292A200041D8D3 /* AnalyzeDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeDataModel.swift; sourceTree = "<group>"; };
+		C7A6E0242C29615F0041D8D3 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		C7ADA9DE2BF9E64C00EE712B /* SetCourseTitleModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCourseTitleModal.swift; sourceTree = "<group>"; };
 		C7B0BE322BF4613A009ACE74 /* FinishExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishExerciseViewController.swift; sourceTree = "<group>"; };
 		C7B0BE342BF48DEA009ACE74 /* ExerciseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRepository.swift; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 				C7BD5B012BE6D3100060CC38 /* UITextFiled+.swift */,
 				C7BD5B3F2BE7B8350060CC38 /* UIViewController+.swift */,
 				C7CD67042C08014B00FB471A /* Encodable+.swift */,
+				C7A6E0242C29615F0041D8D3 /* String+.swift */,
 				C7CD670E2C08406800FB471A /* Date+.swift */,
 			);
 			path = Extensions;
@@ -649,6 +652,7 @@
 				C7BD5AEE2BE608E80060CC38 /* LoginViewModel.swift in Sources */,
 				C7C294772BF1FDA2009FACD8 /* TogetherCoordinator.swift in Sources */,
 				C7CD66FD2C046A9900FB471A /* UserGoal.swift in Sources */,
+				C7A6E0252C29615F0041D8D3 /* String+.swift in Sources */,
 				C7BD5B862BEA07DB0060CC38 /* NickNameViewModel.swift in Sources */,
 				C7BD5B532BE81CE40060CC38 /* PartyCell.swift in Sources */,
 				C7BD5B4A2BE805CC0060CC38 /* CourseModel.swift in Sources */,
