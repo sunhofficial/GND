@@ -7,142 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F926E5BB-6D83-4B28-9054-E18EE0644668"
-            shouldBeEnabled = "No"
+            uuid = "FC482C7A-26FC-4259-887D-B8DD9859EE4E"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GND/Data/Networks/APIEndPoint/ExerciseAPI.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
-            landmarkName = "asURLRequest()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "BA0BE321-3E89-4402-ACF8-9F134014A9A9"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GND/Data/Repository/ExerciseRepository.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "getAnalyzeSteps(type:startDate:endDate:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "BA0BE321-3E89-4402-ACF8-9F134014A9A9 - 8004ac099a5a0721"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 ((Swift.Result&lt;GND.AnalzyeDateResponse&lt;GND.AnalyzeStepData&gt;, Swift.Error&gt;) -&gt; ()) -&gt; () in GND.ExerciseRepository.getAnalyzeSteps(type: GND.DropRange, startDate: Swift.String, endDate: Swift.String) -&gt; Combine.AnyPublisher&lt;GND.AnalzyeDateResponse&lt;GND.AnalyzeStepData&gt;, Swift.Error&gt;"
-                  moduleName = "GND"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Data/Repository/ExerciseRepository.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42">
-               </Location>
-               <Location
-                  uuid = "BA0BE321-3E89-4402-ACF8-9F134014A9A9 - 5a6c580694f30046"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Swift.Optional&lt;Foundation.Data&gt;, Alamofire.AFError&gt;) -&gt; () in closure #1 ((Swift.Result&lt;GND.AnalzyeDateResponse&lt;GND.AnalyzeStepData&gt;, Swift.Error&gt;) -&gt; ()) -&gt; () in GND.ExerciseRepository.getAnalyzeSteps(type: GND.DropRange, startDate: Swift.String, endDate: Swift.String) -&gt; Combine.AnyPublisher&lt;GND.AnalzyeDateResponse&lt;GND.AnalyzeStepData&gt;, Swift.Error&gt;"
-                  moduleName = "GND"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Data/Repository/ExerciseRepository.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "428836C6-2D84-4482-A5DE-3A50BABF5492"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GND/Data/Repository/ExerciseRepository.swift"
+            filePath = "GND/Presentation/MainView/MainViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "41"
             endingLineNumber = "41"
-            landmarkName = "getAnalyzeSteps(type:startDate:endDate:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E8B5F6AE-4102-422E-8474-D0724F2BA984"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GND/Data/Repository/ExerciseRepository.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "getAnalyzeStride(type:startDate:endDate:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "0035626F-AD20-4ABE-AFE4-6063C55713EB"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GND/Data/Repository/ExerciseRepository.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "getAnalyzeStride(type:startDate:endDate:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "EEBEC232-18F0-447F-8CE3-4424C3066567"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GND/Data/Repository/ExerciseRepository.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "getAnalyzeSteps(type:startDate:endDate:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B03C35B5-7198-4EE8-B46D-07BDE7C9AF2B"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GND/Data/Repository/ExerciseRepository.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "getAnalyzeSteps(type:startDate:endDate:)"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

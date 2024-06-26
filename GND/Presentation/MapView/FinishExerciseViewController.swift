@@ -121,6 +121,7 @@ final class FinishExerciseViewController: UIViewController {
           let modalView = SetCourseTitleModal()
         modalView.onAddButtonTapped = { title in
             self.viewModel?.sendToSever(title: title)
+            modalVC.dismiss(animated: true)
         }
         modalView.onOutButtonTapped = {
             modalVC.dismiss(animated: true)

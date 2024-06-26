@@ -38,8 +38,6 @@
         func showRecentView() {
             let recentViewController = RecentViewController()
             recentViewController.viewModel = mainViewModel
-//            recentViewController.navigationItem.hidesBackButton = false
-//               self.navigationController.setNavigationBarHidden(true, animated: false)
             navigationController.pushViewController(recentViewController, animated: false)
         }
 
@@ -65,6 +63,7 @@
             self.navigationController.pushViewController(mainviewController, animated: false)
         }
         func resetToMainView() {
+            self.navigationController.isNavigationBarHidden = false
             navigationController.setViewControllers([mainviewController], animated: true)
         }
     }

@@ -30,8 +30,13 @@ class ExerciseViewController: UIViewController {
         config.imagePadding = 8
         config.image = UIImage(systemName: "location")
         config.attributedTitle = AttributedString("현재 위치", attributes: titleContainer)
-        config.baseBackgroundColor = CustomColors.brown
+        config.baseForegroundColor = .black
+        config.background.cornerRadius = 16
+        
+        config.cornerStyle = .fixed
+        config.baseBackgroundColor = CustomColors.cell
         $0.configuration = config
+        
         $0.addTarget(self, action: #selector(centerMapOnUserButtonClicked), for: .touchUpInside)
     }
     let progressBar = UIProgressView().then {

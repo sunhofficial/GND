@@ -47,6 +47,7 @@ class MainViewController: UIViewController {
         self.view.backgroundColor = CustomColors.bk
     }
     override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         overlayView?.removeFromSuperview()
     }
     private func bindViewModel() {
@@ -97,9 +98,6 @@ class MainViewController: UIViewController {
         case nil:
             break
         }
-
-
-
     }
     private func setupLoadingView() {
         loadingView.frame = view.bounds
