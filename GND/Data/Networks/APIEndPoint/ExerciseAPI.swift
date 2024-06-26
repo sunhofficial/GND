@@ -75,7 +75,13 @@ extension ExerciseAPI: Router,  URLRequestConvertible {
     }
 
     func asURLRequest() throws -> URLRequest {
-        let url = try baseURL.asURL().appendingPathComponent(path)
+        let url: URL
+        if path != "" {
+             url = try baseURL.asURL().appendingPathComponent(path)
+        } else {
+             url = URL(string: baseURL)!
+        }
+
         var request = try URLRequest(url: url, method: method, headers: headers)
         switch self {
         case .requestGoal:
