@@ -22,7 +22,6 @@
 		C7678E1C2C23335F008AF44C /* DropRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7678E1B2C23335F008AF44C /* DropRange.swift */; };
 		C7678E1E2C23495C008AF44C /* AnalyzeChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7678E1D2C23495C008AF44C /* AnalyzeChartView.swift */; };
 		C7678E202C2349E6008AF44C /* AnalyzeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7678E1F2C2349E6008AF44C /* AnalyzeViewModel.swift */; };
-		C7678E222C24187E008AF44C /* AnalyzeDataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7678E212C24187E008AF44C /* AnalyzeDataRequest.swift */; };
 		C7678E242C241ECD008AF44C /* AnalzyeDateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7678E232C241ECD008AF44C /* AnalzyeDateResponse.swift */; };
 		C7678E262C242C61008AF44C /* AnalyzeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7678E252C242C61008AF44C /* AnalyzeUseCase.swift */; };
 		C7A6E01D2C26AEA90041D8D3 /* StrideInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A6E01C2C26AEA90041D8D3 /* StrideInfoView.swift */; };
@@ -35,6 +34,7 @@
 		C7B0BE332BF4613A009ACE74 /* FinishExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0BE322BF4613A009ACE74 /* FinishExerciseViewController.swift */; };
 		C7B0BE352BF48DEA009ACE74 /* ExerciseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0BE342BF48DEA009ACE74 /* ExerciseRepository.swift */; };
 		C7B0BE372BF48DF5009ACE74 /* ExerciseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0BE362BF48DF5009ACE74 /* ExerciseAPI.swift */; };
+		C7B9D26E2C3426BF0074C162 /* AnalyzeDataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B9D26D2C3426BF0074C162 /* AnalyzeDataRequest.swift */; };
 		C7BD5AE32BE604CD0060CC38 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = C7BD5AE22BE604CD0060CC38 /* Then */; };
 		C7BD5AEB2BE605650060CC38 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5AEA2BE605650060CC38 /* LoginViewController.swift */; };
 		C7BD5AEE2BE608E80060CC38 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5AED2BE608E80060CC38 /* LoginViewModel.swift */; };
@@ -135,7 +135,6 @@
 		C7678E1B2C23335F008AF44C /* DropRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropRange.swift; sourceTree = "<group>"; };
 		C7678E1D2C23495C008AF44C /* AnalyzeChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeChartView.swift; sourceTree = "<group>"; };
 		C7678E1F2C2349E6008AF44C /* AnalyzeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeViewModel.swift; sourceTree = "<group>"; };
-		C7678E212C24187E008AF44C /* AnalyzeDataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AnalyzeDataRequest.swift; path = ../../../../../../../.Trash/GND/GND/Data/Networks/DTO/AnalyzeDataRequest.swift; sourceTree = "<group>"; };
 		C7678E232C241ECD008AF44C /* AnalzyeDateResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalzyeDateResponse.swift; sourceTree = "<group>"; };
 		C7678E252C242C61008AF44C /* AnalyzeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeUseCase.swift; sourceTree = "<group>"; };
 		C7A6E01C2C26AEA90041D8D3 /* StrideInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrideInfoView.swift; sourceTree = "<group>"; };
@@ -148,6 +147,7 @@
 		C7B0BE322BF4613A009ACE74 /* FinishExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishExerciseViewController.swift; sourceTree = "<group>"; };
 		C7B0BE342BF48DEA009ACE74 /* ExerciseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRepository.swift; sourceTree = "<group>"; };
 		C7B0BE362BF48DF5009ACE74 /* ExerciseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseAPI.swift; sourceTree = "<group>"; };
+		C7B9D26D2C3426BF0074C162 /* AnalyzeDataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeDataRequest.swift; sourceTree = "<group>"; };
 		C7BD5AEA2BE605650060CC38 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C7BD5AEC2BE606750060CC38 /* GND.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GND.entitlements; sourceTree = "<group>"; };
 		C7BD5AED2BE608E80060CC38 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -409,7 +409,7 @@
 			isa = PBXGroup;
 			children = (
 				C7BD5B672BE8CB3C0060CC38 /* LoginResponse.swift */,
-				C7678E212C24187E008AF44C /* AnalyzeDataRequest.swift */,
+				C7B9D26D2C3426BF0074C162 /* AnalyzeDataRequest.swift */,
 				C7678E232C241ECD008AF44C /* AnalzyeDateResponse.swift */,
 				C7CD67082C08046200FB471A /* GetRecentResponse.swift */,
 				C7CD67022C08000600FB471A /* GetRecentRequest.swift */,
@@ -669,13 +669,13 @@
 				C7C2947C2BF1FEB2009FACD8 /* AnalyzeViewController.swift in Sources */,
 				C7BD5B572BE898140060CC38 /* GridCollectionViewFlowLayout.swift in Sources */,
 				C71608322BF50E70005A937A /* ExerciseTracking.swift in Sources */,
+				C7B9D26E2C3426BF0074C162 /* AnalyzeDataRequest.swift in Sources */,
 				C7B0BE352BF48DEA009ACE74 /* ExerciseRepository.swift in Sources */,
 				C7BD5B442BE7F4A70060CC38 /* EnterModel.swift in Sources */,
 				C7B0BE332BF4613A009ACE74 /* FinishExerciseViewController.swift in Sources */,
 				C7B0BE372BF48DF5009ACE74 /* ExerciseAPI.swift in Sources */,
 				C7CD67012C07FAC900FB471A /* CourseAPI.swift in Sources */,
 				C7BD5B5B2BE8A2510060CC38 /* PartyDetailCell.swift in Sources */,
-				C7678E222C24187E008AF44C /* AnalyzeDataRequest.swift in Sources */,
 				C7C294712BF0CB46009FACD8 /* LoginCoordinator.swift in Sources */,
 				C7678E1E2C23495C008AF44C /* AnalyzeChartView.swift in Sources */,
 				C72E721F2BE375DD0003176E /* SceneDelegate.swift in Sources */,
