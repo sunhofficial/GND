@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct AnalyzeDataRequest: Decodable {
+struct AnalyzeDataRequest: Encodable {
     var type: DropRange
     var startDate : String
     var endDate : String

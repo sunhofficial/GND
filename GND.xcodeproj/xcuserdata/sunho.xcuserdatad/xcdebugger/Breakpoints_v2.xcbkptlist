@@ -34,6 +34,36 @@
             endingLineNumber = "147"
             landmarkName = "sendToSever(title:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B24963F3-6390-4466-A02E-3A4A3EB86B5A - b6757ace3e2ebe1c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GND.ExerciseViewModel.sendToSever(title: Swift.String) -&gt; ()"
+                  moduleName = "GND"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Presentation/MapView/ExerciseViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "147"
+                  endingLineNumber = "147">
+               </Location>
+               <Location
+                  uuid = "B24963F3-6390-4466-A02E-3A4A3EB86B5A - d98f5e985afea454"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.CLLocationCoordinate2D) -&gt; GND.Coordinate in GND.ExerciseViewModel.sendToSever(title: Swift.String) -&gt; ()"
+                  moduleName = "GND"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Presentation/MapView/ExerciseViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "148"
+                  endingLineNumber = "148">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -146,6 +176,36 @@
             endingLineNumber = "122"
             landmarkName = "presentCourseTitleModal()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A00CE392-AE80-4D36-B360-FF8656D15276 - 74a407b4385a8864"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GND.FinishExerciseViewController.presentCourseTitleModal() -&gt; ()"
+                  moduleName = "GND"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Presentation/MapView/FinishExerciseViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "122"
+                  endingLineNumber = "122">
+               </Location>
+               <Location
+                  uuid = "A00CE392-AE80-4D36-B360-FF8656D15276 - 708abc831a9f9dde"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.String) -&gt; () in GND.FinishExerciseViewController.presentCourseTitleModal() -&gt; ()"
+                  moduleName = "GND"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Presentation/MapView/FinishExerciseViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "123"
+                  endingLineNumber = "123">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -274,6 +334,52 @@
             endingLineNumber = "74"
             landmarkName = "updateGoalView(viewmodel:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5DDB1490-C867-4671-9003-C1F5ED763DEA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GND/Data/Repository/ExerciseRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "getAnalyzeStride(type:startDate:endDate:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5DDB1490-C867-4671-9003-C1F5ED763DEA - 83cda491c2cce5a0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 ((Swift.Result&lt;GND.AnalzyeDateResponse&lt;GND.AnalyzeStrideData&gt;, Swift.Error&gt;) -&gt; ()) -&gt; () in GND.ExerciseRepository.getAnalyzeStride(type: GND.DropRange, startDate: Swift.String, endDate: Swift.String) -&gt; Combine.AnyPublisher&lt;GND.AnalzyeDateResponse&lt;GND.AnalyzeStrideData&gt;, Swift.Error&gt;"
+                  moduleName = "GND"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Data/Repository/ExerciseRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25">
+               </Location>
+               <Location
+                  uuid = "5DDB1490-C867-4671-9003-C1F5ED763DEA - e2326603ace06fad"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Swift.Optional&lt;Foundation.Data&gt;, Alamofire.AFError&gt;) -&gt; () in closure #1 ((Swift.Result&lt;GND.AnalzyeDateResponse&lt;GND.AnalyzeStrideData&gt;, Swift.Error&gt;) -&gt; ()) -&gt; () in GND.ExerciseRepository.getAnalyzeStride(type: GND.DropRange, startDate: Swift.String, endDate: Swift.String) -&gt; Combine.AnyPublisher&lt;GND.AnalzyeDateResponse&lt;GND.AnalyzeStrideData&gt;, Swift.Error&gt;"
+                  moduleName = "GND"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Data/Repository/ExerciseRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
