@@ -54,6 +54,7 @@ final class MainViewModel: ObservableObject, MainviewModelInput {
             .sink(receiveCompletion: { [weak self]compleiton in
                 self?.postPublisher.send(true)
                 if self?.isFirst == true {
+                    self?.isFirst = false
                     self?.firstPublisher.send(true)
                 }
             }, receiveValue: { data in

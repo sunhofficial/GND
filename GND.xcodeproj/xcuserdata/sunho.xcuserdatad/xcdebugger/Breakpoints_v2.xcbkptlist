@@ -7,22 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "FC482C7A-26FC-4259-887D-B8DD9859EE4E"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GND/Presentation/MainView/MainViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "31E9B88C-5A97-4880-A086-73BE38DB9C56"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -34,36 +18,6 @@
             endingLineNumber = "146"
             landmarkName = "sendToSever(title:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "31E9B88C-5A97-4880-A086-73BE38DB9C56 - b6757ace3e2ebeff"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GND.ExerciseViewModel.sendToSever(title: Swift.String) -&gt; ()"
-                  moduleName = "GND"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Presentation/MapView/ExerciseViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "146"
-                  endingLineNumber = "146">
-               </Location>
-               <Location
-                  uuid = "31E9B88C-5A97-4880-A086-73BE38DB9C56 - b6757ace3e2ebeff"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GND.ExerciseViewModel.sendToSever(title: Swift.String) -&gt; ()"
-                  moduleName = "GND"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Presentation/MapView/ExerciseViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "146"
-                  endingLineNumber = "146">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -80,50 +34,6 @@
             endingLineNumber = "147"
             landmarkName = "sendToSever(title:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "B24963F3-6390-4466-A02E-3A4A3EB86B5A - b6757ace3e2ebe1c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GND.ExerciseViewModel.sendToSever(title: Swift.String) -&gt; ()"
-                  moduleName = "GND"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Presentation/MapView/ExerciseViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "147"
-                  endingLineNumber = "147">
-               </Location>
-               <Location
-                  uuid = "B24963F3-6390-4466-A02E-3A4A3EB86B5A - d98f5e985afea454"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (__C.CLLocationCoordinate2D) -&gt; GND.Coordinate in GND.ExerciseViewModel.sendToSever(title: Swift.String) -&gt; ()"
-                  moduleName = "GND"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Presentation/MapView/ExerciseViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "148"
-                  endingLineNumber = "148">
-               </Location>
-               <Location
-                  uuid = "B24963F3-6390-4466-A02E-3A4A3EB86B5A - b6757ace3e2ebe1c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GND.ExerciseViewModel.sendToSever(title: Swift.String) -&gt; ()"
-                  moduleName = "GND"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Presentation/MapView/ExerciseViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "147"
-                  endingLineNumber = "147">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -156,36 +66,6 @@
             endingLineNumber = "150"
             landmarkName = "sendToSever(title:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "32B6A844-3498-49A3-9174-83EF65D44C87 - b6757ace3e2ebe7b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GND.ExerciseViewModel.sendToSever(title: Swift.String) -&gt; ()"
-                  moduleName = "GND"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Presentation/MapView/ExerciseViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "150"
-                  endingLineNumber = "150">
-               </Location>
-               <Location
-                  uuid = "32B6A844-3498-49A3-9174-83EF65D44C87 - b6757ace3e2ebe7b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GND.ExerciseViewModel.sendToSever(title: Swift.String) -&gt; ()"
-                  moduleName = "GND"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Presentation/MapView/ExerciseViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "150"
-                  endingLineNumber = "150">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -202,36 +82,6 @@
             endingLineNumber = "151"
             landmarkName = "sendToSever(title:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "3B1721E3-E3A6-44B9-AC9C-22B9C6F41893 - b6757ace3e2ebf98"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GND.ExerciseViewModel.sendToSever(title: Swift.String) -&gt; ()"
-                  moduleName = "GND"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Presentation/MapView/ExerciseViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "151"
-                  endingLineNumber = "151">
-               </Location>
-               <Location
-                  uuid = "3B1721E3-E3A6-44B9-AC9C-22B9C6F41893 - b6757ace3e2ebf98"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GND.ExerciseViewModel.sendToSever(title: Swift.String) -&gt; ()"
-                  moduleName = "GND"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Presentation/MapView/ExerciseViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "151"
-                  endingLineNumber = "151">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -248,36 +98,6 @@
             endingLineNumber = "145"
             landmarkName = "sendToSever(title:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "AEBE22D2-4526-4805-B221-AD575522FC53 - b6757ace3e2ebeff"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GND.ExerciseViewModel.sendToSever(title: Swift.String) -&gt; ()"
-                  moduleName = "GND"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Presentation/MapView/ExerciseViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "146"
-                  endingLineNumber = "146">
-               </Location>
-               <Location
-                  uuid = "AEBE22D2-4526-4805-B221-AD575522FC53 - b6757ace3e2ebeff"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GND.ExerciseViewModel.sendToSever(title: Swift.String) -&gt; ()"
-                  moduleName = "GND"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Presentation/MapView/ExerciseViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "146"
-                  endingLineNumber = "146">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -294,36 +114,6 @@
             endingLineNumber = "123"
             landmarkName = "presentCourseTitleModal()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "BEB33345-94D2-4432-92EF-FAFB917891DB - 708abc831a9f9dde"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.String) -&gt; () in GND.FinishExerciseViewController.presentCourseTitleModal() -&gt; ()"
-                  moduleName = "GND"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Presentation/MapView/FinishExerciseViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "123"
-                  endingLineNumber = "123">
-               </Location>
-               <Location
-                  uuid = "BEB33345-94D2-4432-92EF-FAFB917891DB - 708abc831a9f9dde"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.String) -&gt; () in GND.FinishExerciseViewController.presentCourseTitleModal() -&gt; ()"
-                  moduleName = "GND"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Presentation/MapView/FinishExerciseViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "123"
-                  endingLineNumber = "123">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -340,36 +130,6 @@
             endingLineNumber = "124"
             landmarkName = "presentCourseTitleModal()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "4D2FE5F4-D7BA-41BE-AA77-C0DE3FCDE74F - 708abc831a9f9de1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.String) -&gt; () in GND.FinishExerciseViewController.presentCourseTitleModal() -&gt; ()"
-                  moduleName = "GND"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Presentation/MapView/FinishExerciseViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "124"
-                  endingLineNumber = "124">
-               </Location>
-               <Location
-                  uuid = "4D2FE5F4-D7BA-41BE-AA77-C0DE3FCDE74F - 708abc831a9f9de1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.String) -&gt; () in GND.FinishExerciseViewController.presentCourseTitleModal() -&gt; ()"
-                  moduleName = "GND"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Presentation/MapView/FinishExerciseViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "124"
-                  endingLineNumber = "124">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -386,64 +146,134 @@
             endingLineNumber = "122"
             landmarkName = "presentCourseTitleModal()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "A00CE392-AE80-4D36-B360-FF8656D15276 - 74a407b4385a8864"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GND.FinishExerciseViewController.presentCourseTitleModal() -&gt; ()"
-                  moduleName = "GND"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Presentation/MapView/FinishExerciseViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "122"
-                  endingLineNumber = "122">
-               </Location>
-               <Location
-                  uuid = "A00CE392-AE80-4D36-B360-FF8656D15276 - 708abc831a9f9dde"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.String) -&gt; () in GND.FinishExerciseViewController.presentCourseTitleModal() -&gt; ()"
-                  moduleName = "GND"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Presentation/MapView/FinishExerciseViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "123"
-                  endingLineNumber = "123">
-               </Location>
-               <Location
-                  uuid = "A00CE392-AE80-4D36-B360-FF8656D15276 - 74a407b4385a8864"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GND.FinishExerciseViewController.presentCourseTitleModal() -&gt; ()"
-                  moduleName = "GND"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Presentation/MapView/FinishExerciseViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "122"
-                  endingLineNumber = "122">
-               </Location>
-               <Location
-                  uuid = "A00CE392-AE80-4D36-B360-FF8656D15276 - 708abc831a9f9dde"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.String) -&gt; () in GND.FinishExerciseViewController.presentCourseTitleModal() -&gt; ()"
-                  moduleName = "GND"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Presentation/MapView/FinishExerciseViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "123"
-                  endingLineNumber = "123">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8E06B465-1907-4E7B-8651-E1373049204A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GND/Presentation/MainView/MainViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "getUserGoal()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0EE0CE18-1FE9-440A-B803-D7AAAADC23D4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GND/Data/Repository/UserRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "getTodayGoal()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CDFFEC39-AFEF-4122-B21F-D87D21CF5C74"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GND/Data/Repository/UserRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "getTodayGoal()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8311F830-6266-4F78-A9E8-44FB7A7843E6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GND/Data/Repository/UserRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "getTodayGoal()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F93E3B99-DBFF-4205-89F4-83976C324713"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GND/Presentation/MainView/GoalView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "updateGoalView(viewmodel:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A0044407-A577-47A3-9870-C185188E688D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GND/Presentation/MainView/GoalView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "updateGoalView(viewmodel:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "32ABD315-5A89-454F-8672-D1B4CA42A81A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GND/Presentation/MainView/GoalView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "updateGoalView(viewmodel:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A7D357E8-A82E-41C4-888D-91C3F5BF89C3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GND/Presentation/MainView/GoalView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "updateGoalView(viewmodel:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
