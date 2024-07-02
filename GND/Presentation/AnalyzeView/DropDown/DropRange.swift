@@ -6,9 +6,21 @@
 //
 
 import Foundation
-enum DropRange: String, CaseIterable {
-    case day = "일"
-    case week = "주"
-    case month = "월"
-    case year = "년"
+enum DropRange: String, CaseIterable, Codable {
+    case hour
+    case day
+    case week
+    case month
+    var koreanString: String {
+        switch self {
+        case .hour:
+            "시간"
+        case .day:
+            "일"
+        case .week:
+            "주"
+        case .month:
+            "월"
+        }
+    }
 }

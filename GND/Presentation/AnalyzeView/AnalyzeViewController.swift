@@ -7,27 +7,59 @@
 
 import UIKit
 import SnapKit
-
+import Combine
+import Then
+import SwiftUI
+enum AnalyzeType: String{
+    case stride = "보폭"
+    case speed = "걸음속도"
+    case steps = "걸음수"
+}
 class AnalyzeViewController: UIViewController {
     let segmentedControl = UISegmentedControl(items: ["보폭", "걸음속도", "걸음수"])
     let dropBoxButton = DropDownButton()
     let dateLabel = UILabel()
+    var infoViews: [AnalyzeType: UIView] = [:]
+    let viewModel = AnalyzeViewModel(analyzeUsecase: AnalyzeUseCase(exerciseReposiotory: ExerciseRepository()))
+    let analyzeImage = UIImageView(image: UIImage(named: "analyzeLogo"))
+    private var selectedDate: DropRange = .day
+    private var cancellables = Set<AnyCancellable>()
+    let scrollView = UIScrollView()
+    let containerView = UIView()
+    var chartViewHosting: UIHostingController<AnalyzeChartView>? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.isNavigationBarHidden = true
+        setScrollview()
         setupSegmendtedControl()
         setupDropDownButton()
+        setChartView()
+        setInfoView()
+        updateInfoview()
+    }
+    private func setScrollview() {
+        view.addSubview(scrollView)
+        scrollView.addSubview(containerView)
+        scrollView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+
+        }
+        containerView.snp.makeConstraints {
+            $0.top.bottom.equalToSuperview() // containerView의 상단과 하단을 scrollView와 맞춤
+            $0.width.equalToSuperview()
+            $0.height.equalTo(1400)
+        }
     }
     func setupSegmendtedControl() {
         segmentedControl.selectedSegmentIndex = 0
-        //        segmentedControl.setBackgroundImage(UIImage(), for: .normal, barMetrics: .default)
         segmentedControl.backgroundColor = CustomColors.cell
         segmentedControl.layer.cornerRadius = 10
         segmentedControl.setDividerImage(UIImage(), forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
         segmentedControl.addTarget(self, action: #selector(didChangeValue(segment:)), for: .valueChanged)
         self.didChangeValue(segment: self.segmentedControl)
-        view.addSubview(segmentedControl)
+        containerView.addSubview(segmentedControl)
         segmentedControl.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(56)
+            $0.top.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(24)
             $0.centerX.equalToSuperview()
         }
@@ -35,48 +67,85 @@ class AnalyzeViewController: UIViewController {
     func setupDropDownButton() {
         dropBoxButton.dataSource = DropRange.allCases
         dropBoxButton.delegate = self
-        view.addSubview(dropBoxButton)
+
         dateLabel.font = .systemFont(ofSize: 20, weight: .medium)
-        view.addSubview(dateLabel)
-        setdateLabel(range: .day)
+        containerView.addSubview(dateLabel)
+        containerView.addSubview(analyzeImage)
+        dateLabel.text = "\(viewModel.dateRanges[selectedDate]!.formatToCalendarString())-\(viewModel.endDate.formatToCalendarString())"
+
+        dateLabel.snp.makeConstraints {
+            $0.top.equalTo(segmentedControl.snp.bottom).offset(16)
+            $0.leading.equalToSuperview().offset(24)
+        }
+
+    }
+    private func setChartView() {
+        chartViewHosting = UIHostingController(rootView: AnalyzeChartView(viewModel: viewModel))
+        guard let chartsView = chartViewHosting?.view else {
+            return
+        }
+        containerView.addSubview(chartsView)
+        containerView.addSubview(dropBoxButton)
+        chartsView.snp.makeConstraints {
+            $0.top.equalTo(dateLabel.snp.bottom).offset(16)
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.height.equalTo(chartsView.snp.width)
+        }
         dropBoxButton.snp.makeConstraints {
             $0.top.equalTo(segmentedControl.snp.bottom).offset(16)
             $0.trailing.equalToSuperview().inset(24)
         }
-        dateLabel.snp.makeConstraints {
-            $0.top.equalTo(dropBoxButton.snp.top)
-            $0.leading.equalToSuperview().offset(24)
+        analyzeImage.snp.makeConstraints{
+            $0.top.equalTo(chartsView.snp.bottom).offset(24)
+            $0.width.height.equalTo(280)
+            $0.centerX.equalToSuperview()
         }
     }
-    func setdateLabel(range: DropRange) {
-        let dateFormatter = DateFormatter()
-               dateFormatter.dateFormat = "yyyy.MM.dd"
-               let today = Date()
-        var startDate: Date
-               var endDate: Date = today
-        switch range {
-               case .day:
-                   startDate = Calendar.current.date(byAdding: .day, value: -7, to: today)!
-               case .week:
-                   startDate = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: today)!
-               case .month:
-                   startDate = Calendar.current.date(byAdding: .month, value: -1, to: today)!
-               case .year:
-                   startDate = Calendar.current.date(byAdding: .year, value: -1, to: today)!
-               }
-        let startDateString = dateFormatter.string(from: startDate)
-             let endDateString = dateFormatter.string(from: endDate)
-             dateLabel.text = "\(startDateString) - \(endDateString)"
+    func setInfoView() {
+        let strideInfoView = StrideInfoView()
+        let speedInfoView = SpeedInfoVIew()
+        let stepsInfoView = StepsInfoView()
+
+        infoViews[.stride] = strideInfoView
+        infoViews[.speed] = speedInfoView
+        infoViews[.steps] = stepsInfoView
+        for (_, infoview) in infoViews {
+            containerView.addSubview(infoview)
+            infoview.snp.makeConstraints {
+                $0.top.equalTo(analyzeImage.snp.bottom).offset(16)
+                $0.leading.trailing.equalToSuperview()
+                $0.bottom.equalToSuperview()
+            }
+            infoview.isHidden = true
+        }
     }
     @objc private func didChangeValue(segment: UISegmentedControl) {
+        switch segment.selectedSegmentIndex {
+        case 0:
+            viewModel.updateAnalyzeType(type: .stride)
+        case 1:
+            viewModel.updateAnalyzeType(type: .speed)
+        case 2:
+            viewModel.updateAnalyzeType(type: .steps)
+        default:
+            break
+        }
+        viewModel.fetchChartData( dateRange: selectedDate)
+        updateInfoview()
+    }
+    private func updateInfoview() {
+        for (type, infoView) in infoViews {
+            infoView.isHidden = type != viewModel.selectedType
+              }
     }
 }
 extension AnalyzeViewController: DropDownButtonDelegate {
     func didSelect(_ index: Int) {
-        let selectedITEM = dropBoxButton.dataSource[index]
-        setdateLabel(range: selectedITEM)
+        selectedDate = dropBoxButton.dataSource[index]
+        dateLabel.text = "\(viewModel.dateRanges[selectedDate]!.formatToCalendarString())-\(viewModel.endDate.formatToCalendarString())"
+        viewModel.fetchChartData( dateRange: selectedDate)
     }
-    
+
 
 }
 #Preview {

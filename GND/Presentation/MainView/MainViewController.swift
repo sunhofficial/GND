@@ -13,10 +13,10 @@ import Combine
 class MainViewController: UIViewController {
     var enterRooms :[EnterModel] = [ EnterModel(title: "경희대 사람문의", subtitle: "교수 경희대 국제관 하반기", participantCount: 3, imageString: "logo"),
                                      EnterModel(title: "어쩌구 저쩌구", subtitle: "코스 설명", participantCount: 10, imageString:  "logo")]
-    let goalView = UIView().then {
-        $0.layer.cornerRadius = 16
-        $0.backgroundColor = CustomColors.cell
-    }
+//    let goalView = UIView().then {
+//        $0.layer.cornerRadius = 16
+//        $0.backgroundColor = CustomColors.cell
+//    }
     var viewModel: MainViewModel?
     private let loadingView = UIView()
     private let activityIndicator = UIActivityIndicatorView(style: .large)
@@ -24,6 +24,7 @@ class MainViewController: UIViewController {
     private var cancellables = Set<AnyCancellable>()
     let recentView = CellView()
     private var recentData: CellType?
+    private let goalView = GoalView()
     private var goalModalView: GoalModalView?
     private var modalType: GoalType?
     private lazy var collectionView: UICollectionView = {
@@ -42,26 +43,31 @@ class MainViewController: UIViewController {
         setupLoadingView()
         showLoadingView()
         bindViewModel()
-        viewModel?.getUserGoal()
-        viewModel?.getRecent1Course()
+        setupUI()
         self.view.backgroundColor = CustomColors.bk
     }
     override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         overlayView?.removeFromSuperview()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel?.getUserGoal()
+        viewModel?.getRecent1Course()
     }
     private func bindViewModel() {
         viewModel?.postPublisher
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] usergoal in
                 self?.hideLoadingView()
-                self?.setupUI()
+                self?.goalView.updateGoalView(viewmodel: (self?.viewModel!)!)
+
             }).store(in: &cancellables)
 
         viewModel?.$recentCourse
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] data in
                 guard let data = data else {return}
-//                self?.setupUI()
                 self?.recentData = .recentCource(CourseModel(courseTitle: data.courseName ?? "", courseDistance: data.distance, courseTime: data.time, coordinates: data.course))
                 self?.updateRecentView()
 
@@ -97,9 +103,6 @@ class MainViewController: UIViewController {
         case nil:
             break
         }
-
-
-
     }
     private func setupLoadingView() {
         loadingView.frame = view.bounds
@@ -134,83 +137,14 @@ class MainViewController: UIViewController {
         return label
     }
     private func setupGoalView() {
-        let titleLabel = UILabel().then {
-            $0.text = "오늘의 목표"
-            $0.font = .systemFont(ofSize: 32, weight: .bold)
-        }
-        let levelLabel = UILabel().then {
-            $0.text = viewModel?.userLevel.title ?? "숙련자"
-            $0.font = .systemFont(ofSize: 32, weight: .bold)
-            $0.textColor = .black
-        }
-        let expProgressView = UIProgressView(progressViewStyle: .default).then {
-            $0.progress = Float(viewModel?.userGoal?.exp ?? 5) / 10.0
-            $0.tintColor = UIColor(named: viewModel?.userLevel.colorString ?? "lowLevelColor")
-            $0.clipsToBounds = true
-            $0.layer.cornerRadius = 10
-        }
-        let levelImage = UIImageView(image: UIImage(named: viewModel?.userLevel.imageString ?? "lowLevel"))
-        let meterGoalView = makeGoalInfoView(current: viewModel?.userGoal?.todayStride ?? 0, goal: viewModel?.userGoal?.goalStride ?? 0, measure: "cm")
-        let speedGoalView = makeGoalInfoView(current: viewModel?.userGoal?.todaySpeed ?? 0.0 , goal: viewModel?.userGoal?.goalSpeed ?? 0.0, measure: "km/h")
-        let distanceGoalView = makeGoalInfoView(current: viewModel?.userGoal?.todayStep ?? 0, goal: viewModel?.userGoal?.goalStep ?? 0, measure: "걸음")
-        let infoStack = UIStackView(arrangedSubviews: [meterGoalView, speedGoalView, distanceGoalView]).then {
-            $0.axis = .horizontal
-            $0.distribution = .fillEqually
-        }
-        [levelLabel, levelImage, infoStack, expProgressView]
-            .forEach {
-                goalView.addSubview($0)
-            }
-
-        levelLabel.snp.makeConstraints {
-            $0.top.leading.equalToSuperview().offset(16)
-        }
-        levelImage.snp.makeConstraints {
-            $0.centerY.equalTo(levelLabel.snp.centerY)
-            $0.leading.equalTo(levelLabel.snp.trailing).offset(4)
-        }
-        infoStack.snp.makeConstraints {
-            $0.top.equalTo(levelLabel.snp.bottom).offset(16)
-            $0.leading.trailing.equalToSuperview().inset(24)
-            $0.bottom.equalToSuperview().inset(8)
-        }
-        expProgressView.snp.makeConstraints {
-            $0.centerY.equalTo(levelImage.snp.centerY)
-            $0.leading.equalTo(levelImage.snp.trailing).offset(16)
-            $0.trailing.equalToSuperview().inset(16)
-            $0.height.equalTo(24)
-        }
-        view.addSubview(titleLabel)
         view.addSubview(goalView)
-        titleLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide)
-            $0.leading.equalToSuperview().offset(16)
-        }
         goalView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(4)
-            $0.leading.trailing.equalToSuperview().inset(8)
-        }
+                 $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
+                 $0.leading.trailing.equalToSuperview().inset(20)
+             }
+
     }
-    func makeGoalInfoView<T: Comparable>(current: T, goal: T, measure: String) -> UIStackView {
-        let topLabel = UILabel().then {
-            $0.text = "\(current)"
-            $0.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-            $0.textAlignment = .center
-            $0.textColor = current < goal ? .red : .green
-        }
-        let bottomLabel = UILabel().then {
-            $0.text = "/\n\(goal) \(measure)"
-            $0.textAlignment = .center
-            $0.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-            $0.textColor = .black
-            $0.numberOfLines = 0
-        }
-        let stack = UIStackView(arrangedSubviews: [topLabel, bottomLabel]).then {
-            $0.axis = .vertical
-            $0.spacing = 0
-        }
-        return stack
-    }
+
     func setEnterRooms() {
         let titleLabel = UILabel().then {
             $0.text = "참여 중인 방"

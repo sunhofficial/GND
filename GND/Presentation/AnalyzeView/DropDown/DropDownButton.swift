@@ -20,9 +20,10 @@ class DropDownButton: UIView {
     let button: UIButton = {
         var config = UIButton.Configuration.plain()
         config.baseForegroundColor = .black
-        config.title = DropRange.day.rawValue
+        config.title = DropRange.day.koreanString
         config.image = UIImage(systemName: "chevron.down")
         config.imagePadding = 40
+//        config.imagePadding = 40
         config.imagePlacement = .trailing
         config.contentInsets = NSDirectionalEdgeInsets(top: 24, leading: 8, bottom: 24, trailing: 8)
         let button = UIButton(configuration: config)
@@ -75,14 +76,15 @@ class DropDownButton: UIView {
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            button.heightAnchor.constraint(equalToConstant: 32)
+            button.heightAnchor.constraint(equalToConstant: 32),
+            button
+                .widthAnchor.constraint(equalToConstant: 112)
         ])
     }
     @objc private func buttonTapped() {
         tableView.isHidden.toggle()
     }
     func updateTableDataSource() {
-
         tableViewHeight?.constant = CGFloat(dataSource.count * 40)
 
         tableView.reloadData()
@@ -96,7 +98,7 @@ extension DropDownButton: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DropDownTabelCell.reuseIdentifier, for: indexPath) as? DropDownTabelCell else { return UITableViewCell() }
-        cell.set(dataSource[indexPath.row].rawValue)
+        cell.set(dataSource[indexPath.row].koreanString)
         return cell
     }
 
@@ -104,7 +106,7 @@ extension DropDownButton: UITableViewDataSource {
 
 extension DropDownButton: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        button.setTitle(dataSource[indexPath.row].rawValue, for: .normal)
+        button.setTitle(dataSource[indexPath.row].koreanString, for: .normal)
         delegate?.didSelect(indexPath.row)
         tableView.isHidden = true
     }

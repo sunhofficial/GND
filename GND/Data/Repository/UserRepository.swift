@@ -21,7 +21,7 @@ class UserRepository: UserRepositoryProtocol {
                 debugPrint(res)}
                 .responseDecodable(of: TodayGoalResponse.self) { res in
                     if let data = res.value {
-                        promise(.success(data.toDomain()))
+                            promise(.success(data.toDomain()))
                     } else if let error = res.error {
                         promise(.failure(error))
                     }

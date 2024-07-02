@@ -22,10 +22,19 @@
 		C7678E1C2C23335F008AF44C /* DropRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7678E1B2C23335F008AF44C /* DropRange.swift */; };
 		C7678E1E2C23495C008AF44C /* AnalyzeChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7678E1D2C23495C008AF44C /* AnalyzeChartView.swift */; };
 		C7678E202C2349E6008AF44C /* AnalyzeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7678E1F2C2349E6008AF44C /* AnalyzeViewModel.swift */; };
+		C7678E242C241ECD008AF44C /* AnalzyeDateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7678E232C241ECD008AF44C /* AnalzyeDateResponse.swift */; };
+		C7678E262C242C61008AF44C /* AnalyzeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7678E252C242C61008AF44C /* AnalyzeUseCase.swift */; };
+		C7A6E01D2C26AEA90041D8D3 /* StrideInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A6E01C2C26AEA90041D8D3 /* StrideInfoView.swift */; };
+		C7A6E01F2C26AEAF0041D8D3 /* SpeedInfoVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A6E01E2C26AEAF0041D8D3 /* SpeedInfoVIew.swift */; };
+		C7A6E0212C26AEB40041D8D3 /* StepsInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A6E0202C26AEB40041D8D3 /* StepsInfoView.swift */; };
+		C7A6E0232C292A200041D8D3 /* AnalyzeDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A6E0222C292A200041D8D3 /* AnalyzeDataModel.swift */; };
+		C7A6E0252C29615F0041D8D3 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A6E0242C29615F0041D8D3 /* String+.swift */; };
+		C7A6E0272C2D31210041D8D3 /* GoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A6E0262C2D31210041D8D3 /* GoalView.swift */; };
 		C7ADA9DF2BF9E64C00EE712B /* SetCourseTitleModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ADA9DE2BF9E64C00EE712B /* SetCourseTitleModal.swift */; };
 		C7B0BE332BF4613A009ACE74 /* FinishExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0BE322BF4613A009ACE74 /* FinishExerciseViewController.swift */; };
 		C7B0BE352BF48DEA009ACE74 /* ExerciseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0BE342BF48DEA009ACE74 /* ExerciseRepository.swift */; };
 		C7B0BE372BF48DF5009ACE74 /* ExerciseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0BE362BF48DF5009ACE74 /* ExerciseAPI.swift */; };
+		C7B9D26E2C3426BF0074C162 /* AnalyzeDataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B9D26D2C3426BF0074C162 /* AnalyzeDataRequest.swift */; };
 		C7BD5AE32BE604CD0060CC38 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = C7BD5AE22BE604CD0060CC38 /* Then */; };
 		C7BD5AEB2BE605650060CC38 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5AEA2BE605650060CC38 /* LoginViewController.swift */; };
 		C7BD5AEE2BE608E80060CC38 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD5AED2BE608E80060CC38 /* LoginViewModel.swift */; };
@@ -126,10 +135,19 @@
 		C7678E1B2C23335F008AF44C /* DropRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropRange.swift; sourceTree = "<group>"; };
 		C7678E1D2C23495C008AF44C /* AnalyzeChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeChartView.swift; sourceTree = "<group>"; };
 		C7678E1F2C2349E6008AF44C /* AnalyzeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeViewModel.swift; sourceTree = "<group>"; };
+		C7678E232C241ECD008AF44C /* AnalzyeDateResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalzyeDateResponse.swift; sourceTree = "<group>"; };
+		C7678E252C242C61008AF44C /* AnalyzeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeUseCase.swift; sourceTree = "<group>"; };
+		C7A6E01C2C26AEA90041D8D3 /* StrideInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrideInfoView.swift; sourceTree = "<group>"; };
+		C7A6E01E2C26AEAF0041D8D3 /* SpeedInfoVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedInfoVIew.swift; sourceTree = "<group>"; };
+		C7A6E0202C26AEB40041D8D3 /* StepsInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsInfoView.swift; sourceTree = "<group>"; };
+		C7A6E0222C292A200041D8D3 /* AnalyzeDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeDataModel.swift; sourceTree = "<group>"; };
+		C7A6E0242C29615F0041D8D3 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		C7A6E0262C2D31210041D8D3 /* GoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalView.swift; sourceTree = "<group>"; };
 		C7ADA9DE2BF9E64C00EE712B /* SetCourseTitleModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCourseTitleModal.swift; sourceTree = "<group>"; };
 		C7B0BE322BF4613A009ACE74 /* FinishExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishExerciseViewController.swift; sourceTree = "<group>"; };
 		C7B0BE342BF48DEA009ACE74 /* ExerciseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRepository.swift; sourceTree = "<group>"; };
 		C7B0BE362BF48DF5009ACE74 /* ExerciseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseAPI.swift; sourceTree = "<group>"; };
+		C7B9D26D2C3426BF0074C162 /* AnalyzeDataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeDataRequest.swift; sourceTree = "<group>"; };
 		C7BD5AEA2BE605650060CC38 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C7BD5AEC2BE606750060CC38 /* GND.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GND.entitlements; sourceTree = "<group>"; };
 		C7BD5AED2BE608E80060CC38 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -254,6 +272,16 @@
 			path = DropDown;
 			sourceTree = "<group>";
 		};
+		C7A6E01B2C26AE860041D8D3 /* InfoWarningViews */ = {
+			isa = PBXGroup;
+			children = (
+				C7A6E01C2C26AEA90041D8D3 /* StrideInfoView.swift */,
+				C7A6E01E2C26AEAF0041D8D3 /* SpeedInfoVIew.swift */,
+				C7A6E0202C26AEB40041D8D3 /* StepsInfoView.swift */,
+			);
+			path = InfoWarningViews;
+			sourceTree = "<group>";
+		};
 		C7BD5ADF2BE6042D0060CC38 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
@@ -313,6 +341,7 @@
 				C7BD5B012BE6D3100060CC38 /* UITextFiled+.swift */,
 				C7BD5B3F2BE7B8350060CC38 /* UIViewController+.swift */,
 				C7CD67042C08014B00FB471A /* Encodable+.swift */,
+				C7A6E0242C29615F0041D8D3 /* String+.swift */,
 				C7CD670E2C08406800FB471A /* Date+.swift */,
 			);
 			path = Extensions;
@@ -325,9 +354,8 @@
 				C7C294812BF34C8A009FACD8 /* MainViewModel.swift */,
 				C7CD67102C08779400FB471A /* RecentViewController.swift */,
 				C7BD5B462BE802F90060CC38 /* CellView.swift */,
+				C7A6E0262C2D31210041D8D3 /* GoalView.swift */,
 				C7BD5B412BE7D55C0060CC38 /* EnterRoomCell.swift */,
-				C7BD5B432BE7F4A70060CC38 /* EnterModel.swift */,
-				C7BD5B492BE805CC0060CC38 /* CourseModel.swift */,
 				C7BD5B4B2BE80BCE0060CC38 /* CellType.swift */,
 				C7BD5B4D2BE812170060CC38 /* ExerciseButton.swift */,
 				C70C32472C155B1900C85040 /* GoalModalView.swift */,
@@ -371,6 +399,7 @@
 			children = (
 				C7BD5B642BE8CB120060CC38 /* UserUsecase.swift */,
 				C7C2947F2BF3424C009FACD8 /* ExerciseUseCase.swift */,
+				C7678E252C242C61008AF44C /* AnalyzeUseCase.swift */,
 				C7CD670C2C0823B700FB471A /* CourseUseCase.swift */,
 			);
 			path = Usecase;
@@ -380,6 +409,8 @@
 			isa = PBXGroup;
 			children = (
 				C7BD5B672BE8CB3C0060CC38 /* LoginResponse.swift */,
+				C7B9D26D2C3426BF0074C162 /* AnalyzeDataRequest.swift */,
+				C7678E232C241ECD008AF44C /* AnalzyeDateResponse.swift */,
 				C7CD67082C08046200FB471A /* GetRecentResponse.swift */,
 				C7CD67022C08000600FB471A /* GetRecentRequest.swift */,
 				C7BD5B792BE903F50060CC38 /* LoginRequest.swift */,
@@ -428,8 +459,11 @@
 				C7C294832BF34CE8009FACD8 /* ExerciseMode.swift */,
 				C716082F2BF4AAEE005A937A /* Exercise.swift */,
 				C7CD66FC2C046A9900FB471A /* UserGoal.swift */,
+				C7BD5B432BE7F4A70060CC38 /* EnterModel.swift */,
 				C7678E132C2055FE008AF44C /* ModalGoal.swift */,
+				C7BD5B492BE805CC0060CC38 /* CourseModel.swift */,
 				C71608312BF50E70005A937A /* ExerciseTracking.swift */,
+				C7A6E0222C292A200041D8D3 /* AnalyzeDataModel.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -477,6 +511,7 @@
 				C7C2947B2BF1FEB2009FACD8 /* AnalyzeViewController.swift */,
 				C7678E1F2C2349E6008AF44C /* AnalyzeViewModel.swift */,
 				C7678E1D2C23495C008AF44C /* AnalyzeChartView.swift */,
+				C7A6E01B2C26AE860041D8D3 /* InfoWarningViews */,
 				C7678E162C231318008AF44C /* DropDown */,
 			);
 			path = AnalyzeView;
@@ -576,14 +611,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7A6E0212C26AEB40041D8D3 /* StepsInfoView.swift in Sources */,
 				C7C294822BF34C8A009FACD8 /* MainViewModel.swift in Sources */,
 				C7BD5B4C2BE80BCE0060CC38 /* CellType.swift in Sources */,
 				C7C294802BF3424C009FACD8 /* ExerciseUseCase.swift in Sources */,
 				C72E721D2BE375DD0003176E /* AppDelegate.swift in Sources */,
+				C7A6E01F2C26AEAF0041D8D3 /* SpeedInfoVIew.swift in Sources */,
 				C7CD67072C0803A300FB471A /* CourseRepository.swift in Sources */,
 				C7BD5B652BE8CB120060CC38 /* UserUsecase.swift in Sources */,
 				C7BD5B7A2BE903F50060CC38 /* LoginRequest.swift in Sources */,
 				C7CD670F2C08406800FB471A /* Date+.swift in Sources */,
+				C7A6E0272C2D31210041D8D3 /* GoalView.swift in Sources */,
 				C7C2946A2BF0AF6A009FACD8 /* CoreMotionService.swift in Sources */,
 				C7CD66FF2C047F7C00FB471A /* UserLevel.swift in Sources */,
 				C7C294752BF1FD9B009FACD8 /* StrideCoordinator.swift in Sources */,
@@ -597,6 +635,7 @@
 				C7BD5B402BE7B8350060CC38 /* UIViewController+.swift in Sources */,
 				C7BD5B6B2BE8CE790060CC38 /* TabbarViewController.swift in Sources */,
 				C7CD670B2C08059D00FB471A /* RecentCourse.swift in Sources */,
+				C7678E242C241ECD008AF44C /* AnalzyeDateResponse.swift in Sources */,
 				C7C294652BF06BFF009FACD8 /* ExerciseViewController.swift in Sources */,
 				C7CD670D2C0823B700FB471A /* CourseUseCase.swift in Sources */,
 				C7BD5B842BE9FCBD0060CC38 /* KeychainManager.swift in Sources */,
@@ -617,9 +656,11 @@
 				C7BD5AEE2BE608E80060CC38 /* LoginViewModel.swift in Sources */,
 				C7C294772BF1FDA2009FACD8 /* TogetherCoordinator.swift in Sources */,
 				C7CD66FD2C046A9900FB471A /* UserGoal.swift in Sources */,
+				C7A6E0252C29615F0041D8D3 /* String+.swift in Sources */,
 				C7BD5B862BEA07DB0060CC38 /* NickNameViewModel.swift in Sources */,
 				C7BD5B532BE81CE40060CC38 /* PartyCell.swift in Sources */,
 				C7BD5B4A2BE805CC0060CC38 /* CourseModel.swift in Sources */,
+				C7A6E0232C292A200041D8D3 /* AnalyzeDataModel.swift in Sources */,
 				C7C294672BF07053009FACD8 /* CoreLocationServices.swift in Sources */,
 				C7BD5B472BE802F90060CC38 /* CellView.swift in Sources */,
 				C7BD5B732BE8E40F0060CC38 /* UserRepository.swift in Sources */,
@@ -628,6 +669,7 @@
 				C7C2947C2BF1FEB2009FACD8 /* AnalyzeViewController.swift in Sources */,
 				C7BD5B572BE898140060CC38 /* GridCollectionViewFlowLayout.swift in Sources */,
 				C71608322BF50E70005A937A /* ExerciseTracking.swift in Sources */,
+				C7B9D26E2C3426BF0074C162 /* AnalyzeDataRequest.swift in Sources */,
 				C7B0BE352BF48DEA009ACE74 /* ExerciseRepository.swift in Sources */,
 				C7BD5B442BE7F4A70060CC38 /* EnterModel.swift in Sources */,
 				C7B0BE332BF4613A009ACE74 /* FinishExerciseViewController.swift in Sources */,
@@ -641,7 +683,9 @@
 				C7BD5AFE2BE6C34B0060CC38 /* NicknameViewController.swift in Sources */,
 				C7C2947E2BF30BF3009FACD8 /* ExerciseViewModel.swift in Sources */,
 				C7CD67052C08014B00FB471A /* Encodable+.swift in Sources */,
+				C7A6E01D2C26AEA90041D8D3 /* StrideInfoView.swift in Sources */,
 				C7BD5B3E2BE7A4330060CC38 /* MainViewController.swift in Sources */,
+				C7678E262C242C61008AF44C /* AnalyzeUseCase.swift in Sources */,
 				C7C2946D2BF0C158009FACD8 /* Coordinator.swift in Sources */,
 				C7678E142C2055FE008AF44C /* ModalGoal.swift in Sources */,
 				C7BD5B752BE9013B0060CC38 /* Router.swift in Sources */,
@@ -807,10 +851,12 @@
 				INFOPLIST_FILE = GND/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "사용자의 위치기반으로 경로를 제공하기 위해 필요합니다.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 위치기반으로 경로를 제공하기 위해 필요합니다.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "사용자의 걸음걸이를 트래킹하여 피드백을 제공합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -837,10 +883,12 @@
 				INFOPLIST_FILE = GND/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "사용자의 위치기반으로 경로를 제공하기 위해 필요합니다.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 위치기반으로 경로를 제공하기 위해 필요합니다.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "사용자의 걸음걸이를 트래킹하여 피드백을 제공합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

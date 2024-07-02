@@ -81,9 +81,7 @@ class TabCoordinator: NSObject, TabCoordinatorProtocol {
 
     }
     required init(_ navigationController: UINavigationController) {
-
         self.navigationController = navigationController
-
         self.tabbarController = UITabBarController()
         super.init()
         self.tabbarController.delegate = self
@@ -107,19 +105,10 @@ class TabCoordinator: NSObject, TabCoordinatorProtocol {
             togetherCoordinator.start()
         case .analyze:
             let anlayzeVc = AnalyzeViewController()
-            self.navigationController.pushViewController(anlayzeVc, animated: false)
+            tabNavigationController.viewControllers = [anlayzeVc]
         }
     }
 
-//    func coordinatorDidFinish(childCoordinator: Coordinator) {
-//        self.childCoordinators = childCoordinators.filter({ $0.type != childCoordinator.type })
-//        if childCoordinator.type == .home {
-//            navigationController.viewControllers.removeAll()
-//        } else if childCoordinator.type == .mypage {
-//            self.navigationController.viewControllers.removeAll()
-//            self.finishDelegate?.coordinatorDidFinish(childCoordinator: self)
-//        }
-//    }
 }
 extension TabCoordinator:  UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
