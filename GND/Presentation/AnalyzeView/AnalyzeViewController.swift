@@ -10,7 +10,7 @@ import SnapKit
 import Combine
 import Then
 import SwiftUI
-enum AnalzyeType: String{
+enum AnalyzeType: String{
     case stride = "보폭"
     case speed = "걸음속도"
     case steps = "걸음수"
@@ -19,7 +19,7 @@ class AnalyzeViewController: UIViewController {
     let segmentedControl = UISegmentedControl(items: ["보폭", "걸음속도", "걸음수"])
     let dropBoxButton = DropDownButton()
     let dateLabel = UILabel()
-    var infoViews: [AnalzyeType: UIView] = [:]
+    var infoViews: [AnalyzeType: UIView] = [:]
     let viewModel = AnalyzeViewModel(analyzeUsecase: AnalyzeUseCase(exerciseReposiotory: ExerciseRepository()))
     let analyzeImage = UIImageView(image: UIImage(named: "analyzeLogo"))
     private var selectedDate: DropRange = .day
@@ -47,10 +47,7 @@ class AnalyzeViewController: UIViewController {
         containerView.snp.makeConstraints {
             $0.top.bottom.equalToSuperview() // containerView의 상단과 하단을 scrollView와 맞춤
             $0.width.equalToSuperview()
-//            $0.bottom.
-//            $0.width.equalToSuperview()
             $0.height.equalTo(1400)
-//            $0.bottom.equalToSuperview()
         }
     }
     func setupSegmendtedControl() {

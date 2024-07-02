@@ -7,7 +7,15 @@
 
 import Combine
 import Foundation
-final class AnalyzeViewModel: ObservableObject {
+protocol AnalyzeViewModelInput {
+    func updateAnalyzeType(type: AnalyzeType)
+    func fetchChartData(dateRange: DropRange)
+
+}
+protocol AnalyzeViewModelOutput {
+    
+}
+final class AnalyzeViewModel: ObservableObject, AnalyzeViewModelInput {
     private var analyzeUsecase: AnalyzeUseCase
     private var cancellables = Set<AnyCancellable>()
     init(analyzeUsecase: AnalyzeUseCase) {
@@ -15,7 +23,7 @@ final class AnalyzeViewModel: ObservableObject {
         calculateAllDateRanges()
     }
     //    @Published var startDate: String = ""
-    @Published var selectedType: AnalzyeType = .stride
+    @Published var selectedType: AnalyzeType = .stride
     @Published var endDate: Date = Date()
     @Published var dateRanges: [DropRange: Date] = [:]
     @Published var mineData: [AnalyzeData] = []
@@ -32,7 +40,7 @@ final class AnalyzeViewModel: ObservableObject {
         dateRanges[.week] =  Calendar.current.date(byAdding: .month, value: -1, to: today)!
         dateRanges[.month]  =  Calendar.current.date(byAdding: .month, value: -12, to: today)!
     }
-    func updateAnalyzeType(type: AnalzyeType) {
+    func updateAnalyzeType(type: AnalyzeType) {
         self.selectedType = type
     }
     func fetchChartData( dateRange: DropRange) {
@@ -45,9 +53,6 @@ final class AnalyzeViewModel: ObservableObject {
                     res in
                     self?.strideChartDatas = [AnalyzeDataModel(isMine: true, data:  res.mine)]
                     self?.strideChartDatas.append(AnalyzeDataModel(isMine: false, data: res.ageGroup))
-////                    self?.mineData = res.mine
-////                    self?.ageGroup = res.ageGroup
-//                    self?.strideChartDatas = res
                 })
                 .store(in: &cancellables)
         case .speed:
@@ -68,8 +73,6 @@ final class AnalyzeViewModel: ObservableObject {
                     print(res)
                 } receiveValue: { [weak self]
                     res in
-//                    self?.mineData = res.mine
-//                    self?.ageGroup = res.ageGroup
                     self?.stepsChartDatas = [AnalyzeDataModel(isMine: true, data: res.mine)]
                     self?.stepsChartDatas.append(AnalyzeDataModel(isMine: false, data: res.ageGroup))
                  

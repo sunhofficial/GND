@@ -109,15 +109,6 @@ class TabCoordinator: NSObject, TabCoordinatorProtocol {
         }
     }
 
-//    func coordinatorDidFinish(childCoordinator: Coordinator) {
-//        self.childCoordinators = childCoordinators.filter({ $0.type != childCoordinator.type })
-//        if childCoordinator.type == .home {
-//            navigationController.viewControllers.removeAll()
-//        } else if childCoordinator.type == .mypage {
-//            self.navigationController.viewControllers.removeAll()
-//            self.finishDelegate?.coordinatorDidFinish(childCoordinator: self)
-//        }
-//    }
 }
 extension TabCoordinator:  UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
