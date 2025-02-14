@@ -14,102 +14,8 @@
             filePath = "GND/Presentation/MapView/ExerciseViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
-            landmarkName = "sendToSever(title:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B24963F3-6390-4466-A02E-3A4A3EB86B5A"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GND/Presentation/MapView/ExerciseViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
-            landmarkName = "sendToSever(title:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "B24963F3-6390-4466-A02E-3A4A3EB86B5A - b6757ace3e2ebe1c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GND.ExerciseViewModel.sendToSever(title: Swift.String) -&gt; ()"
-                  moduleName = "GND"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Presentation/MapView/ExerciseViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "147"
-                  endingLineNumber = "147">
-               </Location>
-               <Location
-                  uuid = "B24963F3-6390-4466-A02E-3A4A3EB86B5A - d98f5e985afea454"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (__C.CLLocationCoordinate2D) -&gt; GND.Coordinate in GND.ExerciseViewModel.sendToSever(title: Swift.String) -&gt; ()"
-                  moduleName = "GND"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sunho/Desktop/%F0%9F%8D%8EProject/GND/GND/Presentation/MapView/ExerciseViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "148"
-                  endingLineNumber = "148">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "369FCAF0-8643-40BD-8F84-E89BA443BCED"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GND/Presentation/MapView/ExerciseViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
-            landmarkName = "sendToSever(title:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "32B6A844-3498-49A3-9174-83EF65D44C87"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GND/Presentation/MapView/ExerciseViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
-            landmarkName = "sendToSever(title:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3B1721E3-E3A6-44B9-AC9C-22B9C6F41893"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GND/Presentation/MapView/ExerciseViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
             landmarkName = "sendToSever(title:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -124,8 +30,8 @@
             filePath = "GND/Presentation/MapView/ExerciseViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "sendToSever(title:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -11,7 +11,7 @@
         func doExerciseView(mode: ExerciseMode, userGoal: Int, goal: UserGoal)
         func showRecentView()
         func finishExerciseView()
-
+        func resetToMainView()
     }
     class StrideCoordinator: StrideCoordinatorProtocol {
         var exerciseUseCase: ExerciseUseCaseProtocol?

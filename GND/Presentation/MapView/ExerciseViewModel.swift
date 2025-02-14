@@ -38,7 +38,6 @@ protocol ExerciseViewModelInput {
 }
 protocol ExerciseViewModelOutput{
     var locationUpdatesPublisher: Published<[CLLocationCoordinate2D]>.Publisher {get}
-    //    var motionUpdatesPublihser: Published<ExerciseTracking>.Publisher { get  }
     var feedbackPublisher: PassthroughSubject<WarningCase, Error> {get}
 }
 protocol ExerciseViewModelType: ExerciseViewModelInput, ExerciseViewModelOutput {
@@ -47,37 +46,36 @@ protocol ExerciseViewModelType: ExerciseViewModelInput, ExerciseViewModelOutput 
 }
 final class ExerciseViewModel: ObservableObject, ExerciseViewModelType {
     var inputs:  ExerciseViewModelInput {return self}
-
     var outputs: ExerciseViewModelOutput {return self}
-
-
-    //    var motionUpdatesPublihser: Published<ExerciseTracking>.Publisher
-    var feedbackPublisher = PassthroughSubject<WarningCase, Error>()
-//    var motionPublisher =  PassthroughSubject<ExerciseTracking,  Error>()
-    var locationUpdatesPublisher: Published<[CLLocationCoordinate2D]>.Publisher {$locationUpdates} //locationupdates가 달라질때마다 구독자에게 이벤트 방출함.
-    private var exerciseUsecase: ExerciseUseCaseProtocol?
-    private var cancellables = Set<AnyCancellable>()
-    private weak var coordinator: StrideCoordinator?
-    @Published var locationUpdates: [CLLocationCoordinate2D] = [] 
-    var userGoal: Int = 0
     @Published var progress: Float = 0.0
     @Published var exerciseData: ExerciseData? = nil
+    @Published private(set) var exerciseTime: String?
+    @Published private(set) var locationUpdates: [CLLocationCoordinate2D] = []
+    private var exerciseUsecase: ExerciseUseCaseProtocol
+    private weak var coordinator: StrideCoordinatorProtocol?
+    var feedbackPublisher = PassthroughSubject<WarningCase, Error>()
+    var locationUpdatesPublisher: Published<[CLLocationCoordinate2D]>.Publisher {$locationUpdates} //locationupdates가 달라질때마다 구독자에게 이벤트 방출함.
+    private var cancellables = Set<AnyCancellable>()
+    var userGoal: Int = 0
     var startTime: Date?
     var endTime: Date? {
         didSet {
             calculateExerciseTime()
         }
     }
-    @Published var exerciseTime: String?
     private var steps = 0 {
         didSet {
             updateProgress()
         }
     }
+    
     init(coordinator: StrideCoordinator, exerciseUsecase: ExerciseUseCaseProtocol, userGoal:Int ) {
         self.coordinator = coordinator
         self.exerciseUsecase = exerciseUsecase
         self.userGoal = userGoal
+        setup()
+    }
+    private func setup() {
         exerciseUsecase.locationPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] coordinates in
@@ -92,24 +90,17 @@ final class ExerciseViewModel: ObservableObject, ExerciseViewModelType {
         exerciseUsecase.feedbackPublisher
             .receive(on: DispatchQueue.main)
             .sink { completion in
-                switch completion {
-                case .finished:
-                    debugPrint("success")
-                case .failure(let err):
-                    print(err)
-                }
+            if case .failure(let error) = completion {
+                  print("Feedback error: \(error)")
+              }
             } receiveValue: { warningcase in
                 self.feedbackPublisher.send(warningcase)
-                
             }.store(in: &cancellables)
-
-
         exerciseUsecase.exerciseDataPublisher
             .receive(on: DispatchQueue.main)
-            .sink { exercisedatas in
-                self.exerciseData = exercisedatas
+            .sink {  [weak self] exercisedatas in
+                self?.exerciseData = exercisedatas
             }.store(in: &cancellables)
-
         exerciseUsecase.stepsPublisher
             .receive(on: DispatchQueue.main)
             .sink { steps in
@@ -117,58 +108,48 @@ final class ExerciseViewModel: ObservableObject, ExerciseViewModelType {
             }.store(in: &cancellables)
     }
     func startTracking() {
-        exerciseUsecase?.startUpdateMotion()
-        exerciseUsecase?.startUpdateLocation()
+        exerciseUsecase.startUpdateMotion()
+        exerciseUsecase.startUpdateLocation()
         startTime = Date()
     }
     func stopTracking() {
-        print("운동종료")
-        let coordinates = locationUpdates.map { Coordinate(latitude: $0.latitude, longitude: $0.longitude) }
-        print(coordinates)
-        exerciseUsecase?.stopUpdateLocation()
-        exerciseUsecase?.stopUpdateMotion()
+        exerciseUsecase.stopUpdateLocation()
+        exerciseUsecase.stopUpdateMotion()
         coordinator?.finishExerciseView()
         endTime = Date()
+    }
+
+    func sendToSever(title: String) {
+        sendExerciseData(doShare: true, courseName: title)
+    }
+    func sendNotsharing() {
+        sendExerciseData(doShare: false)
+    }
+    private func sendExerciseData(doShare: Bool, courseName: String? = nil) {
+        guard let startTime = startTime, let endTime = endTime, let exerciseData = exerciseData else {return}
+        let course = locationUpdates.map { location in
+            Coordinate(latitude: location.latitude, longitude: location.longitude)
+        }
+        let exerciseSession = ExerciseSession(startTime: startTime.formattedDateString(), endTime: endTime.formattedDateString(), course: course, doShareCourse: doShare, courseName: courseName)
+        exerciseUsecase.postExerciseData(exerciseSession, exerciseData)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { completion in
+                self.coordinator?.resetToMainView()
+            }, receiveValue: {[weak self] result in
+                self?.coordinator?.resetToMainView()
+            }).store(in: &cancellables)
+        
     }
     private func calculateExerciseTime() {
         guard let startTime = startTime, let endTime = endTime else {
             exerciseTime = nil
             return
         }
-
         let elapsedTime = endTime.timeIntervalSince(startTime)
         let hours = Int(elapsedTime) / 3600
         let minutes = (Int(elapsedTime) % 3600) / 60
-
         exerciseTime = String(format: "%02d시간 %02d분", hours, minutes)
     }
-    func sendToSever(title: String) {
-        guard let startTime = startTime, let endTime = endTime, let exerciseData = exerciseData else {return}
-        let course = locationUpdates.map { location in
-            Coordinate(latitude: location.latitude, longitude: location.longitude)
-        }
-        exerciseUsecase?.postExerciseData(ExerciseSession(startTime: startTime.formattedDateString(), endTime: endTime.formattedDateString(), course: course, doShareCourse: true, courseName: title), exerciseData )
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                self.coordinator?.resetToMainView()
-            }, receiveValue: { result in
-                print("올라간다")
-                self.coordinator?.resetToMainView()
-            }).store(in: &cancellables)
-    }
-    func sendNotsharing() {
-        guard let startTime = startTime, let endTime = endTime, let exerciseData = exerciseData else {return}
-        let course = locationUpdates.map { location in
-            Coordinate(latitude: location.latitude, longitude: location.longitude)
-        }
-        exerciseUsecase?.postExerciseData(ExerciseSession(startTime: startTime.formattedDateString(), endTime: endTime.formattedDateString(), course: course, doShareCourse: false), exerciseData)
-            .sink(receiveCompletion: { completion in
-                self.coordinator?.resetToMainView()
-            }, receiveValue: {[weak self] result in
-                self?.coordinator?.resetToMainView()
-            }).store(in: &cancellables)
-    }
-
     private func updateProgress() {
         progress = Float(userGoal/steps)
     }
