@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -212,6 +212,10 @@
 		C7DE2B872BEA425E00A049A9 /* KakaoLoginServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLoginServices.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		C7A4F1072D6339C600B2E0CA /* RepositoryProtocol */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = RepositoryProtocol; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		C72E72162BE375DD0003176E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -300,6 +304,7 @@
 		C7BD5AE02BE604370060CC38 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				C7A4F1072D6339C600B2E0CA /* RepositoryProtocol */,
 				C7BD5B6F2BE8DD970060CC38 /* Entity */,
 				C7BD5B632BE8CAF60060CC38 /* Usecase */,
 			);
@@ -542,6 +547,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				C7A4F1072D6339C600B2E0CA /* RepositoryProtocol */,
 			);
 			name = GND;
 			packageProductDependencies = (

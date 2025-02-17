@@ -8,15 +8,6 @@
 import Alamofire
 import Combine
 import Foundation
-
-protocol ExerciseRepositoryProtocol {
-
-    func postSaveExercise(_ exerciseSession: ExerciseSession, exerciseMetrics: ExerciseMetrics) -> AnyPublisher<Bool,  Error>
-    func getAnalyzeSpeed(type: DropRange, startDate: String, endDate: String)-> AnyPublisher<AnalzyeDateResponse<AnalyzeSpeedData>, Error>
-    func getAnalyzeStride(type: DropRange, startDate: String, endDate: String) -> AnyPublisher<AnalzyeDateResponse<AnalyzeStrideData>, Error>
-    func getAnalyzeSteps(type: DropRange, startDate: String, endDate: String) -> AnyPublisher<AnalzyeDateResponse<AnalyzeStepData>, Error>
-}
-
 class ExerciseRepository: ExerciseRepositoryProtocol {
     func getAnalyzeStride(type: DropRange, startDate: String, endDate: String) -> AnyPublisher<AnalzyeDateResponse<AnalyzeStrideData>, any Error> {
         return Future<AnalzyeDateResponse<AnalyzeStrideData>, Error> { promise in

@@ -7,12 +7,8 @@
 
 import Alamofire
 import Combine
-protocol UserRepositoryProtocol {
-    func postLogin(_ login: Login) -> AnyPublisher<User, Error>
-    func postUserData(_ info: UserInfo) -> AnyPublisher<UserInfo, Error>
-    func getTodayGoal() -> AnyPublisher<UserGoal, Error>
-}
-//여기서 DTO처리를 해주는듯
+
+
 class UserRepository: UserRepositoryProtocol {
     func getTodayGoal() -> AnyPublisher<UserGoal,  Error> {
         return Future<UserGoal, Error> {promise in

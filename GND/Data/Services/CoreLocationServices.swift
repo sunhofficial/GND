@@ -9,12 +9,6 @@ import Foundation
 import CoreLocation
 import Combine
 
-protocol CoreLocationServicesProtocol {
-    var locationPublisher: AnyPublisher<[CLLocation], Never> { get }
-    var errorPublisher: AnyPublisher<Error, Never> { get }
-    func startupdatingLocation()
-    func stopupdatingLocation()
-}
 
 class CoreLocationServices: NSObject, CoreLocationServicesProtocol {
     private let locationSubject = PassthroughSubject<[CLLocation], Never>()

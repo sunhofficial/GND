@@ -28,7 +28,7 @@ protocol ExerciseUseCaseProtocol {
 
 final class ExerciseUsecase: ExerciseUseCaseProtocol {
     private let coreLocationService: CoreLocationServicesProtocol
-    var exerciseRepository: ExerciseRepository
+    var exerciseRepository: ExerciseRepositoryProtocol
     private let coreMotionService: CoreMotionServiceProtocol
     var locationPublisher: AnyPublisher<[CLLocationCoordinate2D], Never> {
         coreLocationService.locationPublisher
@@ -50,10 +50,14 @@ final class ExerciseUsecase: ExerciseUseCaseProtocol {
     var stepsPublisher: AnyPublisher<Int, Never> {
         coreMotionService.stepsPublisher.eraseToAnyPublisher()
     }
-    init( exerciseRepository: ExerciseRepository, coreMotionService: CoreMotionServiceProtocol) {
-        self.coreLocationService = CoreLocationServices()
+    init(
+        exerciseRepository: ExerciseRepositoryProtocol,
+        coreMotionService: CoreMotionServiceProtocol,
+        coreLocationService: CoreLocationServicesProtocol
+    ) {
         self.exerciseRepository = exerciseRepository
         self.coreMotionService = coreMotionService
+        self.coreLocationService = coreLocationService
     }
 
     func startUpdateLocation() {

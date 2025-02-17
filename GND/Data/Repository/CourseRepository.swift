@@ -7,9 +7,7 @@
 import Combine
 import Alamofire
 
-protocol CourseRepositoryProtocol {
-    func getMyRecentCourses(showCount: Int, nextID: Int?) -> AnyPublisher<PagenaitedRecentCourse, Error>
-}
+
 
 class CourseRepository: CourseRepositoryProtocol {
     func getMyRecentCourses(showCount: Int, nextID: Int?) -> AnyPublisher<PagenaitedRecentCourse, Error> {
