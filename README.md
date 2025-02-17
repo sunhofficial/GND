@@ -1,15 +1,8 @@
 # GND
 
 이 앱은 iOS 및 Android 버전으로 각각 개발되었으며, 사용자의 보폭, 걸음 속도, 걷기 거리 등을 실시간으로 분석하여 사용자에게 적절한 피드백을 제공합니다. 이를 통해 고령자들이 보다 건강한 생활을 영위할 수 있도록 돕고, 운동 능력을 향상시키는 것을 목표로 하고 있습니다.
-## 목차
-- [기술 스택](#기술-스택)
-- [아키텍처](#아키텍처)
-- [기능 설명](#기능-설명)
-  - [실시간 피드백 기능](#실시간-피드백-기능)
-  - [에너지 효율성 향상](#에너지-효율성-향상)
 
-- [라이센스](#라이센스)
-- [수상 내역](#수상-내역)
+앱 시연 영상: https://m.site.naver.com/1oDHS
 
 ## 기술 스택
 - **UIKit**
@@ -22,8 +15,18 @@
 - **Alamofire**
 
 ## 아키텍처
-이 프로젝트는 **Clean 아키텍처**와 **MVVM 아키텍처**를 기반으로 하고 있으며, **Coordinator Pattern**을 도입하여 관리합니다.
-- 서비스들의 의존성 주입을 통해 코드의 재사용성과 유지보수성을 향상시켰습니다.
+![Image](https://github.com/user-attachments/assets/78ab2534-735e-4d48-bc41-40a2ed2276d9)
+
+이 프로젝트는 **Clean 아키텍처**와 **MVVM 아키텍처**를 기반으로 하고 있으며, **Coordinator Pattern** 패턴을 통해 화면전환 로직을 분리했습니다.
+각 계층은 다음과 같이 구성됩니다:
+Presentation Layer: ViewController(UI)와 ViewModel(MVVM 패턴)이 존재하며, 화면전환을 위해 Coordinator를 활용하였습니다.
+Domain Layer: UseCase를 통해 비즈니스 로직을 처리하며, Repository Protocol을 활용하여 Repository와의 결합도를 낮췄습니다.
+Data Layer: 네트워크 및 센서등의 데이터를 Repository에서 처리.
+특히 Domain Layer에는 UseCase뿐만 아니라 UseCase Protocol을 포함하여, Data Layer의 Repository Protocol과 분리하여 의존성을 최소화하려 했습니다. 이를 통해 UseCase는 특정 데이터 소스에 종속되지 않고, 보다 유연한 구조를 유지할 수 있습니다.
+규모가 크지 않아 Coordinator내에서 의존성 주입을 하였습니다. 
+#### AppCoordinator는 앱 시작 시점에서 로그인 플로우(LoginCoordinator)와 메인 플로우(TabCoordinator)를 결정합니다.
+#### TabCoordinator는 각 탭에 해당하는 하위 Coordinator(StrideCoordinator, TogetherCoordinator)을 생성해 화면을 초기화합니다.
+#### StrideCoordinator는 메인 탭 내에서 운동 관련 화면(ExerciseViewController 등)의 흐름을 제어합니다.
 
 ## 기능 설명
 
