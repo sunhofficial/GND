@@ -115,7 +115,7 @@ final class ExerciseViewModel: ObservableObject, ExerciseViewModelType {
     func stopTracking() {
         exerciseUsecase.stopUpdateLocation()
         exerciseUsecase.stopUpdateMotion()
-        coordinator?.finishExerciseView()
+        coordinator?.finishExerciseView(vm: self)
         endTime = Date()
     }
 

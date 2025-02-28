@@ -5,7 +5,6 @@
 //  Created by 235 on 5/14/24.
 //
 
-import UIKit
 import Combine
 
 protocol MainviewModelInput {
@@ -50,7 +49,6 @@ final class MainViewModel: ObservableObject, MainviewModelInput {
 
     func getUserGoal()  {
         userUsecase?.getUserGoal()
-            .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self]compleiton in
                 self?.postPublisher.send(true)
                 if self?.isFirst == true {

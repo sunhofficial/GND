@@ -22,7 +22,6 @@ protocol Coordinator: AnyObject {
     // 플로우를 마치기 위한 로직을 넣는 곳, 모든 자식 코디네이터를 정리하고, 자신이 deallocate 될 준비가 되었다는 것을 부모에게 알리는 곳
     func finish()
 
-    init(_ navigationController: UINavigationController)
 }
 
 extension Coordinator {

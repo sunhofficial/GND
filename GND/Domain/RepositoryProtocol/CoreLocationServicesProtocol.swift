@@ -6,6 +6,7 @@
 //
 
 import Combine
+import CoreLocation
 protocol CoreLocationServicesProtocol {
     var locationPublisher: AnyPublisher<[CLLocation], Never> { get }
     var errorPublisher: AnyPublisher<Error, Never> { get }

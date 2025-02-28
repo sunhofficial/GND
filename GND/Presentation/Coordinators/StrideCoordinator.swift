@@ -10,58 +10,66 @@ import UIKit
 protocol StrideCoordinatorProtocol: Coordinator {
     func doExerciseView(mode: ExerciseMode, userGoal: Int, goal: UserGoal)
     func showRecentView()
-    func finishExerciseView()
+    func finishExerciseView(vm: ExerciseViewModel)
     func resetToMainView()
 }
 class StrideCoordinator: StrideCoordinatorProtocol {
-    var exerciseUseCase: ExerciseUseCaseProtocol?
-    var courseUseCase: CourseUseCaseProtocol?
-    var exerciseViewModel: ExerciseViewModel?
-    var userGoal: UserGoal?
-    private var mainViewModel: MainViewModel?
-    var isFirst: Bool?
-    var userUsecase: UserUsecase?
-    required init(_ navigationController: UINavigationController) {
-        self.navigationController = navigationController
-        self.mainviewController = MainViewController()
+    weak var finishDelegate: CoordinatorFinishDelegate?
+    var navigationController: UINavigationController
+    private var mainviewController: MainViewController!
+    var childCoordinators: [ Coordinator] = []
+    var type: CoordinatorType {.home}
+    var courseUseCase: CourseUseCaseProtocol
+    var isFirst: Bool
+    var userUsecase: UserUsecase
+    private var userGoal: UserGoal?
+    private let conatiner = DIContainer.shared
+    init(navigationController: UINavigationController, userUseCase: UserUsecase, courseUseCase: CourseUseCaseProtocol, isFirst: Bool) {
+          self.navigationController = navigationController
+          self.userUsecase = userUseCase
+          self.courseUseCase = courseUseCase
+          self.isFirst = isFirst
+      }
+    
+    func start() {
+        mainviewController = MainViewController()
+        let mainViewModel = MainViewModel(
+            coordinator: self,
+            useCase: userUsecase,
+            courseUsercase: courseUseCase,
+            isFirst: isFirst
+        )
+        mainviewController.viewModel = mainViewModel
+
+        self.navigationController.pushViewController(mainviewController, animated: false)
     }
+    
     func doExerciseView(mode: ExerciseMode, userGoal: Int, goal: UserGoal) {
         self.navigationController.isNavigationBarHidden = true
         let exerciseViewController = ExerciseViewController()
+        let exerciseUseCase = conatiner.provideExerciseUseCase(mode: mode, goal: goal)
+        let viewModel =  ExerciseViewModel(coordinator: self, exerciseUsecase: exerciseUseCase, userGoal:  userGoal)
         self.userGoal = goal
-        self.exerciseUseCase =  ExerciseUsecase( exerciseRepository: ExerciseRepository(), coreMotionService: CoreMotionService(mode: mode, goal: goal), coreLocationService: CoreLocationServices()) // 이것도 어디서 주입할지 생각해봐야할듯 여기서부터 필요한가?
-        self.exerciseViewModel = ExerciseViewModel(coordinator: self, exerciseUsecase: exerciseUseCase!, userGoal:  userGoal)
-        exerciseViewController.viewModel = exerciseViewModel
+        exerciseViewController.viewModel = viewModel
         navigationController.pushViewController(exerciseViewController, animated: false)
     }
 
     func showRecentView() {
         let recentViewController = RecentViewController()
-        recentViewController.viewModel = mainViewModel
+        let viewModel = MainViewModel(coordinator: self, useCase: userUsecase, courseUsercase: courseUseCase, isFirst: isFirst)
+        recentViewController.viewModel = viewModel
         navigationController.pushViewController(recentViewController, animated: false)
     }
 
-    func finishExerciseView() {
+    func finishExerciseView(vm: ExerciseViewModel) {
         let finshExerciseViewController = FinishExerciseViewController()
-        finshExerciseViewController.viewModel = exerciseViewModel
+        finshExerciseViewController.viewModel = vm
         finshExerciseViewController.userGoal = self.userGoal
         navigationController.pushViewController(finshExerciseViewController, animated: true)
     }
 
-    weak var finishDelegate: CoordinatorFinishDelegate?
 
-    var navigationController: UINavigationController
-    var mainviewController: MainViewController
-    var childCoordinators: [ Coordinator] = []
 
-    var type: CoordinatorType {.home}
-
-    func start() {
-        mainViewModel = MainViewModel(coordinator: self, useCase: userUsecase!, courseUsercase: courseUseCase!, isFirst: isFirst!)
-        mainviewController.viewModel = mainViewModel
-
-        self.navigationController.pushViewController(mainviewController, animated: false)
-    }
     func resetToMainView() {
         self.navigationController.isNavigationBarHidden = false
         navigationController.setViewControllers([mainviewController], animated: true)

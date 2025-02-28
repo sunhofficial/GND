@@ -102,6 +102,7 @@
 		C7CD670F2C08406800FB471A /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD670E2C08406800FB471A /* Date+.swift */; };
 		C7CD67112C08779400FB471A /* RecentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD67102C08779400FB471A /* RecentViewController.swift */; };
 		C7DE2B882BEA425E00A049A9 /* KakaoLoginServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DE2B872BEA425E00A049A9 /* KakaoLoginServices.swift */; };
+		C7FCF6592D71F07D00E8A9ED /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FCF6582D71F07C00E8A9ED /* DIContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -210,6 +211,7 @@
 		C7CD670E2C08406800FB471A /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		C7CD67102C08779400FB471A /* RecentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentViewController.swift; sourceTree = "<group>"; };
 		C7DE2B872BEA425E00A049A9 /* KakaoLoginServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLoginServices.swift; sourceTree = "<group>"; };
+		C7FCF6582D71F07C00E8A9ED /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -257,6 +259,7 @@
 				C7BD5AE02BE604370060CC38 /* Domain */,
 				C72E721C2BE375DD0003176E /* AppDelegate.swift */,
 				C72E721E2BE375DD0003176E /* SceneDelegate.swift */,
+				C7FCF6582D71F07C00E8A9ED /* DIContainer.swift */,
 				C7BD5ADF2BE6042D0060CC38 /* Presentation */,
 				C72E72252BE375DF0003176E /* Assets.xcassets */,
 				C72E72272BE375DF0003176E /* LaunchScreen.storyboard */,
@@ -620,6 +623,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7A6E0212C26AEB40041D8D3 /* StepsInfoView.swift in Sources */,
+				C7FCF6592D71F07D00E8A9ED /* DIContainer.swift in Sources */,
 				C7C294822BF34C8A009FACD8 /* MainViewModel.swift in Sources */,
 				C7BD5B4C2BE80BCE0060CC38 /* CellType.swift in Sources */,
 				C7C294802BF3424C009FACD8 /* ExerciseUseCase.swift in Sources */,

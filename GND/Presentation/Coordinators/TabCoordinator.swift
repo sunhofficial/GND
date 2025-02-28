@@ -56,7 +56,8 @@ class TabCoordinator: NSObject, TabCoordinatorProtocol {
     var type: CoordinatorType {.tab}
     var userUsecase: UserUsecase?
     var courseUseCase: CourseUseCaseProtocol?
-    var isFirst: Bool?
+    private var isFirst: Bool
+    private let dependencyContainer = DIContainer.shared
 
     func start() {
         let pages: [TabbarPages] = TabbarPages.allCases
@@ -80,21 +81,22 @@ class TabCoordinator: NSObject, TabCoordinatorProtocol {
         self.navigationController.pushViewController(self.tabbarController, animated: true)
 
     }
-    required init(_ navigationController: UINavigationController) {
+    required init(_ navigationController: UINavigationController, isFirst: Bool) {
         self.navigationController = navigationController
         self.tabbarController = UITabBarController()
+        self.isFirst = isFirst
         super.init()
         self.tabbarController.delegate = self
-
     }
     private func startTabCoordinator(of page: TabbarPages, to tabNavigationController: UINavigationController) {
         switch page {
         case .main:
-            let strideCoordinator = StrideCoordinator(tabNavigationController)
-//            strideCoordinator.finishDelegate = self
-            strideCoordinator.isFirst = isFirst
-            strideCoordinator.userUsecase = userUsecase
-            strideCoordinator.courseUseCase = courseUseCase
+            let strideCoordinator = StrideCoordinator(
+                          navigationController: tabNavigationController,
+                          userUseCase: dependencyContainer.provideUserUseCase(),
+                          courseUseCase: dependencyContainer.provideCourseUseCase(),
+                          isFirst: isFirst
+                      )
             childCoordinators.append(strideCoordinator)
             strideCoordinator.start()
 //            navigationController.pushViewController(strideCoordinator, animated: true)
