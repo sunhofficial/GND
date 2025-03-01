@@ -2,6 +2,35 @@ import Foundation
 import CoreMotion
 import Combine
 
+actor MotionDatastore {
+    private var speedDatas = [Double]()
+    private var strideDatas = [Int]()
+    private var distanceDatas = [Int]()
+    private var walkCountDatas = [Int]()
+    func append(speed: Double, stride: Int, distance: Int, steps: Int) {
+        speedDatas.append(speed)
+        strideDatas.append(stride)
+        distanceDatas.append(distance)
+        walkCountDatas.append(steps)
+    }
+    func getExerciseData() -> ExerciseData {
+        ExerciseData(
+            speedDatas: speedDatas,
+            strideDatas: strideDatas,
+            distanceDatas: distanceDatas,
+            walkCountDatas: walkCountDatas
+        )
+    }
+    
+    func clear() {
+        speedDatas.removeAll()
+        strideDatas.removeAll()
+        distanceDatas.removeAll()
+        walkCountDatas.removeAll()
+    }
+    
+    func count() -> Int { speedDatas.count }
+}
 
 class CoreMotionService: CoreMotionServiceProtocol {
     var mode: ExerciseMode
@@ -14,11 +43,8 @@ class CoreMotionService: CoreMotionServiceProtocol {
     private let exerciseDatas = PassthroughSubject<ExerciseData, Never>()
     private let stepsSubject = PassthroughSubject<Int, Never>()
     private var cancellables = Set<AnyCancellable>()
+    private let dataStore = MotionDatastore()
 
-    private var speedDatas = [Double]()
-    private var strideDatas = [Int]()
-    private var distanceDatas = [Int]()
-    private var walkCountDatas = [Int]()
 
     private var currentDistance: Int = 0
     private var currentStep: Int = 0
@@ -67,7 +93,7 @@ class CoreMotionService: CoreMotionServiceProtocol {
             self.currentStep = data?.numberOfSteps.intValue ?? self.currentStep
         }
 
-        timer = Timer.publish(every: 20.0, tolerance: 0.1, on: .main, in: .common)
+        timer = Timer.publish(every: 20.0, tolerance: 0.1, on: .current, in: .common)
             .autoconnect()
             .sink { [weak self] _ in
                 guard let self = self else { return }
@@ -83,15 +109,12 @@ class CoreMotionService: CoreMotionServiceProtocol {
 
         do {
             let data = try await pedometer.queryPedometerDataAsync(from: fromDate, to: nowDate)
-            self.processPedometerData(data)
+            await self.processPedometerData(data)
 
             if isFinalFetch {
-                let exerciseData = ExerciseData(speedDatas: speedDatas, strideDatas: strideDatas, distanceDatas: distanceDatas, walkCountDatas: walkCountDatas)
+                let exerciseData = await dataStore.getExerciseData()
                 exerciseDatas.send(exerciseData)
-                speedDatas.removeAll()
-                strideDatas.removeAll()
-                distanceDatas.removeAll()
-                walkCountDatas.removeAll()
+                await dataStore.clear()
             }
         } catch {
             DispatchQueue.main.async {
@@ -101,18 +124,14 @@ class CoreMotionService: CoreMotionServiceProtocol {
         pastTime = nowDate
     }
 
-    private func processPedometerData(_ data: CMPedometerData) {
-        guard let distance = data.distance?.intValue, distance != 0, data.numberOfSteps.intValue != 0, let averagePace = data.averageActivePace else { return }
+    private func processPedometerData(_ data: CMPedometerData) async {
+        guard let distance = data.distance?.intValue, distance != 0, data.numberOfSteps.intValue != 0,
+                let averagePace = data.averageActivePace else { return }
         let steps = data.numberOfSteps.intValue
         let speedKmh = round(averagePace.doubleValue * 36) / 10
         let stride = distance * 100 / steps
         stepsSubject.send(steps)
-
-        distanceDatas.append(currentDistance)
-        walkCountDatas.append(currentStep)
-        speedDatas.append(speedKmh)
-        strideDatas.append(stride)
-
+        await dataStore.append(speed: speedKmh, stride: stride, distance: currentDistance, steps: currentStep)
         processStepData(stride: stride, speed: speedKmh)
     }
     private func roundTo(_ value: Double, places: Int) -> Double {
@@ -124,8 +143,6 @@ class CoreMotionService: CoreMotionServiceProtocol {
         switch mode {
         case .speedMode:
             if speed < userGoal.goalSpeed{
-
-                print(userGoal.goalSpeed)
                 let diff = roundTo(userGoal.goalSpeed - speed, places: 1)
                 DispatchQueue.main.async {
                     self.warningSubject.send(WarningCase.lowSpeed(diff: diff))
