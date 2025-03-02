@@ -15,8 +15,7 @@
 - **Alamofire**
 
 ## 아키텍처
-![Image](https://github.com/user-attachments/assets/78ab2534-735e-4d48-bc41-40a2ed2276d9)
-
+![Image](https://github.com/user-attachments/assets/509c9f36-259b-4407-9330-4f3b0581c71c)
 이 프로젝트는 **Clean 아키텍처**와 **MVVM 아키텍처**를 기반으로 하고 있으며, **Coordinator Pattern** 패턴을 통해 화면전환 로직을 분리했습니다.
 각 계층은 다음과 같이 구성됩니다:
 Presentation Layer: ViewController(UI)와 ViewModel(MVVM 패턴)이 존재하며, 화면전환을 위해 Coordinator를 활용하였습니다.
