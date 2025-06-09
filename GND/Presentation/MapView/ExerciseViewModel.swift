@@ -35,6 +35,7 @@ protocol ExerciseViewModelInput {
     func sendNotsharing()
     func startTracking()
     func stopTracking()
+    func selectChartMode(_ mode: ChartMode) // 차트 모드 선택 추가
 }
 protocol ExerciseViewModelOutput{
     var locationUpdatesPublisher: Published<[CLLocationCoordinate2D]>.Publisher {get}
@@ -43,6 +44,9 @@ protocol ExerciseViewModelOutput{
 protocol ExerciseViewModelType: ExerciseViewModelInput, ExerciseViewModelOutput {
     var inputs: ExerciseViewModelInput { get }
     var outputs: ExerciseViewModelOutput {  get }
+    // 차트 관련 Output 추가
+      var animatedChartDataPublisher: Published<[DataPoint]>.Publisher { get }
+      var chartGoalValuePublisher: Published<Double?>.Publisher { get }
 }
 final class ExerciseViewModel: ObservableObject, ExerciseViewModelType {
     var inputs:  ExerciseViewModelInput {return self}
@@ -51,11 +55,23 @@ final class ExerciseViewModel: ObservableObject, ExerciseViewModelType {
     @Published var exerciseData: ExerciseData? = nil
     @Published private(set) var exerciseTime: String?
     @Published private(set) var locationUpdates: [CLLocationCoordinate2D] = []
+    var locationUpdatesPublisher: Published<[CLLocationCoordinate2D]>.Publisher { $locationUpdates }
+       var feedbackPublisher = PassthroughSubject<WarningCase, Error>()
+       var animatedChartDataPublisher: Published<[DataPoint]>.Publisher { $animatedChartData }
+       var chartGoalValuePublisher: Published<Double?>.Publisher { $chartGoalValue }
+    
+    
     private var exerciseUsecase: ExerciseUseCaseProtocol
     private weak var coordinator: StrideCoordinatorProtocol?
-    var feedbackPublisher = PassthroughSubject<WarningCase, Error>()
-    var locationUpdatesPublisher: Published<[CLLocationCoordinate2D]>.Publisher {$locationUpdates} //locationupdates가 달라질때마다 구독자에게 이벤트 방출함.
+
     private var cancellables = Set<AnyCancellable>()
+    private let chartModeSubject = CurrentValueSubject<ChartMode, Never>(.speed)
+
+    // 차트 관련 새로운 프로퍼티들
+    @Published private(set) var animatedChartData: [DataPoint] = []
+    @Published private(set) var chartGoalValue: Double? = nil
+    @Published var selectedChartMode: ChartMode = .speed
+    
     var userGoal: Int = 0
     var startTime: Date?
     var endTime: Date? {
@@ -74,6 +90,7 @@ final class ExerciseViewModel: ObservableObject, ExerciseViewModelType {
         self.exerciseUsecase = exerciseUsecase
         self.userGoal = userGoal
         setup()
+        setupChartAnimationStream()
     }
     private func setup() {
         exerciseUsecase.locationPublisher
@@ -153,4 +170,85 @@ final class ExerciseViewModel: ObservableObject, ExerciseViewModelType {
     private func updateProgress() {
         progress = Float(userGoal/steps)
     }
+    private func setupChartAnimationStream() {
+           chartModeSubject
+               .map { [weak self] mode -> AnyPublisher<DataPoint, Never> in
+                   guard let self = self else {
+                       return Empty<DataPoint, Never>().eraseToAnyPublisher()
+                   }
+                   return self.createAnimationStream(for: mode)
+               }
+               .switchToLatest() // 🚀 핵심: 새로운 모드 선택 시 이전 스트림 자동 취소
+               .receive(on: DispatchQueue.main)
+               .sink { [weak self] dataPoint in
+                   
+                       self?.animatedChartData.append(dataPoint) // 효율적인 append!
+                   
+               }
+               .store(in: &cancellables)
+           
+           // 모드 변경 시 배열 초기화 및 목표값 업데이트
+           chartModeSubject
+               .sink { [weak self] mode in
+                   self?.animatedChartData = [] // 새 모드 시작 시 배열 초기화
+                   self?.chartGoalValue = self?.getGoalValue(for: mode)
+               }
+               .store(in: &cancellables)
+       }
+       
+       private func createAnimationStream(for mode: ChartMode) -> AnyPublisher<DataPoint, Never> {
+           let dataPoints = getDataPoints(for: mode)
+           
+           guard !dataPoints.isEmpty else {
+               return Empty<DataPoint, Never>().eraseToAnyPublisher()
+           }
+           
+           // 각 데이터 포인트를 시간차를 두고 하나씩 방출
+           return Publishers.Sequence(sequence: dataPoints.enumerated())
+               .flatMap { (index, dataPoint) in
+                   Just(dataPoint)
+                       .delay(for: .milliseconds(index * 10), scheduler: DispatchQueue.main)
+               }
+               .eraseToAnyPublisher()
+       }
+    private func getDataPoints(for mode: ChartMode) -> [DataPoint] {
+            guard let exerciseData = exerciseData else { return [] }
+            
+            switch mode {
+            case .speed:
+                return exerciseData.speedDatas.enumerated().map {
+                    DataPoint(time: $0, value: $1)
+                }
+            case .stride:
+                return exerciseData.strideDatas.enumerated().map {
+                    DataPoint(time: $0, value: Double($1))
+                }
+            case .distance:
+                return exerciseData.distanceDatas.enumerated().map {
+                    DataPoint(time: $0, value: Double($1))
+                }
+            case .walkCount:
+                return exerciseData.walkCountDatas.enumerated().map {
+                    DataPoint(time: $0, value: Double($1))
+                }
+            }
+        }
+    private func getGoalValue(for mode: ChartMode) -> Double? {
+          // userGoal이 Int라서 임시로 UserGoal 객체가 있다고 가정
+          // 실제로는 UserGoal 객체를 받아야 함
+          switch mode {
+          case .speed:
+              return 5.0 // 예시값 - 실제로는 userGoal.goalSpeed
+          case .stride:
+              return 70.0 // 예시값 - 실제로는 Double(userGoal.goalStride)
+          case .distance:
+              return nil
+          case .walkCount:
+              return Double(userGoal) // 목표 걸음 수
+          }
+      }
+    func selectChartMode(_ mode: ChartMode) {
+          selectedChartMode = mode
+          chartModeSubject.send(mode)
+      }
 }
