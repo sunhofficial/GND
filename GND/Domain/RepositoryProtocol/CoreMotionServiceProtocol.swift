@@ -7,10 +7,9 @@
 import Combine
 
 protocol CoreMotionServiceProtocol {
-    var mode: ExerciseMode { get }
     func startPedometer()
     func stopActivity()
-    var warningPublisher: AnyPublisher<WarningCase, Error> { get }
+    var motionDataPublisher: AnyPublisher<RawMotionData, Never> { get }
     var exerciseDataPublisher: AnyPublisher<ExerciseData, Never> { get }
     var stepsPublisher: AnyPublisher<Int, Never> { get }
 }

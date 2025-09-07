@@ -61,7 +61,7 @@ final class ExerciseViewModel: ObservableObject, ExerciseViewModelType {
        var chartGoalValuePublisher: Published<Double?>.Publisher { $chartGoalValue }
     
     
-    private var exerciseUsecase: ExerciseUseCaseProtocol
+    private var exerciseUsecase: ExerciseUsecase
     private weak var coordinator: StrideCoordinatorProtocol?
 
     private var cancellables = Set<AnyCancellable>()
@@ -72,7 +72,10 @@ final class ExerciseViewModel: ObservableObject, ExerciseViewModelType {
     @Published private(set) var chartGoalValue: Double? = nil
     @Published var selectedChartMode: ChartMode = .speed
     
-    var userGoal: Int = 0
+    // 운동 설정 관리
+    private let exerciseMode: ExerciseMode
+    private let userGoal: UserGoal
+    var stepGoal: Int = 0 // 걸음 수 목표
     var startTime: Date?
     var endTime: Date? {
         didSet {
@@ -85,10 +88,12 @@ final class ExerciseViewModel: ObservableObject, ExerciseViewModelType {
         }
     }
     
-    init(coordinator: StrideCoordinator, exerciseUsecase: ExerciseUseCaseProtocol, userGoal:Int ) {
+    init(coordinator: StrideCoordinator, exerciseUsecase: ExerciseUsecase, exerciseMode: ExerciseMode, userGoal: UserGoal, stepGoal: Int) {
         self.coordinator = coordinator
         self.exerciseUsecase = exerciseUsecase
+        self.exerciseMode = exerciseMode
         self.userGoal = userGoal
+        self.stepGoal = stepGoal
         setup()
         setupChartAnimationStream()
     }
@@ -125,9 +130,13 @@ final class ExerciseViewModel: ObservableObject, ExerciseViewModelType {
             }.store(in: &cancellables)
     }
     func startTracking() {
-        exerciseUsecase.startUpdateMotion()
+        exerciseUsecase.startUpdateMotion(mode: exerciseMode, userGoal: userGoal)
         exerciseUsecase.startUpdateLocation()
         startTime = Date()
+    }
+    
+    func updateExerciseSettings(mode: ExerciseMode, userGoal: UserGoal) {
+        exerciseUsecase.updateExerciseSettings(mode: mode, userGoal: userGoal)
     }
     func stopTracking() {
         exerciseUsecase.stopUpdateLocation()
@@ -168,7 +177,7 @@ final class ExerciseViewModel: ObservableObject, ExerciseViewModelType {
         exerciseTime = String(format: "%02d시간 %02d분", hours, minutes)
     }
     private func updateProgress() {
-        progress = Float(userGoal/steps)
+        progress = Float(stepGoal/steps)
     }
     private func setupChartAnimationStream() {
            chartModeSubject
@@ -244,7 +253,7 @@ final class ExerciseViewModel: ObservableObject, ExerciseViewModelType {
           case .distance:
               return nil
           case .walkCount:
-              return Double(userGoal) // 목표 걸음 수
+              return Double(stepGoal) // 목표 걸음 수
           }
       }
     func selectChartMode(_ mode: ChartMode) {

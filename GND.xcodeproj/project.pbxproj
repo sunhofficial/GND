@@ -16,6 +16,8 @@
 		C72E721F2BE375DD0003176E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72E721E2BE375DD0003176E /* SceneDelegate.swift */; };
 		C72E72262BE375DF0003176E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C72E72252BE375DF0003176E /* Assets.xcassets */; };
 		C72E72292BE375DF0003176E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = C72E72282BE375DF0003176E /* Base */; };
+		C730A2A72E6DDB02006A8F41 /* RawMotionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C730A2A62E6DDB02006A8F41 /* RawMotionData.swift */; };
+		C730A2AB2E6DF0D2006A8F41 /* MotionPerformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = C730A2AA2E6DF0D2006A8F41 /* MotionPerformance.swift */; };
 		C7678E142C2055FE008AF44C /* ModalGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7678E132C2055FE008AF44C /* ModalGoal.swift */; };
 		C7678E182C23132E008AF44C /* DropDownTabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7678E172C23132E008AF44C /* DropDownTabelCell.swift */; };
 		C7678E1A2C23148A008AF44C /* DropDownButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7678E192C23148A008AF44C /* DropDownButton.swift */; };
@@ -130,6 +132,8 @@
 		C72E72252BE375DF0003176E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C72E72282BE375DF0003176E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C72E722A2BE375DF0003176E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C730A2A62E6DDB02006A8F41 /* RawMotionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawMotionData.swift; sourceTree = "<group>"; };
+		C730A2AA2E6DF0D2006A8F41 /* MotionPerformance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionPerformance.swift; sourceTree = "<group>"; };
 		C7678E132C2055FE008AF44C /* ModalGoal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalGoal.swift; sourceTree = "<group>"; };
 		C7678E172C23132E008AF44C /* DropDownTabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownTabelCell.swift; sourceTree = "<group>"; };
 		C7678E192C23148A008AF44C /* DropDownButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownButton.swift; sourceTree = "<group>"; };
@@ -461,8 +465,10 @@
 			isa = PBXGroup;
 			children = (
 				C7BD5B7D2BE9384C0060CC38 /* Login.swift */,
+				C730A2A62E6DDB02006A8F41 /* RawMotionData.swift */,
 				C7CD66FE2C047F7C00FB471A /* UserLevel.swift */,
 				C7CD670A2C08059D00FB471A /* RecentCourse.swift */,
+				C730A2AA2E6DF0D2006A8F41 /* MotionPerformance.swift */,
 				C7BD5B7F2BE93D830060CC38 /* User.swift */,
 				C7C294832BF34CE8009FACD8 /* ExerciseMode.swift */,
 				C716082F2BF4AAEE005A937A /* Exercise.swift */,
@@ -644,6 +650,7 @@
 				C7CD67092C08046200FB471A /* GetRecentResponse.swift in Sources */,
 				C7BE5C042BFB4CF2007B1D3D /* WarningView.swift in Sources */,
 				C7DE2B882BEA425E00A049A9 /* KakaoLoginServices.swift in Sources */,
+				C730A2A72E6DDB02006A8F41 /* RawMotionData.swift in Sources */,
 				C7BD5B402BE7B8350060CC38 /* UIViewController+.swift in Sources */,
 				C7BD5B6B2BE8CE790060CC38 /* TabbarViewController.swift in Sources */,
 				C7CD670B2C08059D00FB471A /* RecentCourse.swift in Sources */,
@@ -668,6 +675,7 @@
 				C7BD5AEE2BE608E80060CC38 /* LoginViewModel.swift in Sources */,
 				C7C294772BF1FDA2009FACD8 /* TogetherCoordinator.swift in Sources */,
 				C7CD66FD2C046A9900FB471A /* UserGoal.swift in Sources */,
+				C730A2AB2E6DF0D2006A8F41 /* MotionPerformance.swift in Sources */,
 				C7A6E0252C29615F0041D8D3 /* String+.swift in Sources */,
 				C7BD5B862BEA07DB0060CC38 /* NickNameViewModel.swift in Sources */,
 				C7BD5B532BE81CE40060CC38 /* PartyCell.swift in Sources */,

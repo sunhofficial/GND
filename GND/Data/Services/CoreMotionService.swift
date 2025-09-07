@@ -33,13 +33,11 @@ actor MotionDatastore {
 }
 
 class CoreMotionService: CoreMotionServiceProtocol {
-    var mode: ExerciseMode
-    var userGoal: UserGoal
     private let pedometer = CMPedometer()
     private let activityManager = CMMotionActivityManager()
     private var pastTime: Date?
     private var timer: AnyCancellable?
-    private let warningSubject = PassthroughSubject<WarningCase, Error>()
+    private let motionDataSubject = PassthroughSubject<RawMotionData, Never>()
     private let exerciseDatas = PassthroughSubject<ExerciseData, Never>()
     private let stepsSubject = PassthroughSubject<Int, Never>()
     private var cancellables = Set<AnyCancellable>()
@@ -57,13 +55,12 @@ class CoreMotionService: CoreMotionServiceProtocol {
         stepsSubject.eraseToAnyPublisher()
     }
 
-    var warningPublisher: AnyPublisher<WarningCase, Error> {
-        warningSubject.eraseToAnyPublisher()
+    var motionDataPublisher: AnyPublisher<RawMotionData, Never> {
+        motionDataSubject.eraseToAnyPublisher()
     }
 
-    init(mode: ExerciseMode, goal: UserGoal) {
-        self.mode = mode
-        self.userGoal = goal
+    init() {
+        
     }
 
     func startPedometer() {
@@ -117,9 +114,7 @@ class CoreMotionService: CoreMotionServiceProtocol {
                 await dataStore.clear()
             }
         } catch {
-            DispatchQueue.main.async {
-                self.warningSubject.send(completion: .failure(error))
-            }
+            print("Pedometer error: \(error)")
         }
         pastTime = nowDate
     }
@@ -132,33 +127,21 @@ class CoreMotionService: CoreMotionServiceProtocol {
         let stride = distance * 100 / steps
         stepsSubject.send(steps)
         await dataStore.append(speed: speedKmh, stride: stride, distance: currentDistance, steps: currentStep)
-        processStepData(stride: stride, speed: speedKmh)
+        
+        let rawMotionData = RawMotionData(
+            speed: speedKmh,
+            stride: stride,
+            distance: currentDistance,
+            steps: currentStep,
+            timestamp: Date()
+        )
+        motionDataSubject.send(rawMotionData)
     }
     private func roundTo(_ value: Double, places: Int) -> Double {
         let multiplier = pow(10.0, Double(places))
         return (value * multiplier).rounded() / multiplier
     }
 
-    private func processStepData(stride: Int, speed: Double) {
-        switch mode {
-        case .speedMode:
-            if speed < userGoal.goalSpeed{
-                let diff = roundTo(userGoal.goalSpeed - speed, places: 1)
-                DispatchQueue.main.async {
-                    self.warningSubject.send(WarningCase.lowSpeed(diff: diff))
-                }
-            }
-        case .strideMode:
-            if stride < userGoal.goalStride {
-                let diff = userGoal.goalStride - stride
-                DispatchQueue.main.async {
-                    self.warningSubject.send(WarningCase.lowStride(diff: diff))
-                }
-            }
-        default:
-            break
-        }
-    }
 }
 
 extension CMPedometer {

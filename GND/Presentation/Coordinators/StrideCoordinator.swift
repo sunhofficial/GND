@@ -47,8 +47,14 @@ class StrideCoordinator: StrideCoordinatorProtocol {
     func doExerciseView(mode: ExerciseMode, userGoal: Int, goal: UserGoal) {
         self.navigationController.isNavigationBarHidden = true
         let exerciseViewController = ExerciseViewController()
-        let exerciseUseCase = conatiner.provideExerciseUseCase(mode: mode, goal: goal)
-        let viewModel =  ExerciseViewModel(coordinator: self, exerciseUsecase: exerciseUseCase, userGoal:  userGoal)
+        let exerciseUseCase = conatiner.provideExerciseUseCase()
+        let viewModel = ExerciseViewModel(
+            coordinator: self,
+            exerciseUsecase: exerciseUseCase,
+            exerciseMode: mode,
+            userGoal: goal,
+            stepGoal: userGoal
+        )
         self.userGoal = goal
         exerciseViewController.viewModel = viewModel
         navigationController.pushViewController(exerciseViewController, animated: false)

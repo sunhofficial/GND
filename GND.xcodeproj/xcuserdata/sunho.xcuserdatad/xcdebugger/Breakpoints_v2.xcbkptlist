@@ -16,7 +16,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "140"
             endingLineNumber = "140"
-            landmarkName = "sendToSever(title:)"
+            landmarkName = "updateExerciseSettings(mode:userGoal:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -32,7 +32,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "139"
             endingLineNumber = "139"
-            landmarkName = "sendToSever(title:)"
+            landmarkName = "updateExerciseSettings(mode:userGoal:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

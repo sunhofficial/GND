@@ -14,14 +14,14 @@ class DIContainer {
     func provideExerciseRepository() -> ExerciseRepositoryProtocol {
         return ExerciseRepository()
     }
-    func provideCoreMotionService(mode: ExerciseMode, goal: UserGoal) -> CoreMotionServiceProtocol {
-        return CoreMotionService(mode: mode, goal: goal)
+    func provideCoreMotionService() -> CoreMotionServiceProtocol {
+        return CoreMotionService()
     }
     
-    func provideExerciseUseCase(mode: ExerciseMode, goal: UserGoal) -> ExerciseUseCaseProtocol {
+    func provideExerciseUseCase() -> ExerciseUsecase {
          return ExerciseUsecase(
              exerciseRepository: provideExerciseRepository(),
-             coreMotionService: provideCoreMotionService(mode: mode, goal: goal),
+             coreMotionService: provideCoreMotionService(),
              coreLocationService: provideCoreLocationService()
          )
      }
